@@ -11,7 +11,7 @@
 #import "DecorationSignifier.h"
 #import "SaveMachine.h"
 #import "ChunkLoader.h"
-//test comment
+//test comment again
 const int SNAP_THRESHOLD = 5;
 
 @implementation SKView (Right_Mouse)
