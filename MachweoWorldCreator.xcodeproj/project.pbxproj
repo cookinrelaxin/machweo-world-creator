@@ -1,0 +1,544 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		65160D0C1A57955B00D481D0 /* my fun fun fun fun level.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65160D011A57955B00D481D0 /* my fun fun fun fun level.xml */; };
+		65160D1A1A57B9AA00D481D0 /* test_background_1_decoration.png in Resources */ = {isa = PBXBuildFile; fileRef = 65160D161A57B9AA00D481D0 /* test_background_1_decoration.png */; };
+		65160D1B1A57B9AA00D481D0 /* square_test_2_decoration.png in Resources */ = {isa = PBXBuildFile; fileRef = 65160D171A57B9AA00D481D0 /* square_test_2_decoration.png */; };
+		65160D1C1A57B9AA00D481D0 /* square_test_1_decoration.png in Resources */ = {isa = PBXBuildFile; fileRef = 65160D181A57B9AA00D481D0 /* square_test_1_decoration.png */; };
+		65160D1E1A57B9BF00D481D0 /* test_background_2_decoration.png in Resources */ = {isa = PBXBuildFile; fileRef = 65160D1D1A57B9BF00D481D0 /* test_background_2_decoration.png */; };
+		65160D201A57C97600D481D0 /* testParallaxLevel1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65160D1F1A57C97600D481D0 /* testParallaxLevel1.xml */; };
+		65160D221A57EEAF00D481D0 /* HelpWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65160D211A57EEAF00D481D0 /* HelpWindow.xib */; };
+		659A32821A564DF700A8F93A /* square_test_obstacle.png in Resources */ = {isa = PBXBuildFile; fileRef = 659A32801A564DF700A8F93A /* square_test_obstacle.png */; };
+		659A32831A564DF700A8F93A /* vertical_bar_obstacle.png in Resources */ = {isa = PBXBuildFile; fileRef = 659A32811A564DF700A8F93A /* vertical_bar_obstacle.png */; };
+		65CAB25C1A4E6A2F00D6CE26 /* ChunkLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CAB25A1A4E6A2F00D6CE26 /* ChunkLoader.m */; };
+		78223F121A3B976600E73137 /* DragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78223F111A3B976600E73137 /* DragView.m */; };
+		78223F141A3BA99B00E73137 /* ObstacleIconPrototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78223F131A3BA99B00E73137 /* ObstacleIconPrototype.xib */; };
+		78991D6C1A36661B004BDEC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78991D6B1A36661B004BDEC2 /* AppDelegate.m */; };
+		78991D6E1A36661B004BDEC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78991D6D1A36661B004BDEC2 /* main.m */; };
+		78991D711A36661B004BDEC2 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 78991D701A36661B004BDEC2 /* GameScene.m */; };
+		78991D751A36661B004BDEC2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 78991D741A36661B004BDEC2 /* Images.xcassets */; };
+		78991D841A36661B004BDEC2 /* MachweoWorldCreatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 78991D831A36661B004BDEC2 /* MachweoWorldCreatorTests.m */; };
+		78991D911A366F8B004BDEC2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78991D901A366F8B004BDEC2 /* MainMenu.xib */; };
+		78991D931A367130004BDEC2 /* EditorWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78991D921A367130004BDEC2 /* EditorWindow.xib */; };
+		78991D961A36728E004BDEC2 /* MyWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78991D951A36728E004BDEC2 /* MyWindowController.m */; };
+		78A733971A44AEA9000265FA /* ObstacleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A733961A44AEA9000265FA /* ObstacleImageView.m */; };
+		78A7339B1A44AF94000265FA /* DecorationIconPrototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78A733991A44AF94000265FA /* DecorationIconPrototype.xib */; };
+		78A7339E1A44AFA9000265FA /* DecorationImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A7339D1A44AFA9000265FA /* DecorationImageView.m */; };
+		78A733A41A44B1C9000265FA /* ObstacleSignifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A733A31A44B1C9000265FA /* ObstacleSignifier.m */; };
+		78A733AA1A44B1FA000265FA /* DecorationSignifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A733A91A44B1FA000265FA /* DecorationSignifier.m */; };
+		78A733B01A44BBB5000265FA /* SaveMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A733AF1A44BBB5000265FA /* SaveMachine.m */; };
+		78E66D3D1A43D99900D2978E /* SpriteDragSourceImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E66D3C1A43D99900D2978E /* SpriteDragSourceImageView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		78991D7E1A36661B004BDEC2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 78991D5D1A36661B004BDEC2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 78991D641A36661B004BDEC2;
+			remoteInfo = MachweoWorldCreator;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		65160D011A57955B00D481D0 /* my fun fun fun fun level.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "my fun fun fun fun level.xml"; sourceTree = "<group>"; };
+		65160D161A57B9AA00D481D0 /* test_background_1_decoration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_background_1_decoration.png; sourceTree = "<group>"; };
+		65160D171A57B9AA00D481D0 /* square_test_2_decoration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_test_2_decoration.png; sourceTree = "<group>"; };
+		65160D181A57B9AA00D481D0 /* square_test_1_decoration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_test_1_decoration.png; sourceTree = "<group>"; };
+		65160D1D1A57B9BF00D481D0 /* test_background_2_decoration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_background_2_decoration.png; sourceTree = "<group>"; };
+		65160D1F1A57C97600D481D0 /* testParallaxLevel1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = testParallaxLevel1.xml; sourceTree = "<group>"; };
+		65160D211A57EEAF00D481D0 /* HelpWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpWindow.xib; sourceTree = "<group>"; };
+		659A32801A564DF700A8F93A /* square_test_obstacle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = square_test_obstacle.png; sourceTree = "<group>"; };
+		659A32811A564DF700A8F93A /* vertical_bar_obstacle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vertical_bar_obstacle.png; sourceTree = "<group>"; };
+		65CAB25A1A4E6A2F00D6CE26 /* ChunkLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChunkLoader.m; sourceTree = "<group>"; };
+		65CAB25B1A4E6A2F00D6CE26 /* ChunkLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkLoader.h; sourceTree = "<group>"; };
+		78223F101A3B976600E73137 /* DragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragView.h; sourceTree = "<group>"; };
+		78223F111A3B976600E73137 /* DragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragView.m; sourceTree = "<group>"; };
+		78223F131A3BA99B00E73137 /* ObstacleIconPrototype.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ObstacleIconPrototype.xib; sourceTree = "<group>"; };
+		78991D651A36661B004BDEC2 /* MachweoWorldCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MachweoWorldCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		78991D691A36661B004BDEC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78991D6A1A36661B004BDEC2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		78991D6B1A36661B004BDEC2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		78991D6D1A36661B004BDEC2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		78991D6F1A36661B004BDEC2 /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		78991D701A36661B004BDEC2 /* GameScene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		78991D741A36661B004BDEC2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		78991D7D1A36661B004BDEC2 /* MachweoWorldCreatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MachweoWorldCreatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		78991D821A36661B004BDEC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		78991D831A36661B004BDEC2 /* MachweoWorldCreatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MachweoWorldCreatorTests.m; sourceTree = "<group>"; };
+		78991D901A366F8B004BDEC2 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		78991D921A367130004BDEC2 /* EditorWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditorWindow.xib; sourceTree = "<group>"; };
+		78991D941A36728E004BDEC2 /* MyWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWindowController.h; sourceTree = "<group>"; };
+		78991D951A36728E004BDEC2 /* MyWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWindowController.m; sourceTree = "<group>"; };
+		78A733951A44AEA9000265FA /* ObstacleImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObstacleImageView.h; sourceTree = "<group>"; };
+		78A733961A44AEA9000265FA /* ObstacleImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObstacleImageView.m; sourceTree = "<group>"; };
+		78A733991A44AF94000265FA /* DecorationIconPrototype.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DecorationIconPrototype.xib; sourceTree = "<group>"; };
+		78A7339C1A44AFA9000265FA /* DecorationImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecorationImageView.h; sourceTree = "<group>"; };
+		78A7339D1A44AFA9000265FA /* DecorationImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecorationImageView.m; sourceTree = "<group>"; };
+		78A733A21A44B1C9000265FA /* ObstacleSignifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObstacleSignifier.h; sourceTree = "<group>"; };
+		78A733A31A44B1C9000265FA /* ObstacleSignifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObstacleSignifier.m; sourceTree = "<group>"; };
+		78A733A81A44B1FA000265FA /* DecorationSignifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecorationSignifier.h; sourceTree = "<group>"; };
+		78A733A91A44B1FA000265FA /* DecorationSignifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecorationSignifier.m; sourceTree = "<group>"; };
+		78A733AE1A44BBB5000265FA /* SaveMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveMachine.h; sourceTree = "<group>"; };
+		78A733AF1A44BBB5000265FA /* SaveMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveMachine.m; sourceTree = "<group>"; };
+		78E66D3B1A43D99900D2978E /* SpriteDragSourceImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteDragSourceImageView.h; sourceTree = "<group>"; };
+		78E66D3C1A43D99900D2978E /* SpriteDragSourceImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteDragSourceImageView.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		78991D621A36661B004BDEC2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78991D7A1A36661B004BDEC2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		65160CFE1A57955B00D481D0 /* levels */ = {
+			isa = PBXGroup;
+			children = (
+				65160D1F1A57C97600D481D0 /* testParallaxLevel1.xml */,
+				65160D011A57955B00D481D0 /* my fun fun fun fun level.xml */,
+			);
+			path = levels;
+			sourceTree = "<group>";
+		};
+		659A327D1A564DF700A8F93A /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				65160CFE1A57955B00D481D0 /* levels */,
+				659A327E1A564DF700A8F93A /* decorations */,
+				659A327F1A564DF700A8F93A /* obstacles */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		659A327E1A564DF700A8F93A /* decorations */ = {
+			isa = PBXGroup;
+			children = (
+				65160D161A57B9AA00D481D0 /* test_background_1_decoration.png */,
+				65160D1D1A57B9BF00D481D0 /* test_background_2_decoration.png */,
+				65160D171A57B9AA00D481D0 /* square_test_2_decoration.png */,
+				65160D181A57B9AA00D481D0 /* square_test_1_decoration.png */,
+			);
+			path = decorations;
+			sourceTree = "<group>";
+		};
+		659A327F1A564DF700A8F93A /* obstacles */ = {
+			isa = PBXGroup;
+			children = (
+				659A32801A564DF700A8F93A /* square_test_obstacle.png */,
+				659A32811A564DF700A8F93A /* vertical_bar_obstacle.png */,
+			);
+			path = obstacles;
+			sourceTree = "<group>";
+		};
+		78991D5C1A36661B004BDEC2 = {
+			isa = PBXGroup;
+			children = (
+				78991D671A36661B004BDEC2 /* MachweoWorldCreator */,
+				78991D801A36661B004BDEC2 /* MachweoWorldCreatorTests */,
+				78991D661A36661B004BDEC2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		78991D661A36661B004BDEC2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				78991D651A36661B004BDEC2 /* MachweoWorldCreator.app */,
+				78991D7D1A36661B004BDEC2 /* MachweoWorldCreatorTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		78991D671A36661B004BDEC2 /* MachweoWorldCreator */ = {
+			isa = PBXGroup;
+			children = (
+				659A327D1A564DF700A8F93A /* assets */,
+				78991D6A1A36661B004BDEC2 /* AppDelegate.h */,
+				78991D6B1A36661B004BDEC2 /* AppDelegate.m */,
+				78991D941A36728E004BDEC2 /* MyWindowController.h */,
+				78991D951A36728E004BDEC2 /* MyWindowController.m */,
+				78223F101A3B976600E73137 /* DragView.h */,
+				78223F111A3B976600E73137 /* DragView.m */,
+				65CAB25B1A4E6A2F00D6CE26 /* ChunkLoader.h */,
+				65CAB25A1A4E6A2F00D6CE26 /* ChunkLoader.m */,
+				78A733A21A44B1C9000265FA /* ObstacleSignifier.h */,
+				78A733A31A44B1C9000265FA /* ObstacleSignifier.m */,
+				78A733A81A44B1FA000265FA /* DecorationSignifier.h */,
+				78A733A91A44B1FA000265FA /* DecorationSignifier.m */,
+				78E66D3B1A43D99900D2978E /* SpriteDragSourceImageView.h */,
+				78E66D3C1A43D99900D2978E /* SpriteDragSourceImageView.m */,
+				78A733AE1A44BBB5000265FA /* SaveMachine.h */,
+				78A733AF1A44BBB5000265FA /* SaveMachine.m */,
+				78A733951A44AEA9000265FA /* ObstacleImageView.h */,
+				78A733961A44AEA9000265FA /* ObstacleImageView.m */,
+				78A7339C1A44AFA9000265FA /* DecorationImageView.h */,
+				78A7339D1A44AFA9000265FA /* DecorationImageView.m */,
+				78991D6F1A36661B004BDEC2 /* GameScene.h */,
+				78991D701A36661B004BDEC2 /* GameScene.m */,
+				78991D741A36661B004BDEC2 /* Images.xcassets */,
+				78991D681A36661B004BDEC2 /* Supporting Files */,
+			);
+			path = MachweoWorldCreator;
+			sourceTree = "<group>";
+		};
+		78991D681A36661B004BDEC2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				78A733991A44AF94000265FA /* DecorationIconPrototype.xib */,
+				78991D691A36661B004BDEC2 /* Info.plist */,
+				78991D901A366F8B004BDEC2 /* MainMenu.xib */,
+				65160D211A57EEAF00D481D0 /* HelpWindow.xib */,
+				78223F131A3BA99B00E73137 /* ObstacleIconPrototype.xib */,
+				78991D921A367130004BDEC2 /* EditorWindow.xib */,
+				78991D6D1A36661B004BDEC2 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		78991D801A36661B004BDEC2 /* MachweoWorldCreatorTests */ = {
+			isa = PBXGroup;
+			children = (
+				78991D831A36661B004BDEC2 /* MachweoWorldCreatorTests.m */,
+				78991D811A36661B004BDEC2 /* Supporting Files */,
+			);
+			path = MachweoWorldCreatorTests;
+			sourceTree = "<group>";
+		};
+		78991D811A36661B004BDEC2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				78991D821A36661B004BDEC2 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		78991D641A36661B004BDEC2 /* MachweoWorldCreator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 78991D871A36661B004BDEC2 /* Build configuration list for PBXNativeTarget "MachweoWorldCreator" */;
+			buildPhases = (
+				78991D611A36661B004BDEC2 /* Sources */,
+				78991D621A36661B004BDEC2 /* Frameworks */,
+				78991D631A36661B004BDEC2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MachweoWorldCreator;
+			productName = MachweoWorldCreator;
+			productReference = 78991D651A36661B004BDEC2 /* MachweoWorldCreator.app */;
+			productType = "com.apple.product-type.application";
+		};
+		78991D7C1A36661B004BDEC2 /* MachweoWorldCreatorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 78991D8A1A36661B004BDEC2 /* Build configuration list for PBXNativeTarget "MachweoWorldCreatorTests" */;
+			buildPhases = (
+				78991D791A36661B004BDEC2 /* Sources */,
+				78991D7A1A36661B004BDEC2 /* Frameworks */,
+				78991D7B1A36661B004BDEC2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				78991D7F1A36661B004BDEC2 /* PBXTargetDependency */,
+			);
+			name = MachweoWorldCreatorTests;
+			productName = MachweoWorldCreatorTests;
+			productReference = 78991D7D1A36661B004BDEC2 /* MachweoWorldCreatorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		78991D5D1A36661B004BDEC2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Feldcamp, Zachary Satoshi";
+				TargetAttributes = {
+					78991D641A36661B004BDEC2 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					78991D7C1A36661B004BDEC2 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 78991D641A36661B004BDEC2;
+					};
+				};
+			};
+			buildConfigurationList = 78991D601A36661B004BDEC2 /* Build configuration list for PBXProject "MachweoWorldCreator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 78991D5C1A36661B004BDEC2;
+			productRefGroup = 78991D661A36661B004BDEC2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				78991D641A36661B004BDEC2 /* MachweoWorldCreator */,
+				78991D7C1A36661B004BDEC2 /* MachweoWorldCreatorTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		78991D631A36661B004BDEC2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78223F141A3BA99B00E73137 /* ObstacleIconPrototype.xib in Resources */,
+				78A7339B1A44AF94000265FA /* DecorationIconPrototype.xib in Resources */,
+				65160D221A57EEAF00D481D0 /* HelpWindow.xib in Resources */,
+				78991D751A36661B004BDEC2 /* Images.xcassets in Resources */,
+				78991D911A366F8B004BDEC2 /* MainMenu.xib in Resources */,
+				65160D1A1A57B9AA00D481D0 /* test_background_1_decoration.png in Resources */,
+				65160D201A57C97600D481D0 /* testParallaxLevel1.xml in Resources */,
+				65160D1C1A57B9AA00D481D0 /* square_test_1_decoration.png in Resources */,
+				65160D0C1A57955B00D481D0 /* my fun fun fun fun level.xml in Resources */,
+				78991D931A367130004BDEC2 /* EditorWindow.xib in Resources */,
+				65160D1E1A57B9BF00D481D0 /* test_background_2_decoration.png in Resources */,
+				65160D1B1A57B9AA00D481D0 /* square_test_2_decoration.png in Resources */,
+				659A32831A564DF700A8F93A /* vertical_bar_obstacle.png in Resources */,
+				659A32821A564DF700A8F93A /* square_test_obstacle.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78991D7B1A36661B004BDEC2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		78991D611A36661B004BDEC2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78E66D3D1A43D99900D2978E /* SpriteDragSourceImageView.m in Sources */,
+				78A733B01A44BBB5000265FA /* SaveMachine.m in Sources */,
+				65CAB25C1A4E6A2F00D6CE26 /* ChunkLoader.m in Sources */,
+				78991D6E1A36661B004BDEC2 /* main.m in Sources */,
+				78991D711A36661B004BDEC2 /* GameScene.m in Sources */,
+				78A733A41A44B1C9000265FA /* ObstacleSignifier.m in Sources */,
+				78223F121A3B976600E73137 /* DragView.m in Sources */,
+				78991D6C1A36661B004BDEC2 /* AppDelegate.m in Sources */,
+				78A733AA1A44B1FA000265FA /* DecorationSignifier.m in Sources */,
+				78991D961A36728E004BDEC2 /* MyWindowController.m in Sources */,
+				78A7339E1A44AFA9000265FA /* DecorationImageView.m in Sources */,
+				78A733971A44AEA9000265FA /* ObstacleImageView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		78991D791A36661B004BDEC2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78991D841A36661B004BDEC2 /* MachweoWorldCreatorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		78991D7F1A36661B004BDEC2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 78991D641A36661B004BDEC2 /* MachweoWorldCreator */;
+			targetProxy = 78991D7E1A36661B004BDEC2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		78991D851A36661B004BDEC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		78991D861A36661B004BDEC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		78991D881A36661B004BDEC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = MachweoWorldCreator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		78991D891A36661B004BDEC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = MachweoWorldCreator/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		78991D8B1A36661B004BDEC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MachweoWorldCreatorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MachweoWorldCreator.app/Contents/MacOS/MachweoWorldCreator";
+			};
+			name = Debug;
+		};
+		78991D8C1A36661B004BDEC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MachweoWorldCreatorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MachweoWorldCreator.app/Contents/MacOS/MachweoWorldCreator";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		78991D601A36661B004BDEC2 /* Build configuration list for PBXProject "MachweoWorldCreator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78991D851A36661B004BDEC2 /* Debug */,
+				78991D861A36661B004BDEC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		78991D871A36661B004BDEC2 /* Build configuration list for PBXNativeTarget "MachweoWorldCreator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78991D881A36661B004BDEC2 /* Debug */,
+				78991D891A36661B004BDEC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		78991D8A1A36661B004BDEC2 /* Build configuration list for PBXNativeTarget "MachweoWorldCreatorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				78991D8B1A36661B004BDEC2 /* Debug */,
+				78991D8C1A36661B004BDEC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 78991D5D1A36661B004BDEC2 /* Project object */;
+}

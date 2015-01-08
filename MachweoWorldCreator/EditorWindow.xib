@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="MyWindowController">
+            <connections>
+                <outlet property="currentlySelectedImage" destination="ApO-Rn-OBE" id="vW7-hd-Af4"/>
+                <outlet property="imageName" destination="cuA-Xw-FlJ" id="yqZ-FJ-vt9"/>
+                <outlet property="windowView" destination="V6Q-OT-Hpx" id="JJc-TT-dE5"/>
+                <outlet property="zPositionComboBox" destination="G0d-XS-sZo" id="TCj-3R-mJj"/>
+                <outlet property="zPositionInfoLabel" destination="vco-Sc-FOI" id="uGd-lH-R5z"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <string key="title">Machweo World Creator          
+</string>
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="464" y="508" width="1350" height="1060"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1418"/>
+            <value key="minSize" type="size" width="1200" height="800"/>
+            <view key="contentView" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="1350" height="1060"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="V6Q-OT-Hpx">
+                        <rect key="frame" x="0.0" y="0.0" width="1043" height="1060"/>
+                    </customView>
+                    <tabView appearanceType="aqua" allowsTruncatedLabels="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fR4-OT-aes">
+                        <rect key="frame" x="1036" y="416" width="314" height="650"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="300" id="UlS-Jl-Jna"/>
+                        </constraints>
+                        <font key="font" metaFont="system"/>
+                        <tabViewItems>
+                            <tabViewItem label="Obstacles" identifier="1" id="2pB-Vg-fvt">
+                                <view key="view" id="CLb-Cs-Ti9">
+                                    <rect key="frame" x="10" y="33" width="294" height="604"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5B-kV-Lx4">
+                                            <rect key="frame" x="0.0" y="11" width="294" height="590"/>
+                                            <clipView key="contentView" id="UOc-Xk-w5X">
+                                                <rect key="frame" x="1" y="1" width="248" height="158"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <collectionView id="Zvt-Xl-WCX" userLabel="obstacle collection view">
+                                                        <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        <connections>
+                                                            <binding destination="wfL-4n-ErW" name="content" keyPath="arrangedObjects" id="9RA-Rn-Nkl"/>
+                                                            <binding destination="wfL-4n-ErW" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="9RA-Rn-Nkl" id="bxh-rc-SQV"/>
+                                                            <outlet property="delegate" destination="-2" id="7fo-Si-duF"/>
+                                                            <outlet property="itemPrototype" destination="E5m-5l-vRX" id="7WV-25-JP2"/>
+                                                        </connections>
+                                                    </collectionView>
+                                                </subviews>
+                                            </clipView>
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="vhh-o3-S3h">
+                                                <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="8WR-q2-PSn">
+                                                <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                        </scrollView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="q5B-kV-Lx4" secondAttribute="bottom" constant="11" id="DWp-u1-wMS"/>
+                                        <constraint firstItem="q5B-kV-Lx4" firstAttribute="top" secondItem="CLb-Cs-Ti9" secondAttribute="top" constant="3" id="gyE-bx-nXh"/>
+                                        <constraint firstItem="q5B-kV-Lx4" firstAttribute="leading" secondItem="CLb-Cs-Ti9" secondAttribute="leading" id="jAy-YP-tOb"/>
+                                        <constraint firstAttribute="trailing" secondItem="q5B-kV-Lx4" secondAttribute="trailing" id="oCn-br-Gdu"/>
+                                    </constraints>
+                                </view>
+                            </tabViewItem>
+                            <tabViewItem label="Decoration" identifier="1" id="MNm-Vb-aFS">
+                                <view key="view" id="ACY-jP-Gcm">
+                                    <rect key="frame" x="10" y="33" width="294" height="604"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <scrollView autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BwQ-5B-Pnm">
+                                            <rect key="frame" x="0.0" y="11" width="294" height="590"/>
+                                            <clipView key="contentView" id="Fj0-bX-nMX">
+                                                <rect key="frame" x="1" y="1" width="248" height="158"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <collectionView id="bBk-sW-JZI" userLabel="decoration collection view">
+                                                        <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        <connections>
+                                                            <binding destination="z4i-Pm-ttj" name="content" keyPath="arrangedObjects" id="c3S-NN-cIQ"/>
+                                                            <binding destination="z4i-Pm-ttj" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="c3S-NN-cIQ" id="DEO-bF-15W"/>
+                                                            <outlet property="delegate" destination="-2" id="Kq3-dX-CtK"/>
+                                                            <outlet property="itemPrototype" destination="oLI-Jo-M8K" id="go3-3Y-uc1"/>
+                                                        </connections>
+                                                    </collectionView>
+                                                </subviews>
+                                            </clipView>
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="07K-0j-09P">
+                                                <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="FeD-dp-gbQ">
+                                                <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                        </scrollView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="BwQ-5B-Pnm" secondAttribute="bottom" constant="11" id="AO3-Xv-RPR"/>
+                                        <constraint firstItem="BwQ-5B-Pnm" firstAttribute="leading" secondItem="ACY-jP-Gcm" secondAttribute="leading" id="MQ1-UR-SJ2"/>
+                                        <constraint firstItem="BwQ-5B-Pnm" firstAttribute="top" secondItem="ACY-jP-Gcm" secondAttribute="top" constant="3" id="TMW-JW-Nq1"/>
+                                        <constraint firstAttribute="trailing" secondItem="BwQ-5B-Pnm" secondAttribute="trailing" id="qK9-zb-zE5"/>
+                                    </constraints>
+                                </view>
+                            </tabViewItem>
+                        </tabViewItems>
+                    </tabView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="pOh-xR-qTr" userLabel="currently selected item view">
+                        <rect key="frame" x="1049" y="6" width="295" height="414"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ApO-Rn-OBE">
+                                <rect key="frame" x="7" y="8" width="281" height="362"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="yo3-J6-1Kq"/>
+                            </imageView>
+                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G0d-XS-sZo">
+                                <rect key="frame" x="95" y="12" width="99" height="26"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="R0T-NT-iJo">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </comboBoxCell>
+                            </comboBox>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vco-Sc-FOI">
+                                <rect key="frame" x="4" y="44" width="285" height="34"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="z-position of all sprites of this name (lower values are farther away)" id="Vka-fu-vCH">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ebk-VI-gio">
+                                <rect key="frame" x="38" y="376" width="211" height="20"/>
+                                <buttonCell key="cell" type="check" title="enable snapping to neighbors" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="z0T-vi-XoN">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="changeSnapPermission:" target="-2" id="Gol-Ze-bT5"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cuA-Xw-FlJ">
+                                <rect key="frame" x="16" y="199" width="253" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="image name" id="LpY-aL-Pkr">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </customView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fR4-OT-aes" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="3OY-qE-MP1"/>
+                    <constraint firstAttribute="trailing" secondItem="fR4-OT-aes" secondAttribute="trailing" constant="7" id="XM7-ad-bdx"/>
+                    <constraint firstItem="pOh-xR-qTr" firstAttribute="leading" secondItem="V6Q-OT-Hpx" secondAttribute="trailing" constant="6" id="cXn-ii-ovt"/>
+                    <constraint firstAttribute="bottom" secondItem="fR4-OT-aes" secondAttribute="bottom" constant="426" id="dAg-OL-GGk"/>
+                    <constraint firstAttribute="trailing" secondItem="pOh-xR-qTr" secondAttribute="trailing" constant="6" id="maJ-88-7x9"/>
+                    <constraint firstItem="V6Q-OT-Hpx" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" id="obW-bN-IWK"/>
+                    <constraint firstAttribute="bottom" secondItem="V6Q-OT-Hpx" secondAttribute="bottom" id="pFt-3r-VLp"/>
+                    <constraint firstItem="fR4-OT-aes" firstAttribute="leading" secondItem="V6Q-OT-Hpx" secondAttribute="trailing" id="rOM-U4-w7z"/>
+                    <constraint firstItem="pOh-xR-qTr" firstAttribute="top" secondItem="fR4-OT-aes" secondAttribute="bottom" constant="6" id="sWI-NR-ChY"/>
+                    <constraint firstItem="V6Q-OT-Hpx" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" id="uuS-LQ-ptv"/>
+                    <constraint firstAttribute="bottom" secondItem="pOh-xR-qTr" secondAttribute="bottom" constant="6" id="w04-zD-KsW"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="delegate" destination="-2" id="Zd5-ce-yhB"/>
+            </connections>
+            <point key="canvasLocation" x="380" y="339"/>
+        </window>
+        <arrayController id="wfL-4n-ErW" userLabel="obstacle array controller">
+            <connections>
+                <binding destination="-2" name="contentArray" keyPath="self.obstacleImages" id="Alx-D1-3kn"/>
+            </connections>
+        </arrayController>
+        <arrayController id="z4i-Pm-ttj" userLabel="decoration array controller">
+            <connections>
+                <binding destination="-2" name="contentArray" keyPath="self.decorationImages" id="NXT-qh-WFp"/>
+            </connections>
+        </arrayController>
+        <collectionViewItem nibName="ObstacleIconPrototype" id="E5m-5l-vRX"/>
+        <collectionViewItem nibName="DecorationIconPrototype" id="oLI-Jo-M8K"/>
+    </objects>
+</document>
