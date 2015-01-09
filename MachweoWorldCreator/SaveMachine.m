@@ -16,6 +16,28 @@
 -(void)saveWorld:(SKNode *)world{
     NSLog(@"saveScene");
     
+    SKSpriteNode* leftMostNode = nil;
+    
+    for (SKSpriteNode* node in world.children) {
+        if ([node isKindOfClass:[DecorationSignifier class]]) {
+            
+            if (leftMostNode == nil) {
+                leftMostNode = node;
+            }
+            
+            float leftEdgeOfLeftMost = leftMostNode.position.x - (leftMostNode.size.width / 2);
+            float leftEdgeOfNode = node.position.x - (node.size.width / 2);
+            
+            if (leftEdgeOfNode < leftEdgeOfLeftMost) {
+                leftMostNode = node;
+            }
+        }
+        
+    }
+    NSLog(@"[leftMostNode class]: %@", [leftMostNode class]);
+    float xDifference = leftMostNode.position.x - (leftMostNode.size.width / 2);
+    NSLog(@"xDifference: %f", xDifference);
+    
     NSXMLElement *root = (NSXMLElement *)[NSXMLNode elementWithName:@"worldnodes"];
     NSXMLDocument *xmlDoc = [[NSXMLDocument alloc] initWithRootElement:root];
     [xmlDoc setVersion:@"1.0"];
@@ -38,8 +60,18 @@
         NSXMLElement *name = [NSXMLElement elementWithName:@"name" stringValue:sprite.name];
         [spriteNode addChild:name];
         
-        NSXMLElement *xPosition = [NSXMLElement elementWithName:@"xPosition" stringValue:[NSString stringWithFormat:@"%f", sprite.position.x]];
-        [spriteNode addChild:xPosition];
+        //if ([sprite isKindOfClass:[ObstacleSignifier class]]) {
+         //   float xPos = sprite.position.x - xDifference;
+        //    NSXMLElement *xPosition = [NSXMLElement elementWithName:@"xPosition" stringValue:[NSString stringWithFormat:@"%f", xPos]];
+        //    [spriteNode addChild:xPosition];
+        //}
+        //else if ([sprite isKindOfClass:[DecorationSignifier class]]) {
+            float fractionalCoefficient = sprite.zPosition / leftMostNode.zPosition;
+            float parallaxAdjustedDifference = fractionalCoefficient * xDifference;
+            float xPos = sprite.position.x - parallaxAdjustedDifference;
+            NSXMLElement *xPosition = [NSXMLElement elementWithName:@"xPosition" stringValue:[NSString stringWithFormat:@"%f", xPos]];
+            [spriteNode addChild:xPosition];
+        //}
         
         NSXMLElement *yPosition = [NSXMLElement elementWithName:@"yPosition" stringValue:[NSString stringWithFormat:@"%f", sprite.position.y]];
         [spriteNode addChild:yPosition];
