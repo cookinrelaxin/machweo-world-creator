@@ -135,6 +135,8 @@ const int SNAP_THRESHOLD = 5;
     if ([selectedNode isKindOfClass:[SKSpriteNode class]]) {
         draggedSprite = (SKSpriteNode*)selectedNode;
         [self sendCurrentlySelectedImageNotification:draggedSprite.name andCurrentZposition:draggedSprite.zPosition];
+        NSLog(@"draggedSprite.position.x: %f", draggedSprite.position.x);
+        NSLog(@"draggedSprite.position.x - draggedSprite.size.width/2: %f", draggedSprite.position.x - draggedSprite.size.width/2);
         draggedSpriteOffset = CGVectorMake((draggedSprite.frame.origin.x + (draggedSprite.frame.size.width / 2)) - locInWorld.x, (draggedSprite.frame.origin.y + (draggedSprite.frame.size.height / 2) - locInWorld.y));
         [self addOutlineNodeAroundSprite:draggedSprite];
         
@@ -303,26 +305,59 @@ const int SNAP_THRESHOLD = 5;
 
 -(void)scrollWorld:(CGVector)dragDiff{
    // NSLog(@"world.position: %f, %f", world.position.x, world.position.y);
-    CGPoint previousPosition = world.position;
-    world.position = CGPointMake(world.position.x - dragDiff.dx, world.position.y);
-    if (world.position.x > 0) {
-       // NSLog(@"world.position.x > 0");
-        world.position = CGPointMake(0, world.position.y);
-        leftBorder.hidden = false;
+   // CGPoint previousPosition = world.position;
+    //world.position = CGPointMake(world.position.x - dragDiff.dx, world.position.y);
+    SKSpriteNode* leftMostNode = nil;
+
+    for (SKSpriteNode* node in world.children) {
+        if (leftMostNode == nil) {
+            leftMostNode = node;
+        }
+
+        float leftEdgeOfLeftMost = leftMostNode.position.x - (leftMostNode.size.width / 2);
+        float leftEdgeOfNode = node.position.x - (node.size.width / 2);
+
+        if (leftEdgeOfNode < leftEdgeOfLeftMost) {
+            leftMostNode = node;
+        }
+        
     }
-    else{
-        leftBorder.hidden = true;
+    
+    if (([leftMostNode isKindOfClass:[ObstacleSignifier class]])) {
+        CGPoint leftMostNodeDesiredPos = CGPointMake(leftMostNode.position.x - dragDiff.dx, leftMostNode.position.y);
+        CGPoint posInScene = [self convertPoint:leftMostNodeDesiredPos fromNode:world];
+        if ((posInScene.x - leftMostNode.size.width / 2) > 0) {
+            return;
+        }
+
     }
-    CGRect worldFrame = [world calculateAccumulatedFrame];
-    float maxX = CGRectGetMaxX(worldFrame);
-    //NSLog(@"maxX: %f", maxX);
-    if (maxX <= 0) {
-        //NSLog(@"maxX <= 0");
-        world.position = previousPosition;
-        rightBorder.hidden = false;
+    if (([leftMostNode isKindOfClass:[DecorationSignifier class]])) {
+       // CGPoint leftMostNodeDesiredPos = CGPointMake(leftMostNode.position.x - dragDiff, <#CGFloat y#>)
+        float fractionalCoefficient = leftMostNode.zPosition / 10;
+        //.1f is the default y parallax coefficient
+        CGVector parallaxAdjustedDifference = CGVectorMake(fractionalCoefficient * dragDiff.dx, fractionalCoefficient * dragDiff.dy * .1f);
+        CGPoint leftMostNodeDesiredPos = CGPointMake(leftMostNode.position.x - parallaxAdjustedDifference.dx, leftMostNode.position.y);
+        CGPoint posInScene = [self convertPoint:leftMostNodeDesiredPos fromNode:world];
+        if ((posInScene.x - leftMostNode.size.width / 2) > 0) {
+            return;
+        }
+        
     }
-    else{
-        rightBorder.hidden = true;
+    
+    for (SKSpriteNode* sprite in world.children) {
+        if ([sprite isKindOfClass:[ObstacleSignifier class]]) {
+            sprite.position = CGPointMake(sprite.position.x - dragDiff.dx, sprite.position.y);
+        }
+        if ([sprite isKindOfClass:[DecorationSignifier class]]) {
+            //sprite.position = CGPointMake(sprite.position.x - dragDiff.dx, sprite.position.y - dragDiff.dy);
+            //10 is the default obstacle z pos
+            float fractionalCoefficient = sprite.zPosition / 10;
+            //.1f is the default y parallax coefficient
+            CGVector parallaxAdjustedDifference = CGVectorMake(fractionalCoefficient * dragDiff.dx, fractionalCoefficient * dragDiff.dy * .1f);
+            sprite.position = CGPointMake(sprite.position.x - parallaxAdjustedDifference.dx, sprite.position.y);
+            
+        }
+        
     }
 }
 
