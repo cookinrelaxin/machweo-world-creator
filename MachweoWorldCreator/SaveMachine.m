@@ -16,6 +16,7 @@
 -(void)saveWorld:(SKNode *)world{
     NSLog(@"saveScene");
     
+    SKSpriteNode* rightMostNode = nil;
     SKSpriteNode* leftMostNode = nil;
     
     for (SKSpriteNode* node in world.children) {
@@ -24,15 +25,27 @@
             if (leftMostNode == nil) {
                 leftMostNode = node;
             }
-            
-            float leftEdgeOfLeftMost = leftMostNode.position.x - (leftMostNode.size.width / 2);
-            float leftEdgeOfNode = node.position.x - (node.size.width / 2);
-            
-            if (leftEdgeOfNode < leftEdgeOfLeftMost) {
-                leftMostNode = node;
+            if (rightMostNode == nil) {
+                rightMostNode = node;
             }
+            {
+                float leftEdgeOfLeftMost = leftMostNode.position.x - (leftMostNode.size.width / 2);
+                float leftEdgeOfNode = node.position.x - (node.size.width / 2);
+                
+                if (leftEdgeOfNode < leftEdgeOfLeftMost) {
+                    leftMostNode = node;
+                }
+            }
+            {
+                float rightEdgeOfRightMost = rightMostNode.position.x + (rightMostNode.size.width / 2);
+                float rightEdgeOfNode = node.position.x + (node.size.width / 2);
+                
+                if (rightEdgeOfNode > rightEdgeOfRightMost) {
+                    rightMostNode = node;
+                }
+            }
+            
         }
-        
     }
     NSLog(@"[leftMostNode class]: %@", [leftMostNode class]);
     float xDifference = leftMostNode.position.x - (leftMostNode.size.width / 2);
@@ -59,6 +72,15 @@
         
         NSXMLElement *name = [NSXMLElement elementWithName:@"name" stringValue:sprite.name];
         [spriteNode addChild:name];
+        
+        if (sprite == rightMostNode) {
+            NSXMLElement *isRightMostNode = [NSXMLElement elementWithName:@"isRightMostNode" stringValue:@"yes"];
+            [spriteNode addChild:isRightMostNode];
+        }
+        else{
+            NSXMLElement *isRightMostNode = [NSXMLElement elementWithName:@"isRightMostNode" stringValue:@"no"];
+            [spriteNode addChild:isRightMostNode];
+        }
         
         //if ([sprite isKindOfClass:[ObstacleSignifier class]]) {
          //   float xPos = sprite.position.x - xDifference;
