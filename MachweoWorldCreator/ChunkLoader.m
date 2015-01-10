@@ -17,7 +17,8 @@ typedef enum ElementVarieties
     name,
     xPosition,
     yPosition,
-    zPosition
+    zPosition,
+    isRightMostNode
 } Element;
 
 typedef enum NodeTypes
@@ -115,6 +116,10 @@ typedef enum NodeTypes
         currentElement = zPosition;
         return;
     }
+    if ([elementName isEqualToString:@"isRightMostNode"]) {
+        currentElement = isRightMostNode;
+        return;
+    }
 }
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
@@ -179,6 +184,9 @@ typedef enum NodeTypes
                 currentNodeType = decoration;
                 return;
             }
+        }
+        if (currentElement == isRightMostNode) {
+            return;
         }
     }
 }
