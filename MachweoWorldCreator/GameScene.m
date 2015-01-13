@@ -11,6 +11,7 @@
 #import "DecorationSignifier.h"
 #import "SaveMachine.h"
 #import "ChunkLoader.h"
+
 const int SNAP_THRESHOLD = 5;
 
 @implementation SKView (Right_Mouse)
@@ -65,8 +66,11 @@ const int SNAP_THRESHOLD = 5;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(haveSaveMachineDoItsThing) name:@"save level" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadLevel:) name:@"load level" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeZpositions:) name:@"zPositionChanged" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeMotionTypes:) name:@"motionTypeChanged" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeMotionSpeeds:) name:@"motionSpeedChanged" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteNode) name:@"delete node" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSnappingPermissions:) name:@"changeSnapPermission" object:nil];
+        
         
         allowSnapping = true;
 
@@ -386,6 +390,63 @@ const int SNAP_THRESHOLD = 5;
 
 }
 
+-(void)changeMotionTypes:(NSNotification*)notification{
+   __block Motion motionType;
+    NSString* motionString = [notification.userInfo objectForKey:@"obstacleMotion"];
+    if ([motionString isEqualToString:@"doesn't move"]) {
+        motionType = motionTypeNone;
+    }
+    if ([motionString isEqualToString:@"moves up and down"]) {
+        motionType = motionTypeUpAndDown;
+    }
+    if ([motionString isEqualToString:@"moves left and right"]) {
+        motionType = motionTypeLeftAndRight;
+    }
+    if ([motionString isEqualToString:@"rotates clockwise"]) {
+        motionType = motionTypeRotatesClockwise;
+    }
+    if ([motionString isEqualToString:@"rotates counterclockwise"]) {
+        motionType = motionTypeRotatesCounterclockwise;
+    }
+    
+    NSString* nameOfSpritesToChange = [notification.userInfo objectForKey:@"imageName"];
+    [world enumerateChildNodesWithName:nameOfSpritesToChange usingBlock: ^(SKNode *node, BOOL *stop){
+        ObstacleSignifier *sprite = (ObstacleSignifier *)node;
+        sprite.currentMotionType = motionType;
+    }];
+    
+}
+
+-(void)changeMotionSpeeds:(NSNotification*)notification{
+   __block Speed speedType;
+    NSString* speedString = [notification.userInfo objectForKey:@"motionSpeed"];
+    if ([speedString isEqualToString:@"slowest"]) {
+        speedType = speedTypeSlowest;
+    }
+    if ([speedString isEqualToString:@"slower"]) {
+        speedType = speedTypeSlower;
+    }
+    if ([speedString isEqualToString:@"slow"]) {
+        speedType = speedTypeSlow;
+    }
+    if ([speedString isEqualToString:@"fast"]) {
+        speedType = speedTypeFast;
+    }
+    if ([speedString isEqualToString:@"faster"]) {
+        speedType = speedTypeFaster;
+    }
+    if ([speedString isEqualToString:@"fastest"]) {
+        speedType = speedTypeFastest;
+    }
+    
+    NSString* nameOfSpritesToChange = [notification.userInfo objectForKey:@"imageName"];
+    [world enumerateChildNodesWithName:nameOfSpritesToChange usingBlock: ^(SKNode *node, BOOL *stop){
+        ObstacleSignifier *sprite = (ObstacleSignifier *)node;
+        sprite.currentSpeedType = speedType;
+    }];
+    
+}
+
 -(void)deleteNode{
     [draggedSprite removeFromParent];
     [outlineNode removeFromParent];
@@ -395,6 +456,9 @@ const int SNAP_THRESHOLD = 5;
 
 -(void)update:(CFTimeInterval)currentTime {
     /* Called before each frame is rendered */
+    for (ObstacleSignifier* obs in world.children) {
+        [obs move];
+    }
 }
 
 @end

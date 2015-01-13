@@ -10,19 +10,59 @@
 #import "DragView.h"
 #import "GameScene.h"
 
+@interface MotionTypeHandler : NSObject <NSComboBoxDelegate>
+@property (nonatomic, strong) MyWindowController* controller;
+@end
+
+@implementation MotionTypeHandler
+- (void)comboBoxSelectionDidChange:(NSNotification *)notification {
+ //   NSLog(@"motion handler called");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"motionTypeChanged" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:_controller.imageName.stringValue, @"imageName", [_controller.obstacleMotionSelectionComboBox objectValueOfSelectedItem], @"obstacleMotion", nil]];
+    //NSLog(@"[_controller.obstacleMotionSelectionComboBox objectValueOfSelectedItem]: %@", [_controller.obstacleMotionSelectionComboBox objectValueOfSelectedItem]);
+}
+@end
+
+@interface MotionSpeedHandler : NSObject <NSComboBoxDelegate>
+@property (nonatomic, strong) MyWindowController* controller;
+@end
+
+@implementation MotionSpeedHandler
+- (void)comboBoxSelectionDidChange:(NSNotification *)notification {
+ //   NSLog(@"speed handler called");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"motionSpeedChanged" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:_controller.imageName.stringValue, @"imageName", [_controller.motionSpeedComboBox objectValueOfSelectedItem], @"motionSpeed", nil]];
+   // NSLog(@"[_controller.obstacleMotionSelectionComboBox objectValueOfSelectedItem]: %@", [_controller.motionSpeedComboBox objectValueOfSelectedItem]);
+    
+}
+@end
+
+@interface ZPositionHandler : NSObject <NSComboBoxDelegate>
+@property (nonatomic, strong) MyWindowController* controller;
+@end
+
+@implementation ZPositionHandler
+- (void)comboBoxSelectionDidChange:(NSNotification *)notification {
+    NSLog(@"zPosition handler called");
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"zPositionChanged" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:_controller.imageName.stringValue, @"imageName", [_controller.zPositionComboBox objectValueOfSelectedItem], @"zPosition", nil]];
+
+}
+@end
+
 @interface MyWindowController (){
     DragView* dragView;
     GameScene *scene;
 }
 @end
 
-@implementation MyWindowController
-//-(void)awakeFromNib{
-//}
+@implementation MyWindowController{
+    ZPositionHandler * zHandler;
+    MotionTypeHandler * motionHandler;
+    MotionSpeedHandler * speedHandler;
+}
+
 
 - (void)windowDidLoad {
     [super windowDidLoad];
-    [self loadComboBox];
+    [self loadComboBoxes];
     [self loadEditorViewController];
     [self loadSpriteScroller];
     [self registerForNotifications];
@@ -87,25 +127,50 @@
             //[_zPositionComboBox selectItemWithObjectValue:[NSString stringWithFormat:@"%d", 10]];
             [_zPositionComboBox setHidden:true];
             [_zPositionInfoLabel setStringValue:@"the zPosition of all obstacles is always 10"];
+            [self reappearMotionComboBoxes];
             return;
         }
     }
-    //[_zPositionComboBox setEnabled:true];
+    [self hideMotionComboBoxes];
     [_zPositionComboBox setHidden:false];
     [_zPositionComboBox selectItemWithObjectValue:[NSString stringWithFormat:@"%d", [(NSNumber*)[notification.userInfo objectForKey:@"zPosition"] intValue]]];
     [_zPositionInfoLabel setStringValue:[NSString stringWithFormat:@"z-position of all %@ instances (lower values are farther away)", imageName]];
-   // z-position of all sprites of this name (lower values are farther from the camera)
 }
 
--(void)loadComboBox{
+-(void)loadComboBoxes{
+    motionHandler = [[MotionTypeHandler alloc] init];
+    motionHandler.controller = self;
+    speedHandler = [[MotionSpeedHandler alloc] init];
+    speedHandler.controller = self;
+    zHandler = [[ZPositionHandler alloc] init];
+    zHandler.controller = self;
+    
     [_zPositionComboBox addItemsWithObjectValues:@[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"12"]];
     [_zPositionComboBox selectItemAtIndex:0];
-    _zPositionComboBox.delegate = self;
+    _zPositionComboBox.delegate = zHandler;
+    
+    [_obstacleMotionSelectionComboBox addItemsWithObjectValues:@[@"doesn't move", @"moves up and down", @"moves left and right", @"rotates clockwise", @"rotates counterclockwise"]];
+    [_obstacleMotionSelectionComboBox selectItemAtIndex:0];
+    _obstacleMotionSelectionComboBox.delegate = motionHandler;
+    
+    [_motionSpeedComboBox addItemsWithObjectValues:@[@"slowest", @"slower", @"slow", @"fast", @"faster", @"fastest"]];
+    [_motionSpeedComboBox selectItemAtIndex:0];
+    _motionSpeedComboBox.delegate = speedHandler;
+
 }
 
-- (void)comboBoxSelectionDidChange:(NSNotification *)notification {
-   // NSLog(@"%@", notification.name);
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"zPositionChanged" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:_imageName.stringValue, @"imageName", [_zPositionComboBox objectValueOfSelectedItem], @"zPosition", nil]];
+-(void)hideMotionComboBoxes{
+    _obstacleMotionSelectionComboBox.hidden = true;
+    _motionSpeedComboBox.hidden = true;
+    _obstacleMotionSelectionLabel.hidden = true;
+    _motionSpeedLabel.hidden = true;
+}
+
+-(void)reappearMotionComboBoxes{
+    _obstacleMotionSelectionComboBox.hidden = false;
+    _motionSpeedComboBox.hidden = false;
+    _obstacleMotionSelectionLabel.hidden = false;
+    _motionSpeedLabel.hidden = false;
 }
 
 - (IBAction)changeSnapPermission:(id)sender {

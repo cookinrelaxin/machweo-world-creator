@@ -9,6 +9,10 @@
             <connections>
                 <outlet property="currentlySelectedImage" destination="ApO-Rn-OBE" id="vW7-hd-Af4"/>
                 <outlet property="imageName" destination="cuA-Xw-FlJ" id="yqZ-FJ-vt9"/>
+                <outlet property="motionSpeedComboBox" destination="NrB-ke-LY1" id="xuq-Jw-M1w"/>
+                <outlet property="motionSpeedLabel" destination="GpD-fZ-nXx" id="hQ0-BF-PBU"/>
+                <outlet property="obstacleMotionSelectionComboBox" destination="ZMS-4Y-Xfn" id="TGN-FC-TlB"/>
+                <outlet property="obstacleMotionSelectionLabel" destination="iuY-PZ-rqh" id="q5n-6d-1FK"/>
                 <outlet property="windowView" destination="V6Q-OT-Hpx" id="JJc-TT-dE5"/>
                 <outlet property="zPositionComboBox" destination="G0d-XS-sZo" id="TCj-3R-mJj"/>
                 <outlet property="zPositionInfoLabel" destination="vco-Sc-FOI" id="uGd-lH-R5z"/>
@@ -131,7 +135,7 @@
                                 <rect key="frame" x="7" y="8" width="281" height="362"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="yo3-J6-1Kq"/>
                             </imageView>
-                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G0d-XS-sZo">
+                            <comboBox identifier="zPositionCombo" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G0d-XS-sZo">
                                 <rect key="frame" x="95" y="12" width="99" height="26"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="R0T-NT-iJo">
                                     <font key="font" metaFont="system"/>
@@ -166,16 +170,35 @@
                                 </textFieldCell>
                             </textField>
                             <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZMS-4Y-Xfn">
-                                <rect key="frame" x="99" y="343" width="99" height="26"/>
-                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="Uxv-ay-46T">
+                                <rect key="frame" x="54" y="324" width="189" height="26"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="Uxv-ay-46T">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <objectValues>
-                                        <string>Item 1</string>
-                                        <string>Item 2</string>
-                                        <string>Item 3</string>
-                                    </objectValues>
+                                </comboBoxCell>
+                            </comboBox>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iuY-PZ-rqh">
+                                <rect key="frame" x="107" y="356" width="80" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="motion type" id="ixZ-K3-RmI">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GpD-fZ-nXx">
+                                <rect key="frame" x="101" y="303" width="90" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="motion speed" id="J50-y3-reU">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NrB-ke-LY1">
+                                <rect key="frame" x="54" y="271" width="189" height="26"/>
+                                <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="FqT-fY-PqW">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </comboBoxCell>
                             </comboBox>
                         </subviews>

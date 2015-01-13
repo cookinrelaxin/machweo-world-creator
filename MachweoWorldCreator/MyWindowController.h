@@ -10,7 +10,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "DragView.h"
 
-@interface MyWindowController : NSWindowController <NSComboBoxDelegate>
+@interface MyWindowController : NSWindowController
 @property (nonatomic, strong) IBOutlet NSView *windowView;
 @property (nonatomic) NSMutableArray *obstacleImages;
 @property (nonatomic) NSMutableArray *decorationImages;
@@ -18,5 +18,9 @@
 @property (weak) IBOutlet NSImageView *currentlySelectedImage;
 @property (weak) IBOutlet NSComboBox *zPositionComboBox;
 @property (weak) IBOutlet NSTextField *zPositionInfoLabel;
+@property (weak) IBOutlet NSComboBox *obstacleMotionSelectionComboBox;
+@property (weak) IBOutlet NSComboBox *motionSpeedComboBox;
+@property (weak) IBOutlet NSTextField *obstacleMotionSelectionLabel;
+@property (weak) IBOutlet NSTextField *motionSpeedLabel;
 
 @end
