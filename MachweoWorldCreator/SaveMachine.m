@@ -20,7 +20,7 @@
     SKSpriteNode* leftMostNode = nil;
     
     for (SKSpriteNode* node in world.children) {
-        if ([node isKindOfClass:[DecorationSignifier class]]) {
+        if ((int)node.zPosition == 1) {
             
             if (leftMostNode == nil) {
                 leftMostNode = node;
