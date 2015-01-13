@@ -69,14 +69,14 @@
     {
         CGPoint topSide = CGPointMake(self.position.x, self.position.y + (self.size.height / 2));
         CGPoint topSideInScene = [scene convertPoint:topSide fromNode:self.parent];
-        if (topSideInScene.x >= scene.size.height) {
+        if (topSideInScene.y >= scene.size.height) {
             isMovingUp = false;
         }
     }
     {
         CGPoint bottomSide = CGPointMake(self.position.x, self.position.y - (self.size.height / 2));
         CGPoint bottomSideInScene = [scene convertPoint:bottomSide fromNode:self.parent];
-        if (bottomSideInScene.x <= 0) {
+        if (bottomSideInScene.y <= 0) {
             isMovingUp = true;
         }
     }

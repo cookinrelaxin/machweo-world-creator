@@ -71,6 +71,9 @@ const int SNAP_THRESHOLD = 5;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteNode) name:@"delete node" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSnappingPermissions:) name:@"changeSnapPermission" object:nil];
         
+        ObstacleSignifier* nodeForWorldScrolling = [ObstacleSignifier node];
+        [world addChild:nodeForWorldScrolling];
+        
         
         allowSnapping = true;
 
@@ -139,8 +142,6 @@ const int SNAP_THRESHOLD = 5;
     if ([selectedNode isKindOfClass:[SKSpriteNode class]]) {
         draggedSprite = (SKSpriteNode*)selectedNode;
         [self sendCurrentlySelectedImageNotification:draggedSprite.name andCurrentZposition:draggedSprite.zPosition];
-        NSLog(@"draggedSprite.position.x: %f", draggedSprite.position.x);
-        NSLog(@"draggedSprite.position.x - draggedSprite.size.width/2: %f", draggedSprite.position.x - draggedSprite.size.width/2);
         draggedSpriteOffset = CGVectorMake((draggedSprite.frame.origin.x + (draggedSprite.frame.size.width / 2)) - locInWorld.x, (draggedSprite.frame.origin.y + (draggedSprite.frame.size.height / 2) - locInWorld.y));
         [self addOutlineNodeAroundSprite:draggedSprite];
         
@@ -366,13 +367,6 @@ const int SNAP_THRESHOLD = 5;
 }
 
 -(void)sendCurrentlySelectedImageNotification:(NSString*)imageName andCurrentZposition:(int)zPosition{
-    //NSLog(@"zPosition: %i", zPosition);
-//    if(!imageName || !zPosition){
-//       //  NSLog(@"imageName: %@", imageName);
-        NSLog(@"zPosition: %i", zPosition);
-//
-//       // NSLog(@"something is wrong");
-//    }
     NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:imageName, @"imageName", [NSNumber numberWithInt:zPosition], @"zPosition", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"currentlySelectedImageChanged" object:nil userInfo:dict];
 }
@@ -408,12 +402,10 @@ const int SNAP_THRESHOLD = 5;
     if ([motionString isEqualToString:@"rotates counterclockwise"]) {
         motionType = motionTypeRotatesCounterclockwise;
     }
-    
-    NSString* nameOfSpritesToChange = [notification.userInfo objectForKey:@"imageName"];
-    [world enumerateChildNodesWithName:nameOfSpritesToChange usingBlock: ^(SKNode *node, BOOL *stop){
-        ObstacleSignifier *sprite = (ObstacleSignifier *)node;
+    if ([draggedSprite isKindOfClass:[ObstacleSignifier class]]) {
+        ObstacleSignifier *sprite = (ObstacleSignifier *)draggedSprite;
         sprite.currentMotionType = motionType;
-    }];
+    }
     
 }
 
@@ -439,11 +431,10 @@ const int SNAP_THRESHOLD = 5;
         speedType = speedTypeFastest;
     }
     
-    NSString* nameOfSpritesToChange = [notification.userInfo objectForKey:@"imageName"];
-    [world enumerateChildNodesWithName:nameOfSpritesToChange usingBlock: ^(SKNode *node, BOOL *stop){
-        ObstacleSignifier *sprite = (ObstacleSignifier *)node;
+    if ([draggedSprite isKindOfClass:[ObstacleSignifier class]]) {
+        ObstacleSignifier *sprite = (ObstacleSignifier *)draggedSprite;
         sprite.currentSpeedType = speedType;
-    }];
+    }
     
 }
 
@@ -455,9 +446,10 @@ const int SNAP_THRESHOLD = 5;
 
 
 -(void)update:(CFTimeInterval)currentTime {
-    /* Called before each frame is rendered */
-    for (ObstacleSignifier* obs in world.children) {
-        [obs move];
+    for (SKSpriteNode* sprite in world.children) {
+        if ([sprite isKindOfClass:[ObstacleSignifier class]]) {
+            [(ObstacleSignifier*)sprite move];
+        }
     }
 }
 

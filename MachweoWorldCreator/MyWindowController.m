@@ -127,6 +127,9 @@
             //[_zPositionComboBox selectItemWithObjectValue:[NSString stringWithFormat:@"%d", 10]];
             [_zPositionComboBox setHidden:true];
             [_zPositionInfoLabel setStringValue:@"the zPosition of all obstacles is always 10"];
+            
+            [_obstacleMotionSelectionComboBox selectItemAtIndex:0];
+            [_motionSpeedComboBox selectItemAtIndex:0];
             [self reappearMotionComboBoxes];
             return;
         }
@@ -135,6 +138,7 @@
     [_zPositionComboBox setHidden:false];
     [_zPositionComboBox selectItemWithObjectValue:[NSString stringWithFormat:@"%d", [(NSNumber*)[notification.userInfo objectForKey:@"zPosition"] intValue]]];
     [_zPositionInfoLabel setStringValue:[NSString stringWithFormat:@"z-position of all %@ instances (lower values are farther away)", imageName]];
+    
 }
 
 -(void)loadComboBoxes{
