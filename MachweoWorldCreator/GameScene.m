@@ -11,6 +11,7 @@
 #import "DecorationSignifier.h"
 #import "SaveMachine.h"
 #import "ChunkLoader.h"
+#import "TessellatableTile.h"
 
 const int SNAP_THRESHOLD = 5;
 
@@ -103,7 +104,13 @@ const int SNAP_THRESHOLD = 5;
 }
 
 -(void)addObstacleSignifierForImage:(NSImage*)image fromPointInView:(CGPoint)point withName: (NSString*)name{
-    ObstacleSignifier* sprite = [ObstacleSignifier spriteNodeWithTexture:[SKTexture textureWithImage:image]];
+    ObstacleSignifier* sprite;
+    if ([name rangeOfString:@"tile"].location != NSNotFound) {
+        sprite = [TessellatableTile spriteNodeWithTexture:[SKTexture textureWithImage:image]];
+    }
+    else{
+        sprite = [ObstacleSignifier spriteNodeWithTexture:[SKTexture textureWithImage:image]];
+    }
     sprite.position = [world convertPoint:[self convertPointFromView:point] fromNode:self];
     sprite.zPosition = 10;
     sprite.name = name;
