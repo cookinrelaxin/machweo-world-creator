@@ -9,6 +9,7 @@
 #import "MyWindowController.h"
 #import "DragView.h"
 #import "GameScene.h"
+#import "ObstacleSignifier.h"
 
 @interface MotionTypeHandler : NSObject <NSComboBoxDelegate>
 @property (nonatomic, strong) MyWindowController* controller;
@@ -17,6 +18,7 @@
 @implementation MotionTypeHandler
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification {
  //   NSLog(@"motion handler called");
+    [_controller reappearMotionComboBoxes];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"motionTypeChanged" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:_controller.imageName.stringValue, @"imageName", [_controller.obstacleMotionSelectionComboBox objectValueOfSelectedItem], @"obstacleMotion", nil]];
     //NSLog(@"[_controller.obstacleMotionSelectionComboBox objectValueOfSelectedItem]: %@", [_controller.obstacleMotionSelectionComboBox objectValueOfSelectedItem]);
 }
@@ -111,13 +113,13 @@
 
 -(void)registerForNotifications{
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center addObserver:self selector:@selector(changeCurrentlySelectedImage:) name:@"currentlySelectedImageChanged" object:nil];
-     
+    [center addObserver:self selector:@selector(changeCurrentlySelectedSprite:) name:@"currentlySelectedSpriteMayHaveChanged" object:nil];
 }
 
--(void)changeCurrentlySelectedImage:(NSNotification*)notification{
+-(void)changeCurrentlySelectedSprite:(NSNotification*)notification{
     //NSLog(@"%@", notification.name);
-    NSString* imageName = [notification.userInfo objectForKey:@"imageName"];
+    SKSpriteNode* sprite = [notification.userInfo objectForKey:@"sprite"];
+    NSString* imageName = sprite.name;
     //NSLog(@"imageName: %@", imageName);
     _currentlySelectedImage.image = [NSImage imageNamed:imageName];
     [_imageName setStringValue:imageName];
@@ -128,8 +130,12 @@
             [_zPositionComboBox setHidden:true];
             [_zPositionInfoLabel setStringValue:@"the zPosition of all obstacles is always 10"];
             
-            [_obstacleMotionSelectionComboBox selectItemAtIndex:0];
-            [_motionSpeedComboBox selectItemAtIndex:0];
+            ObstacleSignifier* obs = (ObstacleSignifier*)sprite;
+            NSString* motionString = [obs stringValueOfCurrentMotionType];
+            NSString* speedString = [obs stringValueOfCurrentSpeedType];
+            
+            [_obstacleMotionSelectionComboBox selectItemWithObjectValue:motionString];
+            [_motionSpeedComboBox selectItemWithObjectValue:speedString];
             [self reappearMotionComboBoxes];
             return;
         }
@@ -160,21 +166,29 @@
     [_motionSpeedComboBox addItemsWithObjectValues:@[@"slowest", @"slower", @"slow", @"fast", @"faster", @"fastest"]];
     [_motionSpeedComboBox selectItemAtIndex:0];
     _motionSpeedComboBox.delegate = speedHandler;
-
 }
 
 -(void)hideMotionComboBoxes{
     _obstacleMotionSelectionComboBox.hidden = true;
-    _motionSpeedComboBox.hidden = true;
     _obstacleMotionSelectionLabel.hidden = true;
+    
+    _motionSpeedComboBox.hidden = true;
     _motionSpeedLabel.hidden = true;
 }
 
 -(void)reappearMotionComboBoxes{
     _obstacleMotionSelectionComboBox.hidden = false;
-    _motionSpeedComboBox.hidden = false;
     _obstacleMotionSelectionLabel.hidden = false;
-    _motionSpeedLabel.hidden = false;
+    NSString* currentMotionType = [_obstacleMotionSelectionComboBox objectValueOfSelectedItem];
+    if (![currentMotionType isEqualToString:@"doesn't move"]) {
+        _motionSpeedComboBox.hidden = false;
+        _motionSpeedLabel.hidden = false;
+    }
+    else{
+        
+        _motionSpeedComboBox.hidden = true;
+        _motionSpeedLabel.hidden = true;
+    }
 }
 
 - (IBAction)changeSnapPermission:(id)sender {

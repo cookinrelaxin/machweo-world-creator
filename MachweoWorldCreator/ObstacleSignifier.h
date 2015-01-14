@@ -31,5 +31,8 @@ typedef enum SpeedType
 @property (nonatomic) Motion currentMotionType;
 @property (nonatomic) Speed currentSpeedType;
 
+-(NSString*)stringValueOfCurrentMotionType;
+-(NSString*)stringValueOfCurrentSpeedType;
+
 -(void)move;
 @end

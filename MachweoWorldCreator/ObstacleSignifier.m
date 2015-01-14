@@ -61,11 +61,41 @@
 }
 
 -(void)moveLeftAndRightAtSpeed:(float)speed{
-    
+
+    for (ObstacleSignifier* node in self.parent.children) {
+        if (node == self) {
+            continue;
+        }
+        if (CGRectIntersectsRect(self.frame, node.frame)) {
+            isMovingLeft = !isMovingLeft;
+            break;
+        }
+    }
+
+    if (isMovingLeft) {
+        self.position = CGPointMake(self.position.x - speed, self.position.y);
+    }
+    else{
+        self.position = CGPointMake(self.position.x + speed, self.position.y);
+    }
+
 }
 
 -(void)moveUpAndDownAtSpeed:(float)speed{
     SKScene* scene = (SKScene*)self.parent.parent;
+    for (ObstacleSignifier* node in self.parent.children) {
+        if (node == self) {
+            continue;
+        }
+        if (CGRectIntersectsRect(self.frame, node.frame)) {
+//            if (!) {
+//                <#statements#>
+//            }
+            isMovingUp = !isMovingUp;
+            break;
+        }
+    }
+    
     {
         CGPoint topSide = CGPointMake(self.position.x, self.position.y + (self.size.height / 2));
         CGPoint topSideInScene = [scene convertPoint:topSide fromNode:self.parent];
@@ -80,6 +110,8 @@
             isMovingUp = true;
         }
     }
+    
+    
     if (isMovingUp) {
         self.position = CGPointMake(self.position.x, self.position.y + speed);
     }
@@ -97,6 +129,58 @@
 -(void)rotateCounterclockwiseAtSpeed:(float)speed{
     
 }
+
+-(NSString*)stringValueOfCurrentMotionType{
+    NSString* motionString;
+    switch (_currentMotionType) {
+        case motionTypeNone:
+            motionString = @"doesn't move";
+            break;
+        case motionTypeLeftAndRight:
+            motionString = @"moves left and right";
+            break;
+        case motionTypeUpAndDown:
+            motionString = @"moves up and down";
+            break;
+        case motionTypeRotatesClockwise:
+            motionString = @"rotates clockwise";
+            break;
+        case motionTypeRotatesCounterclockwise:
+            motionString = @"rotates counterclockwise";
+            break;
+        default:
+            break;
+    }
+    return motionString;
+}
+
+-(NSString*)stringValueOfCurrentSpeedType{
+    NSString* speedString;
+    switch (_currentSpeedType) {
+        case speedTypeSlowest:
+            speedString = @"slowest";
+            break;
+        case speedTypeSlower:
+            speedString = @"slower";
+            break;
+        case speedTypeSlow:
+            speedString = @"slow";
+            break;
+        case speedTypeFast:
+            speedString = @"fast";
+            break;
+        case speedTypeFaster:
+            speedString = @"faster";
+            break;
+        case speedTypeFastest:
+            speedString = @"fastest";
+            break;
+        default:
+            break;
+    }
+    return speedString;
+}
+
 
 
 @end

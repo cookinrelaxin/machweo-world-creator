@@ -110,7 +110,7 @@ const int SNAP_THRESHOLD = 5;
     [world addChild:sprite];
     draggedSprite = sprite;
     [self addOutlineNodeAroundSprite:draggedSprite];
-    [self sendCurrentlySelectedImageNotification:name andCurrentZposition:sprite.zPosition];
+    [self sendCurrentlySelectedSpriteNotification];
 
     
 }
@@ -130,7 +130,7 @@ const int SNAP_THRESHOLD = 5;
     [world addChild:sprite];
     draggedSprite = sprite;
     [self addOutlineNodeAroundSprite:draggedSprite];
-    [self sendCurrentlySelectedImageNotification:name andCurrentZposition:sprite.zPosition];
+    [self sendCurrentlySelectedSpriteNotification];
 
 }
 
@@ -140,11 +140,12 @@ const int SNAP_THRESHOLD = 5;
     SKNode* selectedNode = [world nodeAtPoint:locInWorld];
     
     if ([selectedNode isKindOfClass:[SKSpriteNode class]]) {
-        draggedSprite = (SKSpriteNode*)selectedNode;
-        [self sendCurrentlySelectedImageNotification:draggedSprite.name andCurrentZposition:draggedSprite.zPosition];
+        if (draggedSprite != selectedNode) {
+            draggedSprite = (SKSpriteNode*)selectedNode;
+            [self sendCurrentlySelectedSpriteNotification];
+            [self addOutlineNodeAroundSprite:draggedSprite];
+        }
         draggedSpriteOffset = CGVectorMake((draggedSprite.frame.origin.x + (draggedSprite.frame.size.width / 2)) - locInWorld.x, (draggedSprite.frame.origin.y + (draggedSprite.frame.size.height / 2) - locInWorld.y));
-        [self addOutlineNodeAroundSprite:draggedSprite];
-        
     }
     else {
         draggedSprite = nil;
@@ -165,10 +166,10 @@ const int SNAP_THRESHOLD = 5;
     [self scrollWorld:dragDiff];
     previousClickLocation = locInSelf;
     
-    CGPoint convertedOrigin = [self convertPoint:CGPointMake(draggedSprite.frame.origin.x, draggedSprite.frame.origin.y) fromNode:world];
-    CGPathRef path = CGPathCreateWithRect(CGRectMake(convertedOrigin.x, convertedOrigin.y, draggedSprite.size.width, draggedSprite.size.height), NULL);
-    outlineNode.path = path;
-    CGPathRelease(path);
+//    CGPoint convertedOrigin = [self convertPoint:CGPointMake(draggedSprite.frame.origin.x, draggedSprite.frame.origin.y) fromNode:world];
+//    CGPathRef path = CGPathCreateWithRect(CGRectMake(convertedOrigin.x, convertedOrigin.y, draggedSprite.size.width, draggedSprite.size.height), NULL);
+//    outlineNode.path = path;
+//    CGPathRelease(path);
     
 }
 
@@ -196,11 +197,10 @@ const int SNAP_THRESHOLD = 5;
     }
     previousClickLocation = locInSelf;
 
-    CGPoint convertedOrigin = [self convertPoint:CGPointMake(draggedSprite.frame.origin.x, draggedSprite.frame.origin.y) fromNode:world];
-    CGPathRef path = CGPathCreateWithRect(CGRectMake(convertedOrigin.x, convertedOrigin.y, draggedSprite.size.width, draggedSprite.size.height), NULL);
-    outlineNode.path = path;
-    CGPathRelease(path);
-    
+//    CGPoint convertedOrigin = [self convertPoint:CGPointMake(draggedSprite.frame.origin.x, draggedSprite.frame.origin.y) fromNode:world];
+//    CGPathRef path = CGPathCreateWithRect(CGRectMake(convertedOrigin.x, convertedOrigin.y, draggedSprite.size.width, draggedSprite.size.height), NULL);
+//    outlineNode.path = path;
+//    CGPathRelease(path);
 }
 
 -(void)dragSprite:(CGPoint)locInWorld{
@@ -366,9 +366,9 @@ const int SNAP_THRESHOLD = 5;
     }
 }
 
--(void)sendCurrentlySelectedImageNotification:(NSString*)imageName andCurrentZposition:(int)zPosition{
-    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:imageName, @"imageName", [NSNumber numberWithInt:zPosition], @"zPosition", nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"currentlySelectedImageChanged" object:nil userInfo:dict];
+-(void)sendCurrentlySelectedSpriteNotification{
+    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:draggedSprite, @"sprite", nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"currentlySelectedSpriteMayHaveChanged" object:nil userInfo:dict];
 }
 
 -(void)changeZpositions:(NSNotification*)notification{
@@ -387,6 +387,7 @@ const int SNAP_THRESHOLD = 5;
 -(void)changeMotionTypes:(NSNotification*)notification{
    __block Motion motionType;
     NSString* motionString = [notification.userInfo objectForKey:@"obstacleMotion"];
+    NSLog(@"motionString: %@", motionString);
     if ([motionString isEqualToString:@"doesn't move"]) {
         motionType = motionTypeNone;
     }
@@ -412,6 +413,7 @@ const int SNAP_THRESHOLD = 5;
 -(void)changeMotionSpeeds:(NSNotification*)notification{
    __block Speed speedType;
     NSString* speedString = [notification.userInfo objectForKey:@"motionSpeed"];
+    NSLog(@"speedString: %@", speedString);
     if ([speedString isEqualToString:@"slowest"]) {
         speedType = speedTypeSlowest;
     }
@@ -451,6 +453,11 @@ const int SNAP_THRESHOLD = 5;
             [(ObstacleSignifier*)sprite move];
         }
     }
+    CGPoint convertedOrigin = [self convertPoint:CGPointMake(draggedSprite.frame.origin.x, draggedSprite.frame.origin.y) fromNode:world];
+    CGPathRef path = CGPathCreateWithRect(CGRectMake(convertedOrigin.x, convertedOrigin.y, draggedSprite.size.width, draggedSprite.size.height), NULL);
+    outlineNode.path = path;
+    CGPathRelease(path);
+
 }
 
 @end

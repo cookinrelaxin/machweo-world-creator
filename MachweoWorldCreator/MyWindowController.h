@@ -23,4 +23,6 @@
 @property (weak) IBOutlet NSTextField *obstacleMotionSelectionLabel;
 @property (weak) IBOutlet NSTextField *motionSpeedLabel;
 
+-(void)reappearMotionComboBoxes;
+
 @end
