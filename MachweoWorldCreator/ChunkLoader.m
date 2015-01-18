@@ -18,7 +18,9 @@ typedef enum ElementVarieties
     xPosition,
     yPosition,
     zPosition,
-    isRightMostNode
+    isRightMostNode,
+    motionType,
+    speedType
 } Element;
 
 typedef enum NodeTypes
@@ -120,6 +122,14 @@ typedef enum NodeTypes
         currentElement = isRightMostNode;
         return;
     }
+    if ([elementName isEqualToString:@"motionType"]) {
+        currentElement = motionType;
+        return;
+    }
+    if ([elementName isEqualToString:@"speedType"]) {
+        currentElement = speedType;
+        return;
+    }
 }
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
@@ -187,6 +197,20 @@ typedef enum NodeTypes
         }
         if (currentElement == isRightMostNode) {
             return;
+        }
+        if (currentElement == motionType) {
+            if ([currentNode isKindOfClass:[ObstacleSignifier class]]) {
+                ObstacleSignifier* obs = (ObstacleSignifier*)currentNode;
+                obs.currentMotionType = [string intValue];
+                return;
+            }
+        }
+        if (currentElement == speedType) {
+            if ([currentNode isKindOfClass:[ObstacleSignifier class]]) {
+                ObstacleSignifier* obs = (ObstacleSignifier*)currentNode;
+                obs.currentSpeedType = [string intValue];
+                return;
+            }
         }
     }
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<worldnodes>
+    <spriteNode>
+        <type>ObstacleSignifier</type>
+        <name>vertical_bar_obstacle</name>
+        <isRightMostNode>no</isRightMostNode>
+        <xPosition>308.065582</xPosition>
+        <yPosition>392.650757</yPosition>
+        <zPosition>10.000000</zPosition>
+        <motionType>3</motionType>
+        <speedType>0</speedType>
+    </spriteNode>
+    <spriteNode>
+        <type>ObstacleSignifier</type>
+        <name>vertical_bar_obstacle</name>
+        <isRightMostNode>no</isRightMostNode>
+        <xPosition>1039.789307</xPosition>
+        <yPosition>436.042969</yPosition>
+        <zPosition>10.000000</zPosition>
+        <motionType>4</motionType>
+        <speedType>3</speedType>
+    </spriteNode>
+    <spriteNode>
+        <type>DecorationSignifier</type>
+        <name>test_background_1_decoration</name>
+        <isRightMostNode>no</isRightMostNode>
+        <xPosition>300.000000</xPosition>
+        <yPosition>335.163208</yPosition>
+        <zPosition>1.000000</zPosition>
+    </spriteNode>
+    <spriteNode>
+        <type>DecorationSignifier</type>
+        <name>test_background_2_decoration</name>
+        <isRightMostNode>yes</isRightMostNode>
+        <xPosition>899.999939</xPosition>
+        <yPosition>335.163208</yPosition>
+        <zPosition>1.000000</zPosition>
+    </spriteNode>
+</worldnodes>

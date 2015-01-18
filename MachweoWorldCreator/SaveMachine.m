@@ -81,25 +81,26 @@
             NSXMLElement *isRightMostNode = [NSXMLElement elementWithName:@"isRightMostNode" stringValue:@"no"];
             [spriteNode addChild:isRightMostNode];
         }
-        
-        //if ([sprite isKindOfClass:[ObstacleSignifier class]]) {
-         //   float xPos = sprite.position.x - xDifference;
-        //    NSXMLElement *xPosition = [NSXMLElement elementWithName:@"xPosition" stringValue:[NSString stringWithFormat:@"%f", xPos]];
-        //    [spriteNode addChild:xPosition];
-        //}
-        //else if ([sprite isKindOfClass:[DecorationSignifier class]]) {
-            float fractionalCoefficient = sprite.zPosition / leftMostNode.zPosition;
-            float parallaxAdjustedDifference = fractionalCoefficient * xDifference;
-            float xPos = sprite.position.x - parallaxAdjustedDifference;
-            NSXMLElement *xPosition = [NSXMLElement elementWithName:@"xPosition" stringValue:[NSString stringWithFormat:@"%f", xPos]];
-            [spriteNode addChild:xPosition];
-        //}
+
+        float fractionalCoefficient = sprite.zPosition / leftMostNode.zPosition;
+        float parallaxAdjustedDifference = fractionalCoefficient * xDifference;
+        float xPos = sprite.position.x - parallaxAdjustedDifference;
+        NSXMLElement *xPosition = [NSXMLElement elementWithName:@"xPosition" stringValue:[NSString stringWithFormat:@"%f", xPos]];
+        [spriteNode addChild:xPosition];
         
         NSXMLElement *yPosition = [NSXMLElement elementWithName:@"yPosition" stringValue:[NSString stringWithFormat:@"%f", sprite.position.y]];
         [spriteNode addChild:yPosition];
         
         NSXMLElement *zPosition = [NSXMLElement elementWithName:@"zPosition" stringValue:[NSString stringWithFormat:@"%f", sprite.zPosition]];
         [spriteNode addChild:zPosition];
+        
+        if ([sprite isKindOfClass:[ObstacleSignifier class]]) {
+            ObstacleSignifier* obs = (ObstacleSignifier*)sprite;
+            NSXMLElement *motionType = [NSXMLElement elementWithName:@"motionType" stringValue:[NSString stringWithFormat:@"%d", obs.currentMotionType]];
+            [spriteNode addChild:motionType];
+            NSXMLElement *speedType = [NSXMLElement elementWithName:@"speedType" stringValue:[NSString stringWithFormat:@"%d", obs.currentSpeedType]];
+            [spriteNode addChild:speedType];
+        }
     }
     NSError *error = nil;
     BOOL isValid = [xmlDoc validateAndReturnError:&error];

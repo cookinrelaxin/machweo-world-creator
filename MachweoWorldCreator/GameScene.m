@@ -445,12 +445,16 @@ const int SNAP_THRESHOLD = 5;
     [outlineNode removeFromParent];
 }
 
-
-
 -(void)update:(CFTimeInterval)currentTime {
     for (SKSpriteNode* sprite in world.children) {
         if ([sprite isKindOfClass:[ObstacleSignifier class]]) {
             [(ObstacleSignifier*)sprite move];
+        }
+    }
+    if ([draggedSprite isKindOfClass:[ObstacleSignifier class]]) {
+        ObstacleSignifier* obs = (ObstacleSignifier*)draggedSprite;
+        if ((obs.currentMotionType == motionTypeRotatesClockwise) || (obs.currentMotionType == motionTypeRotatesCounterclockwise)) {
+            [outlineNode removeFromParent];
         }
     }
     CGPoint convertedOrigin = [self convertPoint:CGPointMake(draggedSprite.frame.origin.x, draggedSprite.frame.origin.y) fromNode:world];

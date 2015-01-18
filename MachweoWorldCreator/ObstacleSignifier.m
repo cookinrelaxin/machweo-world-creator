@@ -42,11 +42,14 @@
     }
     switch (_currentMotionType) {
         case motionTypeNone:
+            [self resetZRotation];
             break;
         case motionTypeLeftAndRight:
+            [self resetZRotation];
             [self moveLeftAndRightAtSpeed:speed];
             break;
         case motionTypeUpAndDown:
+            [self resetZRotation];
             [self moveUpAndDownAtSpeed:speed];
             break;
         case motionTypeRotatesClockwise:
@@ -58,6 +61,10 @@
         default:
             break;
     }
+}
+
+-(void)resetZRotation{
+    self.zRotation = 0;
 }
 
 -(void)moveLeftAndRightAtSpeed:(float)speed{
@@ -88,9 +95,6 @@
             continue;
         }
         if (CGRectIntersectsRect(self.frame, node.frame)) {
-//            if (!) {
-//                <#statements#>
-//            }
             isMovingUp = !isMovingUp;
             break;
         }
@@ -123,11 +127,12 @@
 }
 
 -(void)rotateClockwiseAtSpeed:(float)speed{
-    
+    self.zRotation = self.zRotation - .015 * speed;
 }
 
 -(void)rotateCounterclockwiseAtSpeed:(float)speed{
-    
+    self.zRotation = self.zRotation + .015 * speed;
+
 }
 
 -(NSString*)stringValueOfCurrentMotionType{
