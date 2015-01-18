@@ -73,9 +73,11 @@
         if (node == self) {
             continue;
         }
-        if (CGRectIntersectsRect(self.frame, node.frame)) {
-            isMovingLeft = !isMovingLeft;
-            break;
+        if ([node isKindOfClass:[ObstacleSignifier class]]) {
+            if (CGRectIntersectsRect(self.frame, node.frame)) {
+                isMovingLeft = !isMovingLeft;
+                break;
+            }
         }
     }
 
@@ -90,13 +92,15 @@
 
 -(void)moveUpAndDownAtSpeed:(float)speed{
     SKScene* scene = (SKScene*)self.parent.parent;
-    for (ObstacleSignifier* node in self.parent.children) {
+    for (SKSpriteNode* node in self.parent.children) {
         if (node == self) {
             continue;
         }
-        if (CGRectIntersectsRect(self.frame, node.frame)) {
-            isMovingUp = !isMovingUp;
-            break;
+        if ([node isKindOfClass:[ObstacleSignifier class]]) {
+            if (CGRectIntersectsRect(self.frame, node.frame)) {
+                isMovingUp = !isMovingUp;
+                break;
+            }
         }
     }
     
