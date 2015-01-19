@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<chapters>
+    <chapter>
+        <name>a light in the darkness</name>
+        <imageName>chapterCellTestBackgroundImage</imageName>
+        <levels>
+            <levelName>testParallaxLevel1</levelName>
+        </levels>
+    </chapter>
+    <chapter>
+        <name>madness amidst the leaves</name>
+        <imageName>chapterCellTestBackgroundImage</imageName>
+        <levels>
+            <levelName>testParallaxLevel2</levelName>
+        </levels>
+    </chapter>
+    <chapter>
+        <name>advice from below</name>
+        <imageName>chapterCellTestBackgroundImage</imageName>
+        <levels>
+            <levelName>testParallaxLevel3</levelName>
+        </levels>
+    </chapter>
+    <chapter>
+        <name>a hero is born</name>
+        <imageName>chapterCellTestBackgroundImage</imageName>
+        <levels>
+        </levels>
+    </chapter>
+    <chapter>
+        <name>far from home</name>
+        <imageName>chapterCellTestBackgroundImage</imageName>
+        <levels>
+        </levels>
+    </chapter>
+    <chapter>
+        <name>the cave of dreams</name>
+        <imageName>chapterCellTestBackgroundImage</imageName>
+        <levels>
+        </levels>
+    </chapter>
+    <chapter>
+        <name>the pearl in the fire</name>
+        <imageName>chapterCellTestBackgroundImage</imageName>
+        <levels>
+        </levels>
+    </chapter>
+    <chapter>
+        <name>silence on the deep</name>
+        <imageName>chapterCellTestBackgroundImage</imageName>
+        <levels>
+        </levels>
+    </chapter>
+    <chapter>
+        <name>journey across the abyss</name>
+        <imageName>chapterCellTestBackgroundImage</imageName>
+        <levels>
+        </levels>
+    </chapter>
+    <chapter>
+        <name>in chaos' core</name>
+        <imageName>chapterCellTestBackgroundImage</imageName>
+        <levels>
+        </levels>
+    </chapter>
+    <chapter>
+        <name>the reawakening</name>
+        <imageName>chapterCellTestBackgroundImage</imageName>
+        <levels>
+        </levels>
+    </chapter>
+    <chapter>
+        <name>spring again</name>
+        <imageName>chapterCellTestBackgroundImage</imageName>
+        <levels>
+        </levels>
+    </chapter>
+</chapters>
+

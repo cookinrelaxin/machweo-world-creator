@@ -144,6 +144,7 @@ const int SNAP_THRESHOLD = 5;
             draggedSprite = (SKSpriteNode*)selectedNode;
             [self sendCurrentlySelectedSpriteNotification];
             [self addOutlineNodeAroundSprite:draggedSprite];
+            NSLog(@"draggedSprite's zpos: %d", (int)draggedSprite.zPosition);
         }
         draggedSpriteOffset = CGVectorMake((draggedSprite.frame.origin.x + (draggedSprite.frame.size.width / 2)) - locInWorld.x, (draggedSprite.frame.origin.y + (draggedSprite.frame.size.height / 2) - locInWorld.y));
     }
@@ -375,7 +376,7 @@ const int SNAP_THRESHOLD = 5;
    // NSLog(@"%@", notification.name);
     NSString* nameOfSpritesToChange = [notification.userInfo objectForKey:@"imageName"];
     int zPosition = [[notification.userInfo objectForKey:@"zPosition"] intValue];
-   // NSLog(@"change zposition of sprites named %@ to %d", nameOfSpritesToChange, zPosition);
+  //  NSLog(@"change zposition of sprites named %@ to %d", nameOfSpritesToChange, zPosition);
     
     [world enumerateChildNodesWithName:nameOfSpritesToChange usingBlock: ^(SKNode *node, BOOL *stop){
         SKSpriteNode *sprite = (SKSpriteNode *)node;

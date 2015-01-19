@@ -142,7 +142,8 @@
     }
     [self hideMotionComboBoxes];
     [_zPositionComboBox setHidden:false];
-    [_zPositionComboBox selectItemWithObjectValue:[NSString stringWithFormat:@"%d", [(NSNumber*)[notification.userInfo objectForKey:@"zPosition"] intValue]]];
+    //[_zPositionComboBox selectItemWithObjectValue:[NSString stringWithFormat:@"%d", [(NSNumber*)[notification.userInfo objectForKey:@"zPosition"] intValue]]];
+    [_zPositionComboBox selectItemWithObjectValue:[NSString stringWithFormat:@"%d", (int)sprite.zPosition]];
     [_zPositionInfoLabel setStringValue:[NSString stringWithFormat:@"z-position of all %@ instances (lower values are farther away)", imageName]];
     
 }
