@@ -105,7 +105,7 @@ const int SNAP_THRESHOLD = 5;
 -(void)addObstacleSignifierForImage:(NSImage*)image fromPointInView:(CGPoint)point withName: (NSString*)name{
     ObstacleSignifier* sprite = [ObstacleSignifier spriteNodeWithTexture:[SKTexture textureWithImage:image]];
     sprite.position = [world convertPoint:[self convertPointFromView:point] fromNode:self];
-    sprite.zPosition = 10;
+    sprite.zPosition = 16;
     sprite.name = name;
     [world addChild:sprite];
     draggedSprite = sprite;
@@ -242,46 +242,53 @@ const int SNAP_THRESHOLD = 5;
         if (sprite == otherSprite) {
             continue;
         }
-        float otherSpriteHalfWidth = otherSprite.size.width / 2;
-        float otherSpriteHalfHeight = otherSprite.size.height / 2;
         
-        float otherSpriteLeftX = otherSprite.position.x - otherSpriteHalfWidth;
-        float otherSpriteRightX = otherSprite.position.x + otherSpriteHalfWidth;
-        float otherSpriteBottomY = otherSprite.position.y - otherSpriteHalfHeight;
-        float otherSpriteTopY = otherSprite.position.y + otherSpriteHalfHeight;
+        float spriteGreaterDimension = (sprite.size.width > sprite.size.height) ? sprite.size.width : sprite.size.height;
+        float otherSpriteGreaterDimension = (otherSprite.size.width > otherSprite.size.height) ? otherSprite.size.width : otherSprite.size.height;
+        float distance = sqrtf(powf((sprite.position.x - otherSprite.position.x), 2) + powf((sprite.position.y - otherSprite.position.y), 2));
         
-        {
-            float differenceFromSpriteLeftX = fabsf(spriteLeftX - otherSpriteRightX);
-            if (differenceFromSpriteLeftX < SNAP_THRESHOLD) {
-                sprite.position = CGPointMake(otherSpriteRightX + spriteHalfWidth, sprite.position.y);
+        if (distance < (spriteGreaterDimension + otherSpriteGreaterDimension)) {
+            float otherSpriteHalfWidth = otherSprite.size.width / 2;
+            float otherSpriteHalfHeight = otherSprite.size.height / 2;
+            
+            float otherSpriteLeftX = otherSprite.position.x - otherSpriteHalfWidth;
+            float otherSpriteRightX = otherSprite.position.x + otherSpriteHalfWidth;
+            float otherSpriteBottomY = otherSprite.position.y - otherSpriteHalfHeight;
+            float otherSpriteTopY = otherSprite.position.y + otherSpriteHalfHeight;
+            
+            {
+                float differenceFromSpriteLeftX = fabsf(spriteLeftX - otherSpriteRightX);
+                if (differenceFromSpriteLeftX < SNAP_THRESHOLD) {
+                    sprite.position = CGPointMake(otherSpriteRightX + spriteHalfWidth, sprite.position.y);
+                }
             }
-        }
-        
-        {
-            float differenceFromSpriteRightX = fabsf(spriteRightX - otherSpriteLeftX);
-            if (differenceFromSpriteRightX < SNAP_THRESHOLD) {
-                sprite.position = CGPointMake(otherSpriteLeftX - spriteHalfWidth, sprite.position.y);
+            
+            {
+                float differenceFromSpriteRightX = fabsf(spriteRightX - otherSpriteLeftX);
+                if (differenceFromSpriteRightX < SNAP_THRESHOLD) {
+                    sprite.position = CGPointMake(otherSpriteLeftX - spriteHalfWidth, sprite.position.y);
+                }
             }
-        }
-        
-        {
-            float differenceFromSpriteTopYAndOtherSpriteBottomY = fabsf(spriteTopY - otherSpriteBottomY);
-            if (differenceFromSpriteTopYAndOtherSpriteBottomY < SNAP_THRESHOLD) {
-                sprite.position = CGPointMake(sprite.position.x, otherSpriteBottomY - spriteHalfHeight);
+            
+            {
+                float differenceFromSpriteTopYAndOtherSpriteBottomY = fabsf(spriteTopY - otherSpriteBottomY);
+                if (differenceFromSpriteTopYAndOtherSpriteBottomY < SNAP_THRESHOLD) {
+                    sprite.position = CGPointMake(sprite.position.x, otherSpriteBottomY - spriteHalfHeight);
+                }
             }
-        }
-        
-        {
-            float differenceFromSpriteBottomYOtherSpriteTopY = fabsf(spriteBottomY - otherSpriteTopY);
-            if (differenceFromSpriteBottomYOtherSpriteTopY < SNAP_THRESHOLD) {
-                sprite.position = CGPointMake(sprite.position.x, otherSpriteTopY + spriteHalfHeight);
+            
+            {
+                float differenceFromSpriteBottomYOtherSpriteTopY = fabsf(spriteBottomY - otherSpriteTopY);
+                if (differenceFromSpriteBottomYOtherSpriteTopY < SNAP_THRESHOLD) {
+                    sprite.position = CGPointMake(sprite.position.x, otherSpriteTopY + spriteHalfHeight);
+                }
             }
-        }
-        
-        {
-            float differenceFromSpriteTopYAndOtherSpriteTopY = fabsf(spriteTopY - otherSpriteTopY);
-            if (differenceFromSpriteTopYAndOtherSpriteTopY < SNAP_THRESHOLD) {
-                sprite.position = CGPointMake(sprite.position.x, otherSpriteTopY - spriteHalfHeight);
+            
+            {
+                float differenceFromSpriteTopYAndOtherSpriteTopY = fabsf(spriteTopY - otherSpriteTopY);
+                if (differenceFromSpriteTopYAndOtherSpriteTopY < SNAP_THRESHOLD) {
+                    sprite.position = CGPointMake(sprite.position.x, otherSpriteTopY - spriteHalfHeight);
+                }
             }
         }
         
@@ -289,21 +296,26 @@ const int SNAP_THRESHOLD = 5;
 }
 
 -(void)snapSpriteToNeighborsCenters:(SKSpriteNode*)sprite{
-    //baller, baller, baller.
     for (SKSpriteNode* otherSprite in world.children) {
         if (sprite == otherSprite) {
             continue;
         }
-        {
-            float differenceInYPositions = fabsf(otherSprite.position.y - sprite.position.y);
-            if (differenceInYPositions < SNAP_THRESHOLD) {
-                sprite.position = CGPointMake(sprite.position.x, otherSprite.position.y);
+        float spriteGreaterDimension = (sprite.size.width > sprite.size.height) ? sprite.size.width : sprite.size.height;
+        float otherSpriteGreaterDimension = (otherSprite.size.width > otherSprite.size.height) ? otherSprite.size.width : otherSprite.size.height;
+        float distance = sqrtf(powf((sprite.position.x - otherSprite.position.x), 2) + powf((sprite.position.y - otherSprite.position.y), 2));
+        
+        if (distance < (spriteGreaterDimension + otherSpriteGreaterDimension)) {
+            {
+                float differenceInYPositions = fabsf(otherSprite.position.y - sprite.position.y);
+                if (differenceInYPositions < SNAP_THRESHOLD) {
+                    sprite.position = CGPointMake(sprite.position.x, otherSprite.position.y);
+                }
             }
-        }
-        {
-            float differenceInXPositions = fabsf(otherSprite.position.x - sprite.position.x);
-            if (differenceInXPositions < SNAP_THRESHOLD) {
-                sprite.position = CGPointMake(otherSprite.position.x, sprite.position.y);
+            {
+                float differenceInXPositions = fabsf(otherSprite.position.x - sprite.position.x);
+                if (differenceInXPositions < SNAP_THRESHOLD) {
+                    sprite.position = CGPointMake(otherSprite.position.x, sprite.position.y);
+                }
             }
         }
     }
@@ -339,7 +351,7 @@ const int SNAP_THRESHOLD = 5;
     }
     if (([leftMostNode isKindOfClass:[DecorationSignifier class]])) {
        // CGPoint leftMostNodeDesiredPos = CGPointMake(leftMostNode.position.x - dragDiff, <#CGFloat y#>)
-        float fractionalCoefficient = leftMostNode.zPosition / 10;
+        float fractionalCoefficient = leftMostNode.zPosition / 16;
         //.1f is the default y parallax coefficient
         CGVector parallaxAdjustedDifference = CGVectorMake(fractionalCoefficient * dragDiff.dx, fractionalCoefficient * dragDiff.dy * .1f);
         CGPoint leftMostNodeDesiredPos = CGPointMake(leftMostNode.position.x - parallaxAdjustedDifference.dx, leftMostNode.position.y);
@@ -357,7 +369,7 @@ const int SNAP_THRESHOLD = 5;
         if ([sprite isKindOfClass:[DecorationSignifier class]]) {
             //sprite.position = CGPointMake(sprite.position.x - dragDiff.dx, sprite.position.y - dragDiff.dy);
             //10 is the default obstacle z pos
-            float fractionalCoefficient = sprite.zPosition / 10;
+            float fractionalCoefficient = sprite.zPosition / 16;
             //.1f is the default y parallax coefficient
             CGVector parallaxAdjustedDifference = CGVectorMake(fractionalCoefficient * dragDiff.dx, fractionalCoefficient * dragDiff.dy * .1f);
             sprite.position = CGPointMake(sprite.position.x - parallaxAdjustedDifference.dx, sprite.position.y);

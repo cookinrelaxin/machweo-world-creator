@@ -219,7 +219,7 @@ typedef enum NodeTypes
     if (validFile) {
         NSLog(@"load world");
         for (SKSpriteNode *obstacle in obstacleArray) {
-            obstacle.zPosition = 10;
+            obstacle.zPosition = 16;
             [world addChild:obstacle];
         }
         for (SKSpriteNode *deco in decorationArray) {

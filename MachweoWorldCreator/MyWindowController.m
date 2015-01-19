@@ -128,7 +128,7 @@
             //[_zPositionComboBox setEnabled:false];
             //[_zPositionComboBox selectItemWithObjectValue:[NSString stringWithFormat:@"%d", 10]];
             [_zPositionComboBox setHidden:true];
-            [_zPositionInfoLabel setStringValue:@"the zPosition of all obstacles is always 10"];
+            [_zPositionInfoLabel setStringValue:@"the zPosition of all obstacles is always 16"];
             
             ObstacleSignifier* obs = (ObstacleSignifier*)sprite;
             NSString* motionString = [obs stringValueOfCurrentMotionType];
@@ -156,7 +156,7 @@
     zHandler = [[ZPositionHandler alloc] init];
     zHandler.controller = self;
     
-    [_zPositionComboBox addItemsWithObjectValues:@[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"12"]];
+    [_zPositionComboBox addItemsWithObjectValues:@[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"19"]];
     [_zPositionComboBox selectItemAtIndex:0];
     _zPositionComboBox.delegate = zHandler;
     
