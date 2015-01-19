@@ -350,7 +350,6 @@ const int SNAP_THRESHOLD = 5;
 
     }
     if (([leftMostNode isKindOfClass:[DecorationSignifier class]])) {
-       // CGPoint leftMostNodeDesiredPos = CGPointMake(leftMostNode.position.x - dragDiff, <#CGFloat y#>)
         float fractionalCoefficient = leftMostNode.zPosition / 16;
         //.1f is the default y parallax coefficient
         CGVector parallaxAdjustedDifference = CGVectorMake(fractionalCoefficient * dragDiff.dx, fractionalCoefficient * dragDiff.dy * .1f);
