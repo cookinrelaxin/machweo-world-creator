@@ -51,10 +51,6 @@
     }];
 }
 
-- (IBAction)deleteNode:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"delete node" object:nil];
-}
-
 - (IBAction)openHelpPopup:(id)sender {
     [myWindowController showWindow:helpController.window];
 }

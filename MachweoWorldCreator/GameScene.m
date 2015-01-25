@@ -24,9 +24,15 @@ const int SNAP_THRESHOLD = 5;
 -(void)rightMouseUp:(NSEvent *)theEvent {
     [self.scene rightMouseUp:theEvent];
 }
+
+-(void)keyDown:(NSEvent *)theEvent{
+    [self.scene keyDown:theEvent];
+}
 @end
 
 @implementation GameScene{
+    NSArray* selectedSpriteArray;
+    int currentIndexInSelectedSprites;
     SKSpriteNode* draggedSprite;
     CGVector draggedSpriteOffset;
     CGPoint previousClickLocation;
@@ -137,7 +143,11 @@ const int SNAP_THRESHOLD = 5;
 -(void)mouseDown:(NSEvent *)theEvent{
     CGPoint locInSelf = [theEvent locationInNode:self];
     CGPoint locInWorld = [theEvent locationInNode:world];
-    SKNode* selectedNode = [world nodeAtPoint:locInWorld];
+    selectedSpriteArray = [world nodesAtPoint:locInWorld];
+    if (currentIndexInSelectedSprites >= selectedSpriteArray.count) {
+        currentIndexInSelectedSprites = 0;
+    }
+    SKNode* selectedNode = [selectedSpriteArray objectAtIndex:currentIndexInSelectedSprites];
     
     if ([selectedNode isKindOfClass:[SKSpriteNode class]]) {
         if (draggedSprite != selectedNode) {
@@ -156,6 +166,17 @@ const int SNAP_THRESHOLD = 5;
     previousClickLocation = locInSelf;
 }
 
+-(void)changeCurrentlySelectedSprite{
+    currentIndexInSelectedSprites ++;
+    if (currentIndexInSelectedSprites >= selectedSpriteArray.count) {
+        currentIndexInSelectedSprites = 0;
+    }
+    draggedSprite = [selectedSpriteArray objectAtIndex:currentIndexInSelectedSprites];
+    [self sendCurrentlySelectedSpriteNotification];
+    [self addOutlineNodeAroundSprite:draggedSprite];
+    
+}
+
 -(void)rightMouseDown:(NSEvent *)theEvent{
     CGPoint locInSelf = [theEvent locationInNode:self];
     previousClickLocation = locInSelf;
@@ -172,6 +193,19 @@ const int SNAP_THRESHOLD = 5;
 //    outlineNode.path = path;
 //    CGPathRelease(path);
     
+}
+
+-(void)keyDown:(NSEvent *)theEvent{
+
+    // 127 is the unicode delete char
+    if ([[theEvent characters] characterAtIndex:0] == 127) {
+        [self deleteNode];
+    }
+    // 9 is the unicode tab char
+    if ([[theEvent characters] characterAtIndex:0] == 9) {
+        [self changeCurrentlySelectedSprite];
+        //[self deleteNode];
+    }
 }
 
 

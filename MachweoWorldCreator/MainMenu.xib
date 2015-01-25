@@ -102,13 +102,7 @@
                     <menu key="submenu" title="Edit" id="ma6-H3-MKr">
                         <items>
                             <menuItem title="Delete" id="Tno-lf-Mg3">
-                                <string key="keyEquivalent" base64-UTF8="YES">
-CA
-</string>
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="deleteNode:" target="4pH-4b-bsJ" id="1qQ-Je-GbR"/>
-                                </connections>
                             </menuItem>
                         </items>
                     </menu>

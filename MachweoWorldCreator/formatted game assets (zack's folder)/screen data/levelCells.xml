@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<levels>
+    <level>
+        <name>testParallaxLevel1</name>
+        <imageName>levelCellTestBackgroundImage</imageName>
+    </level>
+    <level>
+        <name>testParallaxLevel2</name>
+        <imageName>levelCellTestBackgroundImage</imageName>
+    </level>
+    <level>
+        <name>paradigmSeven</name>
+        <imageName>levelCellTestBackgroundImage</imageName>
+    </level>
+    <level>
+        <name>paradigmEight</name>
+        <imageName>levelCellTestBackgroundImage</imageName>
+    </level>
+    <level>
+        <name>paradigmEightPointTwo</name>
+        <imageName>levelCellTestBackgroundImage</imageName>
+    </level>
+    <level>
+        <name>paradigmEightPointThree</name>
+        <imageName>levelCellTestBackgroundImage</imageName>
+    </level>
+    <level>
+        <name>paradigmEightPointFour</name>
+        <imageName>levelCellTestBackgroundImage</imageName>
+    </level>
+    <level>
+        <name>paradigmEightPointFive</name>
+        <imageName>levelCellTestBackgroundImage</imageName>
+    </level>
+    <level>
+        <name>totemFrenzy</name>
+        <imageName>levelCellTestBackgroundImage</imageName>
+    </level>
+</levels>
+
