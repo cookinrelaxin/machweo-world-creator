@@ -144,25 +144,24 @@ const int SNAP_THRESHOLD = 5;
     CGPoint locInSelf = [theEvent locationInNode:self];
     CGPoint locInWorld = [theEvent locationInNode:world];
     selectedSpriteArray = [world nodesAtPoint:locInWorld];
-    if (currentIndexInSelectedSprites >= selectedSpriteArray.count) {
-        currentIndexInSelectedSprites = 0;
-    }
-    SKNode* selectedNode = [selectedSpriteArray objectAtIndex:currentIndexInSelectedSprites];
-    
-    if ([selectedNode isKindOfClass:[SKSpriteNode class]]) {
-        if (draggedSprite != selectedNode) {
-            draggedSprite = (SKSpriteNode*)selectedNode;
-            [self sendCurrentlySelectedSpriteNotification];
-            [self addOutlineNodeAroundSprite:draggedSprite];
-            NSLog(@"draggedSprite's zpos: %d", (int)draggedSprite.zPosition);
-        }
-        draggedSpriteOffset = CGVectorMake((draggedSprite.frame.origin.x + (draggedSprite.frame.size.width / 2)) - locInWorld.x, (draggedSprite.frame.origin.y + (draggedSprite.frame.size.height / 2) - locInWorld.y));
-    }
-    else {
-        draggedSprite = nil;
-        [outlineNode removeFromParent];
-    }
+    if (![selectedSpriteArray containsObject:draggedSprite]) {
 
+        SKNode* selectedNode = [selectedSpriteArray objectAtIndex:currentIndexInSelectedSprites];
+        
+        if ([selectedNode isKindOfClass:[SKSpriteNode class]]) {
+            if (draggedSprite != selectedNode) {
+                draggedSprite = (SKSpriteNode*)selectedNode;
+                [self sendCurrentlySelectedSpriteNotification];
+                [self addOutlineNodeAroundSprite:draggedSprite];
+                NSLog(@"draggedSprite's zpos: %d", (int)draggedSprite.zPosition);
+            }
+        }
+        else {
+            draggedSprite = nil;
+            [outlineNode removeFromParent];
+        }
+    }
+    draggedSpriteOffset = CGVectorMake((draggedSprite.frame.origin.x + (draggedSprite.frame.size.width / 2)) - locInWorld.x, (draggedSprite.frame.origin.y + (draggedSprite.frame.size.height / 2) - locInWorld.y));
     previousClickLocation = locInSelf;
 }
 
