@@ -383,7 +383,7 @@ const int SNAP_THRESHOLD = 5;
 
     }
     if (([leftMostNode isKindOfClass:[DecorationSignifier class]])) {
-        float fractionalCoefficient = leftMostNode.zPosition / 16;
+        float fractionalCoefficient = leftMostNode.zPosition / 100;
         //.1f is the default y parallax coefficient
         CGVector parallaxAdjustedDifference = CGVectorMake(fractionalCoefficient * dragDiff.dx, fractionalCoefficient * dragDiff.dy * .1f);
         CGPoint leftMostNodeDesiredPos = CGPointMake(leftMostNode.position.x - parallaxAdjustedDifference.dx, leftMostNode.position.y);
@@ -401,7 +401,7 @@ const int SNAP_THRESHOLD = 5;
         if ([sprite isKindOfClass:[DecorationSignifier class]]) {
             //sprite.position = CGPointMake(sprite.position.x - dragDiff.dx, sprite.position.y - dragDiff.dy);
             //10 is the default obstacle z pos
-            float fractionalCoefficient = sprite.zPosition / 16;
+            float fractionalCoefficient = sprite.zPosition / 100;
             //.1f is the default y parallax coefficient
             CGVector parallaxAdjustedDifference = CGVectorMake(fractionalCoefficient * dragDiff.dx, fractionalCoefficient * dragDiff.dy * .1f);
             sprite.position = CGPointMake(sprite.position.x - parallaxAdjustedDifference.dx, sprite.position.y);

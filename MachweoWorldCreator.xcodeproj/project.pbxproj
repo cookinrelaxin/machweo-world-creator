@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		65160D221A57EEAF00D481D0 /* HelpWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65160D211A57EEAF00D481D0 /* HelpWindow.xib */; };
 		65CAB25C1A4E6A2F00D6CE26 /* ChunkLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CAB25A1A4E6A2F00D6CE26 /* ChunkLoader.m */; };
+		7808AB341A75FECD00544C78 /* improvedParallaxOne.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7808AB331A75FECD00544C78 /* improvedParallaxOne.xml */; };
 		78223F121A3B976600E73137 /* DragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78223F111A3B976600E73137 /* DragView.m */; };
 		78223F141A3BA99B00E73137 /* ObstacleIconPrototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78223F131A3BA99B00E73137 /* ObstacleIconPrototype.xib */; };
 		782AE51B1A74A8B800FF4225 /* paradigmEight.xml in Resources */ = {isa = PBXBuildFile; fileRef = 782AE4871A74A8B800FF4225 /* paradigmEight.xml */; };
@@ -180,6 +181,7 @@
 		65160D211A57EEAF00D481D0 /* HelpWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpWindow.xib; sourceTree = "<group>"; };
 		65CAB25A1A4E6A2F00D6CE26 /* ChunkLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChunkLoader.m; sourceTree = "<group>"; };
 		65CAB25B1A4E6A2F00D6CE26 /* ChunkLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkLoader.h; sourceTree = "<group>"; };
+		7808AB331A75FECD00544C78 /* improvedParallaxOne.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = improvedParallaxOne.xml; sourceTree = "<group>"; };
 		78223F101A3B976600E73137 /* DragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragView.h; sourceTree = "<group>"; };
 		78223F111A3B976600E73137 /* DragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragView.m; sourceTree = "<group>"; };
 		78223F131A3BA99B00E73137 /* ObstacleIconPrototype.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ObstacleIconPrototype.xib; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 				782AE48A1A74A8B800FF4225 /* paradigmEightPointSix.xml */,
 				782AE48B1A74A8B800FF4225 /* paradigmEightPointThree.xml */,
 				782AE48C1A74A8B800FF4225 /* paradigmEightPointTwo.xml */,
+				7808AB331A75FECD00544C78 /* improvedParallaxOne.xml */,
 				782AE48D1A74A8B800FF4225 /* paradigmNine.xml */,
 				782AE48E1A74A8B800FF4225 /* paradigmSeven.xml */,
 				782AE48F1A74A8B800FF4225 /* testParallaxLevel1.xml */,
@@ -817,6 +820,7 @@
 				782AE5481A74A8B800FF4225 /* cloudred2.png in Resources */,
 				782AE56A1A74A8B800FF4225 /* rotate.ai in Resources */,
 				782AE54C1A74A8B800FF4225 /* cloudred4.png in Resources */,
+				7808AB341A75FECD00544C78 /* improvedParallaxOne.xml in Resources */,
 				782AE5351A74A8B800FF4225 /* cloud3.0.png in Resources */,
 				782AE51D1A74A8B800FF4225 /* paradigmEightPointFour.xml in Resources */,
 				782AE5901A74A8B800FF4225 /* spikesunyell.ai in Resources */,

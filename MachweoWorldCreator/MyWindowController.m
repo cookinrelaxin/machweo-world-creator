@@ -156,7 +156,12 @@
     zHandler = [[ZPositionHandler alloc] init];
     zHandler.controller = self;
     
-    [_zPositionComboBox addItemsWithObjectValues:@[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"19"]];
+    NSMutableArray* temp = [NSMutableArray array];
+    for(int i = 1; i < 101; i ++){
+        [temp addObject:[NSString stringWithFormat:@"%d", i]];
+    }
+   // [_zPositionComboBox addItemsWithObjectValues:@[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"19"]];
+    [_zPositionComboBox addItemsWithObjectValues:temp];
     [_zPositionComboBox selectItemAtIndex:0];
     _zPositionComboBox.delegate = zHandler;
     
