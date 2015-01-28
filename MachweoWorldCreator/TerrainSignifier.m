@@ -15,6 +15,7 @@
         _vertices = [NSMutableArray array];
         _lineNode = [SKNode node];
         [node addChild:_lineNode];
+        [node addChild:self];
         _terrainTexture = terrainTexture;
         
 
@@ -22,7 +23,7 @@
     return self;
 }
 
--(void)addVertex:(NSPoint)vertex inNode:(SKNode*)node{
+-(void)addVertex:(NSPoint)vertex{
     if (_vertices.count > 0) {
         NSPoint firstVertex = [(NSValue*)[_vertices firstObject] pointValue];
         float distance = sqrtf(powf((vertex.x - firstVertex.x), 2) + powf((vertex.y - firstVertex.y), 2));
@@ -42,7 +43,7 @@
 
 -(void)addLineNodeBetweenVertices:(NSPoint)v1 :(NSPoint)v2{
     SKShapeNode* currentLineNode = [SKShapeNode node];
-    currentLineNode.zPosition = _zPosition;
+    currentLineNode.zPosition = self.zPosition;
     currentLineNode.antialiased = false;
     currentLineNode.physicsBody = nil;
     CGMutablePathRef pathToDraw = CGPathCreateMutable();
@@ -54,12 +55,13 @@
     CGPathRelease(pathToDraw);
 }
 
--(void)closeLoopAndFillTerrainInNode:(SKNode*)node{
+-(void)closeLoopAndFillTerrain{
     SKShapeNode* textureShapeNode = [self shapeNodeWithVertices:_vertices];
     SKTexture* texFromShapeNode = [((SKScene*)_lineNode.parent.parent).view textureFromNode:textureShapeNode];
     SKSpriteNode* maskWrapper = [SKSpriteNode spriteNodeWithTexture:texFromShapeNode];
     _cropNode = [SKCropNode node];
-    SKSpriteNode* pattern = [[SKSpriteNode alloc] initWithTexture:_terrainTexture];
+    SKTexture* croppedTexture = [SKTexture textureWithRect:CGRectMake(0, 0, maskWrapper.size.width / _terrainTexture.size.width, maskWrapper.size.height / _terrainTexture.size.height) inTexture:_terrainTexture];
+    SKSpriteNode* pattern = [[SKSpriteNode alloc] initWithTexture:croppedTexture];
     pattern.name = @"pattern";
     
     //arbitrary and probably going to be problematic
@@ -68,20 +70,20 @@
     
     [_cropNode addChild:pattern];
     _cropNode.maskNode = maskWrapper;
-    _cropNode.zPosition = _zPosition;
+    _cropNode.zPosition = self.zPosition;
     
    // NSPoint firstVertex = [(NSValue*)[_vertices firstObject] pointValue];
     CGRect lineNodeFrame = [_lineNode calculateAccumulatedFrame];
     _cropNode.position = CGPointMake(CGRectGetMidX(lineNodeFrame), CGRectGetMidY(lineNodeFrame));
  //   cropNode.position = _lineNode.position;
     //cropNode.position = textureShapeNode.position;
-    
-    [node addChild:_cropNode];
+    [self addChild:_cropNode];
+    _isClosed = false;
 }
 
 -(SKShapeNode*)shapeNodeWithVertices:(NSArray*)vertexArray{
     SKShapeNode* node = [SKShapeNode node];
-    node.zPosition = _zPosition;
+    node.zPosition = self.zPosition;
     node.fillColor = [NSColor whiteColor];
     node.antialiased = false;
     node.physicsBody = nil;
