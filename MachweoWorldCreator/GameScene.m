@@ -9,10 +9,12 @@
 #import "GameScene.h"
 #import "ObstacleSignifier.h"
 #import "DecorationSignifier.h"
+#import "TerrainSignifier.h"
 #import "SaveMachine.h"
 #import "ChunkLoader.h"
 
 const int SNAP_THRESHOLD = 5;
+const int OBSTACLE_Z_POSITION = 100;
 
 @implementation SKView (Right_Mouse)
 -(void)rightMouseDown:(NSEvent *)theEvent {
@@ -37,13 +39,19 @@ const int SNAP_THRESHOLD = 5;
     CGVector draggedSpriteOffset;
     CGPoint previousClickLocation;
     SKNode *world;
+    SKNode *terrainNodes;
     SKSpriteNode* leftBorder;
     SKSpriteNode* rightBorder;
     SaveMachine *saveMachine;
     SKShapeNode* outlineNode;
     BOOL allowSnapping;
     
-    SKTexture* currentTerrainTexture;
+    BOOL terrainModeOn;
+    BOOL allowTerrainDrawing;
+    TerrainSignifier* currentTerrain;
+    //SKCropNode* draggedTerrain;
+    SKTexture* terrainTex;
+    NSString* textureName;
     
 }
 
@@ -55,6 +63,8 @@ const int SNAP_THRESHOLD = 5;
     if (self = [super initWithSize:size]) {
         world = [SKNode node];
         [self addChild:world];
+        terrainNodes = [SKNode node];
+        [self addChild:terrainNodes];
         
         CGSize sideBorderSize = CGSizeMake(size.width / 40, size.height);
         //CGSize topAndBottomBorderSize = CGSizeMake(size.width, size.height / 30);
@@ -78,6 +88,7 @@ const int SNAP_THRESHOLD = 5;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteNode) name:@"delete node" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSnappingPermissions:) name:@"changeSnapPermission" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCurrentTerrainTexture:) name:@"terrain texture selected" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeTerrainDrawingPermissions:) name:@"changeDrawPermission" object:nil];
 
         
         ObstacleSignifier* nodeForWorldScrolling = [ObstacleSignifier node];
@@ -85,6 +96,7 @@ const int SNAP_THRESHOLD = 5;
         
         
         allowSnapping = true;
+        allowTerrainDrawing = true;
 
 
 
@@ -93,9 +105,17 @@ const int SNAP_THRESHOLD = 5;
 
 }
 
--(void)changeCurrentTerrainTexture:(SKTexture*)texture{
+-(void)changeCurrentTerrainTexture:(NSNotification*)notification{
+    terrainModeOn = true;
+    terrainTex = [[notification userInfo] objectForKey:@"texture"];
+    textureName = [[notification userInfo] objectForKey:@"texture name"];
+
     
-    
+}
+
+-(void)changeTerrainDrawingPermissions:(NSNotification*)notification{
+    allowTerrainDrawing = [(NSNumber*)[notification.userInfo objectForKey:@"allow terrain drawing"] boolValue];
+    //NSLog(@"allowTerrainDrawing: %i", allowTerrainDrawing);
 }
 
 -(void)changeSnappingPermissions:(NSNotification*)notification{
@@ -119,7 +139,7 @@ const int SNAP_THRESHOLD = 5;
 -(void)addObstacleSignifierForImage:(NSImage*)image fromPointInView:(CGPoint)point withName: (NSString*)name{
     ObstacleSignifier* sprite = [ObstacleSignifier spriteNodeWithTexture:[SKTexture textureWithImage:image]];
     sprite.position = [world convertPoint:[self convertPointFromView:point] fromNode:self];
-    sprite.zPosition = 16;
+    sprite.zPosition = OBSTACLE_Z_POSITION;
     sprite.name = name;
     [world addChild:sprite];
     draggedSprite = sprite;
@@ -152,25 +172,54 @@ const int SNAP_THRESHOLD = 5;
     CGPoint locInSelf = [theEvent locationInNode:self];
     CGPoint locInWorld = [theEvent locationInNode:world];
     selectedSpriteArray = [world nodesAtPoint:locInWorld];
-    if (![selectedSpriteArray containsObject:draggedSprite]) {
+    if (selectedSpriteArray.count > 0) {
+        if (![selectedSpriteArray containsObject:draggedSprite]) {
 
-        SKNode* selectedNode = [selectedSpriteArray objectAtIndex:currentIndexInSelectedSprites];
-        
-        if ([selectedNode isKindOfClass:[SKSpriteNode class]]) {
-            if (draggedSprite != selectedNode) {
-                draggedSprite = (SKSpriteNode*)selectedNode;
-                [self sendCurrentlySelectedSpriteNotification];
-                [self addOutlineNodeAroundSprite:draggedSprite];
-                NSLog(@"draggedSprite's zpos: %d", (int)draggedSprite.zPosition);
+            SKNode* selectedNode = [selectedSpriteArray objectAtIndex:currentIndexInSelectedSprites];
+             if ([selectedNode isKindOfClass:[SKSpriteNode class]]) {
+                if (draggedSprite != selectedNode) {
+                    draggedSprite = (SKSpriteNode*)selectedNode;
+                    [self sendCurrentlySelectedSpriteNotification];
+                    [self addOutlineNodeAroundSprite:draggedSprite];
+                }
+             }  
+            
+            else {
+                draggedSprite = nil;
+                [outlineNode removeFromParent];
             }
         }
-        else {
-            draggedSprite = nil;
-            [outlineNode removeFromParent];
+    }
+    
+    else if (terrainModeOn) {
+        [self sendCurrentlySelectedSpriteNotification];
+        CGPoint locInTerrainNodes = [theEvent locationInNode:terrainNodes];
+        if (allowTerrainDrawing) {
+            currentTerrain = [[TerrainSignifier alloc] initWithTexture:terrainTex inNode:world];
+            currentTerrain.zPosition = OBSTACLE_Z_POSITION;
+            [currentTerrain addVertex:locInTerrainNodes inNode:terrainNodes];
         }
     }
+    
     draggedSpriteOffset = CGVectorMake((draggedSprite.frame.origin.x + (draggedSprite.frame.size.width / 2)) - locInWorld.x, (draggedSprite.frame.origin.y + (draggedSprite.frame.size.height / 2) - locInWorld.y));
     previousClickLocation = locInSelf;
+}
+
+-(void)mouseUp:(NSEvent *)theEvent{
+    if (terrainModeOn) {
+        if (currentTerrain.isClosed) {
+            [currentTerrain closeLoopAndFillTerrainInNode:terrainNodes];
+            //[currentTerrain cleanUpAndRemove];
+           // currentTerrain = nil;
+
+          //  NSLog(@"world.children.count: %lu", (unsigned long)world. children.count);
+        }
+        //else{
+           // currentTerrain = nil;
+            [currentTerrain cleanUpAndRemoveLines];
+          //  currentTerrain = nil;
+      //  }
+    }
 }
 
 -(void)changeCurrentlySelectedSprite{
@@ -237,6 +286,13 @@ const int SNAP_THRESHOLD = 5;
     if (draggedSprite) {
         [self dragSprite:locInWorld];
     }
+    
+    if (terrainModeOn) {
+        if (allowTerrainDrawing) {
+            [currentTerrain addVertex:locInWorld inNode:world];
+        }
+    }
+    
     previousClickLocation = locInSelf;
 
 //    CGPoint convertedOrigin = [self convertPoint:CGPointMake(draggedSprite.frame.origin.x, draggedSprite.frame.origin.y) fromNode:world];
@@ -420,6 +476,11 @@ const int SNAP_THRESHOLD = 5;
 }
 
 -(void)sendCurrentlySelectedSpriteNotification{
+    if (terrainModeOn) {
+        NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:textureName, @"texture name", currentTerrain, @"terrain", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentlySelectedTerrainMayHaveChanged" object:nil userInfo:dict];
+        return;
+    }
     NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:draggedSprite, @"sprite", nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"currentlySelectedSpriteMayHaveChanged" object:nil userInfo:dict];
 }

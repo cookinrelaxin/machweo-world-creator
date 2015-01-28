@@ -10,6 +10,8 @@
 #import "DragView.h"
 #import "GameScene.h"
 #import "ObstacleSignifier.h"
+#import "TerrainSignifier.h"
+
 
 @interface MotionTypeHandler : NSObject <NSComboBoxDelegate>
 @property (nonatomic, strong) MyWindowController* controller;
@@ -121,6 +123,8 @@
 -(void)registerForNotifications{
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(changeCurrentlySelectedSprite:) name:@"currentlySelectedSpriteMayHaveChanged" object:nil];
+    [center addObserver:self selector:@selector(changeCurrentlySelectedTerrain:) name:@"currentlySelectedTerrainMayHaveChanged" object:nil];
+
 }
 
 -(void)changeCurrentlySelectedSprite:(NSNotification*)notification{
@@ -153,6 +157,22 @@
     [_zPositionComboBox selectItemWithObjectValue:[NSString stringWithFormat:@"%d", (int)sprite.zPosition]];
     [_zPositionInfoLabel setStringValue:[NSString stringWithFormat:@"z-position of all %@ instances (lower values are farther away)", imageName]];
     
+}
+
+-(void)changeCurrentlySelectedTerrain:(NSNotification*)notification{
+   // TerrainSignifier* terrain = [[notification userInfo] objectForKey:@"terrain"];
+    NSString* textureName = [[notification userInfo] objectForKey:@"texture name"];
+    _currentlySelectedImage.image = [NSImage imageNamed:textureName];
+    [_imageName setStringValue:textureName];
+
+    [_zPositionComboBox setHidden:true];
+    [self hideMotionComboBoxes];
+    [_zPositionInfoLabel setStringValue:@"the zPosition of all obstacles is always 16"];
+    
+    
+   // NSLog(@"terrainTexture: %@", terrainTexture);
+  //  NSString* imageName = terrain.;
+
 }
 
 -(void)loadComboBoxes{
@@ -211,5 +231,11 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"changeSnapPermission" object:nil userInfo:[NSDictionary dictionaryWithObject:allowSnappingObject forKey:@"allow snapping"]];
 }
 
+- (IBAction)changeDrawPermission:(id)sender {
+    NSButton* buttonSender = (NSButton*)sender;
+    BOOL allowTerrainDrawing = (buttonSender.state == 1) ? true :false;
+    NSNumber *allowTerrainDrawingObject = [NSNumber numberWithBool:allowTerrainDrawing];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeDrawPermission" object:nil userInfo:[NSDictionary dictionaryWithObject:allowTerrainDrawingObject forKey:@"allow terrain drawing"]];
+}
 
 @end

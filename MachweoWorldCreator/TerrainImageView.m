@@ -26,7 +26,7 @@
 //    draggingSession.draggingFormation = NSDraggingFormationNone;
     
     SKTexture* thisTex = [SKTexture textureWithImage:[self image]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"terrain texture selected" object:nil userInfo:[NSDictionary dictionaryWithObject:thisTex forKey:@"texture"]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"terrain texture selected" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:thisTex, @"texture", [self image].name, @"texture name", nil]];
 }
 
 //- (NSDragOperation)draggingSession:(NSDraggingSession *)session sourceOperationMaskForDraggingContext:(NSDraggingContext)context

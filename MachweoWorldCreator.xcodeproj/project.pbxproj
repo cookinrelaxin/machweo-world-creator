@@ -167,6 +167,8 @@
 		78BEF2BC1A7860AF00DEE9A4 /* dirt_terrain.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEF2BB1A7860AF00DEE9A4 /* dirt_terrain.png */; };
 		78BEF2BE1A78639900DEE9A4 /* TerrainIconPrototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78BEF2BD1A78639900DEE9A4 /* TerrainIconPrototype.xib */; };
 		78BEF2C11A7863CD00DEE9A4 /* TerrainImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BEF2C01A7863CD00DEE9A4 /* TerrainImageView.m */; };
+		78BEF2C41A78678700DEE9A4 /* TerrainSignifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 78BEF2C31A78678700DEE9A4 /* TerrainSignifier.m */; };
+		78BEF2C81A78844000DEE9A4 /* dirt1_terrain.png in Resources */ = {isa = PBXBuildFile; fileRef = 78BEF2C71A78844000DEE9A4 /* dirt1_terrain.png */; };
 		78E66D3D1A43D99900D2978E /* SpriteDragSourceImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E66D3C1A43D99900D2978E /* SpriteDragSourceImageView.m */; };
 /* End PBXBuildFile section */
 
@@ -356,6 +358,9 @@
 		78BEF2BD1A78639900DEE9A4 /* TerrainIconPrototype.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TerrainIconPrototype.xib; sourceTree = "<group>"; };
 		78BEF2BF1A7863CD00DEE9A4 /* TerrainImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainImageView.h; sourceTree = "<group>"; };
 		78BEF2C01A7863CD00DEE9A4 /* TerrainImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerrainImageView.m; sourceTree = "<group>"; };
+		78BEF2C21A78678700DEE9A4 /* TerrainSignifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TerrainSignifier.h; sourceTree = "<group>"; };
+		78BEF2C31A78678700DEE9A4 /* TerrainSignifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TerrainSignifier.m; sourceTree = "<group>"; };
+		78BEF2C71A78844000DEE9A4 /* dirt1_terrain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dirt1_terrain.png; sourceTree = "<group>"; };
 		78E66D3B1A43D99900D2978E /* SpriteDragSourceImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteDragSourceImageView.h; sourceTree = "<group>"; };
 		78E66D3C1A43D99900D2978E /* SpriteDragSourceImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteDragSourceImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -647,6 +652,8 @@
 				78A733A31A44B1C9000265FA /* ObstacleSignifier.m */,
 				78A733A81A44B1FA000265FA /* DecorationSignifier.h */,
 				78A733A91A44B1FA000265FA /* DecorationSignifier.m */,
+				78BEF2C21A78678700DEE9A4 /* TerrainSignifier.h */,
+				78BEF2C31A78678700DEE9A4 /* TerrainSignifier.m */,
 				78E66D3B1A43D99900D2978E /* SpriteDragSourceImageView.h */,
 				78E66D3C1A43D99900D2978E /* SpriteDragSourceImageView.m */,
 				78A733AE1A44BBB5000265FA /* SaveMachine.h */,
@@ -700,6 +707,7 @@
 		78BEF2B81A785FFF00DEE9A4 /* terrain textures */ = {
 			isa = PBXGroup;
 			children = (
+				78BEF2C71A78844000DEE9A4 /* dirt1_terrain.png */,
 				78BEF2BB1A7860AF00DEE9A4 /* dirt_terrain.png */,
 			);
 			path = "terrain textures";
@@ -873,6 +881,7 @@
 				782AE5271A74A8B800FF4225 /* levelCells.xml in Resources */,
 				782AE55A1A74A8B800FF4225 /* mountain2_decoration.png in Resources */,
 				782AE5551A74A8B800FF4225 /* redgrass.ai in Resources */,
+				78BEF2C81A78844000DEE9A4 /* dirt1_terrain.png in Resources */,
 				782AE5361A74A8B800FF4225 /* cloud3.0_decoration.png in Resources */,
 				782AE5571A74A8B800FF4225 /* mountain.ai in Resources */,
 				782AE52F1A74A8B800FF4225 /* cloud2.0_decoration.png in Resources */,
@@ -959,6 +968,7 @@
 				78991D6C1A36661B004BDEC2 /* AppDelegate.m in Sources */,
 				78A733AA1A44B1FA000265FA /* DecorationSignifier.m in Sources */,
 				78991D961A36728E004BDEC2 /* MyWindowController.m in Sources */,
+				78BEF2C41A78678700DEE9A4 /* TerrainSignifier.m in Sources */,
 				78A7339E1A44AFA9000265FA /* DecorationImageView.m in Sources */,
 				78BEF2C11A7863CD00DEE9A4 /* TerrainImageView.m in Sources */,
 				78A733971A44AEA9000265FA /* ObstacleImageView.m in Sources */,

@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MyWindowController">
             <connections>
+                <outlet property="allowTerrainDrawingButton" destination="p9q-mX-nDj" id="8Ve-MQ-3tS"/>
                 <outlet property="currentlySelectedImage" destination="ApO-Rn-OBE" id="vW7-hd-Af4"/>
                 <outlet property="imageName" destination="cuA-Xw-FlJ" id="yqZ-FJ-vt9"/>
                 <outlet property="motionSpeedComboBox" destination="NrB-ke-LY1" id="xuq-Jw-M1w"/>
@@ -159,6 +160,16 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                         </scrollView>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p9q-mX-nDj">
+                                            <rect key="frame" x="19" y="570" width="220" height="22"/>
+                                            <buttonCell key="cell" type="check" title="drag to draw terrain" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="myy-UV-Hx5">
+                                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="changeDrawPermission:" target="-2" id="dUA-xz-SnS"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                             </tabViewItem>
