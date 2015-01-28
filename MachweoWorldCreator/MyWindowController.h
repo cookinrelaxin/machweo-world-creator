@@ -14,6 +14,8 @@
 @property (nonatomic, strong) IBOutlet NSView *windowView;
 @property (nonatomic) NSMutableArray *obstacleImages;
 @property (nonatomic) NSMutableArray *decorationImages;
+@property (nonatomic) NSMutableArray *terrainImages;
+
 @property (weak) IBOutlet NSTextField *imageName;
 @property (weak) IBOutlet NSImageView *currentlySelectedImage;
 @property (weak) IBOutlet NSComboBox *zPositionComboBox;

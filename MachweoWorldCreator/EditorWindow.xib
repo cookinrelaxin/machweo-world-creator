@@ -126,6 +126,42 @@
                                     </constraints>
                                 </view>
                             </tabViewItem>
+                            <tabViewItem label="Terrain" identifier="" id="3XR-dz-Edf">
+                                <view key="view" id="wO7-jP-kmk">
+                                    <rect key="frame" x="10" y="33" width="294" height="604"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zpa-91-zGd">
+                                            <rect key="frame" x="0.0" y="14" width="294" height="590"/>
+                                            <clipView key="contentView" ambiguous="YES" misplaced="YES" id="5fn-S4-IBM">
+                                                <rect key="frame" x="1" y="1" width="248" height="158"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <collectionView ambiguous="YES" id="sIp-MY-Uox" userLabel="terrain collection view">
+                                                        <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <color key="primaryBackgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        <connections>
+                                                            <binding destination="sct-8C-Dyw" name="content" keyPath="arrangedObjects" id="6CJ-F0-g3i"/>
+                                                            <binding destination="sct-8C-Dyw" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="6CJ-F0-g3i" id="LSj-IO-xqn"/>
+                                                            <outlet property="delegate" destination="-2" id="f9J-AU-fZ7"/>
+                                                            <outlet property="itemPrototype" destination="T9w-aS-yCR" id="VSb-Dy-BM5"/>
+                                                        </connections>
+                                                    </collectionView>
+                                                </subviews>
+                                            </clipView>
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="ibF-Kc-zzB">
+                                                <rect key="frame" x="1" y="144" width="233" height="15"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="VuY-6f-0ds">
+                                                <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                            </scroller>
+                                        </scrollView>
+                                    </subviews>
+                                </view>
+                            </tabViewItem>
                         </tabViewItems>
                     </tabView>
                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="pOh-xR-qTr" userLabel="currently selected item view">
@@ -228,12 +264,19 @@
                 <binding destination="-2" name="contentArray" keyPath="self.obstacleImages" id="Alx-D1-3kn"/>
             </connections>
         </arrayController>
+        <arrayController id="sct-8C-Dyw" userLabel="terrain array controller">
+            <connections>
+                <binding destination="-2" name="contentArray" keyPath="self.terrainImages" id="o3k-n4-981"/>
+                <outlet property="content" destination="sIp-MY-Uox" id="zUS-gg-wzp"/>
+            </connections>
+        </arrayController>
         <arrayController id="z4i-Pm-ttj" userLabel="decoration array controller">
             <connections>
                 <binding destination="-2" name="contentArray" keyPath="self.decorationImages" id="NXT-qh-WFp"/>
             </connections>
         </arrayController>
         <collectionViewItem nibName="ObstacleIconPrototype" id="E5m-5l-vRX"/>
+        <collectionViewItem nibName="TerrainIconPrototype" id="T9w-aS-yCR"/>
         <collectionViewItem nibName="DecorationIconPrototype" id="oLI-Jo-M8K"/>
     </objects>
 </document>

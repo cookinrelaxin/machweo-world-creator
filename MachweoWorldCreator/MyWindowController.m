@@ -87,6 +87,7 @@
 -(void)loadSpriteScroller{
     NSMutableArray * obstacleArray = [NSMutableArray array];
     NSMutableArray * decorationArray = [NSMutableArray array];
+    NSMutableArray * terrainArray = [NSMutableArray array];
     NSArray *gameObjectPaths = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" inDirectory:nil];
     
     for (NSString* path in gameObjectPaths) {
@@ -103,11 +104,17 @@
             decorationImage.name = fileName;
             [decorationArray addObject:decorationImage];
         }
+        if ([fileName rangeOfString:@"terrain"].location != NSNotFound) {
+            NSImage* terrainImage = [NSImage imageNamed:fileName];
+            terrainImage.name = fileName;
+            [terrainArray addObject:terrainImage];
+        }
 
     }
     
     [self setObstacleImages:obstacleArray];
     [self setDecorationImages:decorationArray];
+    [self setTerrainImages:terrainArray];
 
 }
 

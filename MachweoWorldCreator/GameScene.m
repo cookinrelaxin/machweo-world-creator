@@ -41,8 +41,9 @@ const int SNAP_THRESHOLD = 5;
     SKSpriteNode* rightBorder;
     SaveMachine *saveMachine;
     SKShapeNode* outlineNode;
-    
     BOOL allowSnapping;
+    
+    SKTexture* currentTerrainTexture;
     
 }
 
@@ -76,6 +77,8 @@ const int SNAP_THRESHOLD = 5;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeMotionSpeeds:) name:@"motionSpeedChanged" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteNode) name:@"delete node" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSnappingPermissions:) name:@"changeSnapPermission" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCurrentTerrainTexture:) name:@"terrain texture selected" object:nil];
+
         
         ObstacleSignifier* nodeForWorldScrolling = [ObstacleSignifier node];
         [world addChild:nodeForWorldScrolling];
@@ -88,6 +91,11 @@ const int SNAP_THRESHOLD = 5;
     }
     return self;
 
+}
+
+-(void)changeCurrentTerrainTexture:(SKTexture*)texture{
+    
+    
 }
 
 -(void)changeSnappingPermissions:(NSNotification*)notification{
