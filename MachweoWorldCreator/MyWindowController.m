@@ -124,10 +124,11 @@
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self selector:@selector(changeCurrentlySelectedSprite:) name:@"currentlySelectedSpriteMayHaveChanged" object:nil];
     [center addObserver:self selector:@selector(changeCurrentlySelectedTerrain:) name:@"currentlySelectedTerrainMayHaveChanged" object:nil];
-
 }
 
 -(void)changeCurrentlySelectedSprite:(NSNotification*)notification{
+    [_allowTerrainDrawingButton setState:0];
+    [self changeDrawPermission:_allowTerrainDrawingButton];
     //NSLog(@"%@", notification.name);
     SKSpriteNode* sprite = [notification.userInfo objectForKey:@"sprite"];
     NSString* imageName = sprite.name;

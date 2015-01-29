@@ -16,6 +16,7 @@
 @property(nonatomic, strong) SKCropNode* cropNode;
 //@property(nonatomic) float zPosition;
 @property(nonatomic) BOOL isClosed;
+@property(nonatomic) BOOL permitVertices;
 //@property(nonatomic) CGVector differenceFromCurrentPointToFirstVertex;
 
 

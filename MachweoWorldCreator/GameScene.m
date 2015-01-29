@@ -33,23 +33,20 @@ const int OBSTACLE_Z_POSITION = 100;
 @end
 
 @implementation GameScene{
-    NSArray* selectedSpriteArray;
+    NSMutableArray* selectedSpriteArray;
     int currentIndexInSelectedSprites;
     SKSpriteNode* draggedSprite;
     CGVector draggedSpriteOffset;
     CGPoint previousClickLocation;
     SKNode *world;
-    SKNode *terrainNodes;
     SKSpriteNode* leftBorder;
     SKSpriteNode* rightBorder;
     SaveMachine *saveMachine;
     SKShapeNode* outlineNode;
     BOOL allowSnapping;
     
-    BOOL terrainModeOn;
     BOOL allowTerrainDrawing;
     TerrainSignifier* currentTerrain;
-    //SKCropNode* draggedTerrain;
     SKTexture* terrainTex;
     NSString* textureName;
     
@@ -63,11 +60,8 @@ const int OBSTACLE_Z_POSITION = 100;
     if (self = [super initWithSize:size]) {
         world = [SKNode node];
         [self addChild:world];
-        terrainNodes = [SKNode node];
-        [self addChild:terrainNodes];
         
         CGSize sideBorderSize = CGSizeMake(size.width / 40, size.height);
-        //CGSize topAndBottomBorderSize = CGSizeMake(size.width, size.height / 30);
 
         leftBorder = [SKSpriteNode spriteNodeWithColor:[NSColor redColor] size:sideBorderSize];
         leftBorder.position = CGPointMake(sideBorderSize.width / 2, sideBorderSize.height / 2);
@@ -106,11 +100,8 @@ const int OBSTACLE_Z_POSITION = 100;
 }
 
 -(void)changeCurrentTerrainTexture:(NSNotification*)notification{
-    terrainModeOn = true;
     terrainTex = [[notification userInfo] objectForKey:@"texture"];
     textureName = [[notification userInfo] objectForKey:@"texture name"];
-
-    
 }
 
 -(void)changeTerrainDrawingPermissions:(NSNotification*)notification{
@@ -145,8 +136,7 @@ const int OBSTACLE_Z_POSITION = 100;
     draggedSprite = sprite;
     [self addOutlineNode];
     [self sendCurrentlySelectedSpriteNotification];
-    terrainModeOn = false;
-
+    currentTerrain = nil;
     
 }
 
@@ -166,94 +156,112 @@ const int OBSTACLE_Z_POSITION = 100;
     draggedSprite = sprite;
     [self addOutlineNode];
     [self sendCurrentlySelectedSpriteNotification];
-    terrainModeOn = false;
+    currentTerrain = nil;
 
 }
 
 -(void)mouseDown:(NSEvent *)theEvent{
     CGPoint locInSelf = [theEvent locationInNode:self];
     CGPoint locInWorld = [theEvent locationInNode:world];
+   // BOOL clearSelection;
     
-    if (terrainModeOn) {
-        [self sendCurrentlySelectedSpriteNotification];
-        CGPoint locInTerrainNodes = [theEvent locationInNode:terrainNodes];
+    if (currentTerrain || allowTerrainDrawing) {
         if (allowTerrainDrawing) {
-            currentTerrain = [[TerrainSignifier alloc] initWithTexture:terrainTex inNode:terrainNodes];
+            draggedSprite = nil;
+            currentTerrain = [[TerrainSignifier alloc] initWithTexture:terrainTex inNode:world];
             currentTerrain.zPosition = OBSTACLE_Z_POSITION;
-            [currentTerrain addVertex:locInTerrainNodes];
+            [currentTerrain addVertex:locInWorld];
         }
-        else{
-            // [self addOutlineNode];
-            currentTerrain = nil;
-          //  [outlineNode removeFromParent];
-            NSArray* nodesAtPoint = [terrainNodes nodesAtPoint:locInTerrainNodes];
-          //  NSLog(@"nodesAtPoint.count: %lu", (unsigned long)nodesAtPoint.count);
-            for (SKNode* node in nodesAtPoint) {
-                if ([node isKindOfClass:[TerrainSignifier class]]) {
-                    currentTerrain = (TerrainSignifier*)node;
-                    break;
-                }
-            }
-        }
-        draggedSpriteOffset = CGVectorMake((currentTerrain.cropNode.frame.origin.x + (currentTerrain.cropNode.frame.size.width / 2)) - locInTerrainNodes.x, (currentTerrain.cropNode.frame.origin.y + (currentTerrain.cropNode.frame.size.height / 2) - locInTerrainNodes.y));
     }
-    else{
-        currentTerrain = nil;
-        selectedSpriteArray = [world nodesAtPoint:locInWorld];
-        if (selectedSpriteArray.count > 0) {
-            if (![selectedSpriteArray containsObject:draggedSprite]) {
+    selectedSpriteArray = [self generateSelectedSpritesAtPoint:locInWorld];
+    if (selectedSpriteArray.count > 0) {
+        //if (![selectedSpriteArray containsObject:draggedSprite] && ![selectedSpriteArray containsObject:currentTerrain]) {
 
-                SKNode* selectedNode = [selectedSpriteArray objectAtIndex:currentIndexInSelectedSprites];
-                 if ([selectedNode isKindOfClass:[SKSpriteNode class]]) {
-                    if (draggedSprite != selectedNode) {
-                        draggedSprite = (SKSpriteNode*)selectedNode;
-                        [self sendCurrentlySelectedSpriteNotification];
-                        [self addOutlineNode];
-                    }
-                 }  
-                
-                else {
+            SKNode* selectedNode = [selectedSpriteArray objectAtIndex:currentIndexInSelectedSprites];
+             if ([selectedNode isKindOfClass:[SKSpriteNode class]]) {
+                if (draggedSprite != selectedNode) {
+                    currentTerrain = nil;
+                    draggedSprite = (SKSpriteNode*)selectedNode;
+                    [self sendCurrentlySelectedSpriteNotification];
+                    [self addOutlineNode];
+                }
+             }
+//             else {
+//                 draggedSprite = nil;
+//                 [outlineNode removeFromParent];
+//             }
+            if ([selectedNode isKindOfClass:[TerrainSignifier class]]) {
+                if (currentTerrain != selectedNode) {
                     draggedSprite = nil;
-                    [outlineNode removeFromParent];
+                    currentTerrain = (TerrainSignifier*)selectedNode;
+                    [self sendCurrentlySelectedSpriteNotification];
+                    [self addOutlineNode];
                 }
             }
-        }
+//            else {
+//                currentTerrain = nil;
+//                [outlineNode removeFromParent];
+//            }
+            
+            
+       // }
+    }
+    else if(!allowTerrainDrawing){
+        draggedSprite = nil;
+        currentTerrain = nil;
+        [outlineNode removeFromParent];
+    }
+    if (currentTerrain) {
+        draggedSpriteOffset = CGVectorMake((currentTerrain.cropNode.frame.origin.x + (currentTerrain.cropNode.frame.size.width / 2)) - locInWorld.x, (currentTerrain.cropNode.frame.origin.y + (currentTerrain.cropNode.frame.size.height / 2) - locInWorld.y));
+    }
+    if (draggedSprite) {
         draggedSpriteOffset = CGVectorMake((draggedSprite.frame.origin.x + (draggedSprite.frame.size.width / 2)) - locInWorld.x, (draggedSprite.frame.origin.y + (draggedSprite.frame.size.height / 2) - locInWorld.y));
     }
-    
-    
-    
     
     previousClickLocation = locInSelf;
 }
 
+-(NSMutableArray*)generateSelectedSpritesAtPoint:(CGPoint)point{
+    NSArray* nodeArray = [world nodesAtPoint:point];
+    selectedSpriteArray = [NSMutableArray arrayWithArray:nodeArray];
+    NSMutableArray* nodesToRemove = [NSMutableArray array];
+    for (SKNode* node in selectedSpriteArray) {
+        if (!([node isKindOfClass:[ObstacleSignifier class]] || [node isKindOfClass:[DecorationSignifier class]] || [node isKindOfClass:[TerrainSignifier class]])) {
+            [nodesToRemove addObject:node];
+            continue;
+        }
+    }
+    for (SKNode* node in nodesToRemove) {
+        [selectedSpriteArray removeObject:node];
+    }
+    return selectedSpriteArray;
+}
+
 -(void)mouseUp:(NSEvent *)theEvent{
-    if (terrainModeOn) {
+    if (currentTerrain) {
         if (currentTerrain.isClosed) {
             [self addOutlineNode];
-
             [currentTerrain closeLoopAndFillTerrain];
-            //[currentTerrain cleanUpAndRemove];
-           // currentTerrain = nil;
-
-          //  NSLog(@"world.children.count: %lu", (unsigned long)world. children.count);
         }
-        //else{
-           // currentTerrain = nil;
-            [currentTerrain cleanUpAndRemoveLines];
-          //  currentTerrain = nil;
-      //  }
+        [currentTerrain cleanUpAndRemoveLines];
     }
 }
 
 -(void)changeCurrentlySelectedSprite{
-    currentIndexInSelectedSprites ++;
-    if (currentIndexInSelectedSprites >= selectedSpriteArray.count) {
+    if (selectedSpriteArray.count > 0) {
+       // NSLog(@"selectedSpriteArray: %@", selectedSpriteArray);
+        currentIndexInSelectedSprites ++;
+        if (currentIndexInSelectedSprites >= selectedSpriteArray.count) {
+            currentIndexInSelectedSprites = 0;
+        }
+        //NSLog(@"selectedSpriteArrayCount: %lu", (unsigned long)selectedSpriteArray.count);
+     //   NSLog(@"currentIndexInSelectedSprites: %i", currentIndexInSelectedSprites);
+        [self sendCurrentlySelectedSpriteNotification];
+        [self addOutlineNode];
+    }
+    else{
         currentIndexInSelectedSprites = 0;
     }
-    draggedSprite = [selectedSpriteArray objectAtIndex:currentIndexInSelectedSprites];
-    [self sendCurrentlySelectedSpriteNotification];
-    [self addOutlineNode];
     
 }
 
@@ -267,11 +275,6 @@ const int OBSTACLE_Z_POSITION = 100;
     CGVector dragDiff = CGVectorMake(previousClickLocation.x - locInSelf.x, previousClickLocation.y - locInSelf.y);
     [self scrollWorld:dragDiff];
     previousClickLocation = locInSelf;
-    
-//    CGPoint convertedOrigin = [self convertPoint:CGPointMake(draggedSprite.frame.origin.x, draggedSprite.frame.origin.y) fromNode:world];
-//    CGPathRef path = CGPathCreateWithRect(CGRectMake(convertedOrigin.x, convertedOrigin.y, draggedSprite.size.width, draggedSprite.size.height), NULL);
-//    outlineNode.path = path;
-//    CGPathRelease(path);
     
 }
 
@@ -295,19 +298,18 @@ const int OBSTACLE_Z_POSITION = 100;
         [outlineNode removeFromParent];
     }
     
-    CGMutablePathRef path;
+    CGMutablePathRef path = NULL;
     SKNode* node;
     float thickness = 1;
     if (currentTerrain) {
         node = currentTerrain.cropNode;
         path = CGPathCreateMutable();
         NSPoint firstVertex = [(NSValue*)[currentTerrain.vertices firstObject] pointValue];
-        firstVertex = [self convertPoint:firstVertex fromNode:terrainNodes];
-       // currentTerrain.differenceFromCurrentPointToFirstVertex = CGVectorMake(previousClickLocation.x - firstVertex.x, previousClickLocation.y);
+        firstVertex = [self convertPoint:firstVertex fromNode:world];
         CGPathMoveToPoint(path, NULL, firstVertex.x, firstVertex.y);
         for (NSValue* value in currentTerrain.vertices) {
             NSPoint vertex = [value pointValue];
-            vertex = [self convertPoint:vertex fromNode:terrainNodes];
+            vertex = [self convertPoint:vertex fromNode:world];
             CGPathAddLineToPoint(path, NULL, vertex.x, vertex.y);
         }
         thickness = 5.0f;
@@ -319,7 +321,7 @@ const int OBSTACLE_Z_POSITION = 100;
         path = (CGMutablePathRef)CGPathCreateWithRect(CGRectMake(convertedOrigin.x, convertedOrigin.y, draggedSprite.size.width, draggedSprite.size.height), NULL);
         thickness = 2.0f;
     }
-    if (draggedSprite || currentTerrain) {
+    if ((draggedSprite || currentTerrain) && path) {
         outlineNode = [SKShapeNode node];
         outlineNode.zPosition = node.zPosition + 1;
         outlineNode.path = path;
@@ -335,35 +337,27 @@ const int OBSTACLE_Z_POSITION = 100;
     CGPoint locInSelf = [theEvent locationInNode:self];
     CGPoint locInWorld = [theEvent locationInNode:world];
     if (draggedSprite) {
-        [self dragSprite:locInWorld];
+          [self dragSprite:locInWorld];
     }
     
-    if (terrainModeOn) {
-        CGPoint locInTerrainNodes = [theEvent locationInNode:terrainNodes];
-
+    if (currentTerrain) {
         if (allowTerrainDrawing) {
-            [currentTerrain addVertex:locInTerrainNodes];
+            [currentTerrain addVertex:locInWorld];
         }
         else{
-//            CGPoint locInTerrainNodes = [theEvent locationInNode:terrainNodes];
-            [self dragSprite:locInTerrainNodes];
+            [self dragSprite:locInWorld];
         }
     }
     
     previousClickLocation = locInSelf;
-
-//    CGPoint convertedOrigin = [self convertPoint:CGPointMake(draggedSprite.frame.origin.x, draggedSprite.frame.origin.y) fromNode:world];
-//    CGPathRef path = CGPathCreateWithRect(CGRectMake(convertedOrigin.x, convertedOrigin.y, draggedSprite.size.width, draggedSprite.size.height), NULL);
-//    outlineNode.path = path;
-//    CGPathRelease(path);
 }
 
 -(void)dragSprite:(CGPoint)loc{
-    if (terrainModeOn) {
+    if (currentTerrain) {
         CGPoint correctedPos = CGPointMake(loc.x + draggedSpriteOffset.dx, loc.y + draggedSpriteOffset.dy);
         CGVector difference = CGVectorMake(correctedPos.x - currentTerrain.cropNode.position.x, correctedPos.y - currentTerrain.cropNode.position.y);
         NSMutableArray* newVertices = [NSMutableArray array];
-       CGMutablePathRef path = CGPathCreateMutable();
+        CGMutablePathRef path = CGPathCreateMutable();
         NSPoint firstVertex = [(NSValue*)[currentTerrain.vertices firstObject] pointValue];
         firstVertex = [self convertPoint:firstVertex fromNode:world];
         firstVertex = CGPointMake(firstVertex.x + difference.dx, firstVertex.y + difference.dy);
@@ -382,9 +376,9 @@ const int OBSTACLE_Z_POSITION = 100;
         
         currentTerrain.vertices = newVertices;
         currentTerrain.cropNode.position = correctedPos;
-        
+        return;
     }
-    else{
+    else if (draggedSprite){
         CGPoint correctedPos = CGPointMake(loc.x + draggedSpriteOffset.dx, loc.y + draggedSpriteOffset.dy);
         draggedSprite.position = correctedPos;
 
@@ -420,7 +414,7 @@ const int OBSTACLE_Z_POSITION = 100;
     float spriteTopY = sprite.position.y + spriteHalfHeight;
 
     for (SKSpriteNode* otherSprite in world.children) {
-        if (sprite == otherSprite) {
+        if ((sprite == otherSprite) || ![otherSprite isKindOfClass:[SKSpriteNode class]]) {
             continue;
         }
         
@@ -478,7 +472,7 @@ const int OBSTACLE_Z_POSITION = 100;
 
 -(void)snapSpriteToNeighborsCenters:(SKSpriteNode*)sprite{
     for (SKSpriteNode* otherSprite in world.children) {
-        if (sprite == otherSprite) {
+        if (sprite == otherSprite || ![otherSprite isKindOfClass:[SKSpriteNode class]]) {
             continue;
         }
         float spriteGreaterDimension = (sprite.size.width > sprite.size.height) ? sprite.size.width : sprite.size.height;
@@ -560,13 +554,15 @@ const int OBSTACLE_Z_POSITION = 100;
 }
 
 -(void)sendCurrentlySelectedSpriteNotification{
-    if (terrainModeOn) {
+    if (currentTerrain) {
         NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:textureName, @"texture name", currentTerrain, @"terrain", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentlySelectedTerrainMayHaveChanged" object:nil userInfo:dict];
         return;
     }
-    NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:draggedSprite, @"sprite", nil];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"currentlySelectedSpriteMayHaveChanged" object:nil userInfo:dict];
+    if (draggedSprite) {
+        NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:draggedSprite, @"sprite", nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"currentlySelectedSpriteMayHaveChanged" object:nil userInfo:dict];
+    }
 }
 
 -(void)changeZpositions:(NSNotification*)notification{
@@ -639,8 +635,12 @@ const int OBSTACLE_Z_POSITION = 100;
 }
 
 -(void)deleteNode{
+    [currentTerrain removeFromParent];
+    currentTerrain = nil;
     [draggedSprite removeFromParent];
+    draggedSprite = nil;
     [outlineNode removeFromParent];
+    outlineNode = nil;
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -656,7 +656,7 @@ const int OBSTACLE_Z_POSITION = 100;
         }
     }
 
-    if (!terrainModeOn) {
+    if (currentTerrain == nil) {
         CGPoint convertedOrigin = [self convertPoint:CGPointMake(draggedSprite.frame.origin.x, draggedSprite.frame.origin.y) fromNode:world];
         CGPathRef path = CGPathCreateWithRect(CGRectMake(convertedOrigin.x, convertedOrigin.y, draggedSprite.size.width, draggedSprite.size.height), NULL);
         outlineNode.path = path;

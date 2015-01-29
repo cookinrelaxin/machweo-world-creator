@@ -20,6 +20,7 @@
         [node addChild:_lineNode];
         [node addChild:self];
         _terrainTexture = terrainTexture;
+        _permitVertices = true;
         
 
     }
@@ -27,19 +28,21 @@
 }
 
 -(void)addVertex:(NSPoint)vertex{
-    if (_vertices.count > 0) {
-        NSPoint firstVertex = [(NSValue*)[_vertices firstObject] pointValue];
-        float distance = sqrtf(powf((vertex.x - firstVertex.x), 2) + powf((vertex.y - firstVertex.y), 2));
-        if ((distance < 20) && (_vertices.count > 20)) {
-            vertex = firstVertex;
-            _isClosed = true;
+    if (_permitVertices) {
+        if (_vertices.count > 0) {
+            NSPoint firstVertex = [(NSValue*)[_vertices firstObject] pointValue];
+            float distance = sqrtf(powf((vertex.x - firstVertex.x), 2) + powf((vertex.y - firstVertex.y), 2));
+            if ((distance < 20) && (_vertices.count > 20)) {
+                vertex = firstVertex;
+                _isClosed = true;
+            }
+            
+            NSPoint lastVertex = [(NSValue*)[_vertices lastObject] pointValue];
+            [self addLineNodeBetweenVertices:lastVertex :vertex];
         }
-        
-        NSPoint lastVertex = [(NSValue*)[_vertices lastObject] pointValue];
-        [self addLineNodeBetweenVertices:lastVertex :vertex];
+        //NSLog(@"add vertex");
+        [_vertices addObject:[NSValue valueWithPoint:vertex]];
     }
-    //NSLog(@"add vertex");
-    [_vertices addObject:[NSValue valueWithPoint:vertex]];
     
     
 }
@@ -78,6 +81,8 @@
 
     [self addChild:_cropNode];
     _isClosed = false;
+    _permitVertices = false;
+    
 }
 
 -(SKShapeNode*)shapeNodeWithVertices:(NSArray*)vertexArray{
