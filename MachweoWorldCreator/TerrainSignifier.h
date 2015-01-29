@@ -17,12 +17,19 @@
 //@property(nonatomic) float zPosition;
 @property(nonatomic) BOOL isClosed;
 @property(nonatomic) BOOL permitVertices;
+@property(nonatomic) CGPoint anchorPointForStraightLines;
+@property(nonatomic) SKShapeNode* lastLineNode;
+
+
+
 //@property(nonatomic) CGVector differenceFromCurrentPointToFirstVertex;
 
 
 
--(void)addVertex:(NSPoint)vertex;
+-(void)addVertex:(NSPoint)vertex :(BOOL)straightLine;
 -(instancetype)initWithTexture:(SKTexture*)terrainTexture inNode:(SKNode*)node;
 -(void)closeLoopAndFillTerrain;
 -(void)cleanUpAndRemoveLines;
+-(void)completeLine;
+-(void)checkForClosedShape;
 @end

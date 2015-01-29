@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MyWindowController">
             <connections>
+                <outlet property="allowStraightLinesButton" destination="cGD-XF-oCf" id="TWH-CR-5IK"/>
                 <outlet property="allowTerrainDrawingButton" destination="p9q-mX-nDj" id="8Ve-MQ-3tS"/>
                 <outlet property="currentlySelectedImage" destination="ApO-Rn-OBE" id="vW7-hd-Af4"/>
                 <outlet property="imageName" destination="cuA-Xw-FlJ" id="yqZ-FJ-vt9"/>
@@ -168,6 +169,16 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="changeDrawPermission:" target="-2" id="dUA-xz-SnS"/>
+                                            </connections>
+                                        </button>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cGD-XF-oCf">
+                                            <rect key="frame" x="19" y="541" width="220" height="22"/>
+                                            <buttonCell key="cell" type="check" title="straight lines" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="bdS-n0-Nlo">
+                                                <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="changeStraightLinePermission:" target="-2" id="QOf-ue-v8b"/>
                                             </connections>
                                         </button>
                                     </subviews>

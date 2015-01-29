@@ -239,4 +239,12 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"changeDrawPermission" object:nil userInfo:[NSDictionary dictionaryWithObject:allowTerrainDrawingObject forKey:@"allow terrain drawing"]];
 }
 
+- (IBAction)changeStraightLinePermission:(id)sender {
+    NSButton* buttonSender = (NSButton*)sender;
+    BOOL allowStraightLines = (buttonSender.state == 1) ? true :false;
+    NSNumber *allowStraightLinesObject = [NSNumber numberWithBool:allowStraightLines];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeStraightLinePermission" object:nil userInfo:[NSDictionary dictionaryWithObject:allowStraightLinesObject forKey:@"allow straight lines"]];
+    
+}
+
 @end

@@ -25,6 +25,7 @@
 @property (weak) IBOutlet NSTextField *obstacleMotionSelectionLabel;
 @property (weak) IBOutlet NSTextField *motionSpeedLabel;
 @property (weak) IBOutlet NSButton *allowTerrainDrawingButton;
+@property (weak) IBOutlet NSButton *allowStraightLinesButton;
 
 -(void)reappearMotionComboBoxes;
 

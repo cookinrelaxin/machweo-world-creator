@@ -27,24 +27,64 @@
     return self;
 }
 
--(void)addVertex:(NSPoint)vertex{
+-(void)addVertex:(NSPoint)vertex :(BOOL)straightLine{
     if (_permitVertices) {
         if (_vertices.count > 0) {
             NSPoint firstVertex = [(NSValue*)[_vertices firstObject] pointValue];
+          //  NSLog(@"firstVertex: %f, %f", firstVertex.x, firstVertex.y);
+
             float distance = sqrtf(powf((vertex.x - firstVertex.x), 2) + powf((vertex.y - firstVertex.y), 2));
-            if ((distance < 20) && (_vertices.count > 20)) {
+            if ((distance < 20) && (straightLine || (_vertices.count > 20))) {
                 vertex = firstVertex;
-                _isClosed = true;
+                //_isClosed = true;
             }
             
             NSPoint lastVertex = [(NSValue*)[_vertices lastObject] pointValue];
-            [self addLineNodeBetweenVertices:lastVertex :vertex];
+            if (straightLine) {
+                if (_lastLineNode == nil) {
+                    float distanceToLast = sqrtf(powf((vertex.x - lastVertex.x), 2) + powf((vertex.y - lastVertex.y), 2));
+                    if (distanceToLast < 40){
+                        _anchorPointForStraightLines = lastVertex;
+                    }
+                }
+                [_lastLineNode removeFromParent];
+                [self addLineNodeBetweenVertices:_anchorPointForStraightLines :vertex];
+            }
+            else{
+                [self addLineNodeBetweenVertices:lastVertex :vertex];
+                [_vertices addObject:[NSValue valueWithPoint:vertex]];
+            }
         }
-        //NSLog(@"add vertex");
-        [_vertices addObject:[NSValue valueWithPoint:vertex]];
+        else{
+            [_vertices addObject:[NSValue valueWithPoint:vertex]];
+           // NSLog(@"vertex: %f, %f", vertex.x, vertex.y);
+        }
+        [self checkForClosedShape];
+    }
+}
+
+-(void)completeLine{
+    if (_permitVertices) {
+        CGPoint lastPoint = CGPathGetCurrentPoint(_lastLineNode.path);
+    //    NSLog(@"lastPoint: %f, %f", lastPoint.x, lastPoint.y);
+        [_vertices addObject:[NSValue valueWithPoint:lastPoint]];
+        _lastLineNode = nil;
     }
     
-    
+}
+
+-(void)checkForClosedShape{
+    if (_permitVertices) {
+        NSPoint firstVertex = [(NSValue*)[_vertices firstObject] pointValue];
+        NSPoint lastVertex = [(NSValue*)[_vertices lastObject] pointValue];
+        if (CGPointEqualToPoint(firstVertex, lastVertex) && (_vertices.count > 1)) {
+            _isClosed = true;
+            _permitVertices = false;
+            
+        }
+    }
+
+
 }
 
 -(void)addLineNodeBetweenVertices:(NSPoint)v1 :(NSPoint)v2{
@@ -53,11 +93,12 @@
     currentLineNode.antialiased = false;
     currentLineNode.physicsBody = nil;
     CGMutablePathRef pathToDraw = CGPathCreateMutable();
-    currentLineNode.lineWidth = 1;
+    currentLineNode.lineWidth = 2;
     CGPathMoveToPoint(pathToDraw, NULL, v1.x, v1.y);
     CGPathAddLineToPoint(pathToDraw, NULL, v2.x, v2.y);
     currentLineNode.path = pathToDraw;
     [_lineNode addChild:currentLineNode];
+    _lastLineNode = currentLineNode;
     CGPathRelease(pathToDraw);
 }
 
@@ -81,7 +122,7 @@
 
     [self addChild:_cropNode];
     _isClosed = false;
-    _permitVertices = false;
+ //   _permitVertices = false;
     
 }
 

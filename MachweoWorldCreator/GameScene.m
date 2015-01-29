@@ -46,6 +46,8 @@ const int OBSTACLE_Z_POSITION = 100;
     BOOL allowSnapping;
     
     BOOL allowTerrainDrawing;
+    BOOL allowStraightLines;
+
     TerrainSignifier* currentTerrain;
     SKTexture* terrainTex;
     NSString* textureName;
@@ -83,6 +85,7 @@ const int OBSTACLE_Z_POSITION = 100;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSnappingPermissions:) name:@"changeSnapPermission" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCurrentTerrainTexture:) name:@"terrain texture selected" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeTerrainDrawingPermissions:) name:@"changeDrawPermission" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeStraightLinePermissions:) name:@"changeStraightLinePermission" object:nil];
 
         
         ObstacleSignifier* nodeForWorldScrolling = [ObstacleSignifier node];
@@ -91,6 +94,7 @@ const int OBSTACLE_Z_POSITION = 100;
         
         allowSnapping = true;
         allowTerrainDrawing = true;
+        allowStraightLines = true;
 
 
 
@@ -106,6 +110,11 @@ const int OBSTACLE_Z_POSITION = 100;
 
 -(void)changeTerrainDrawingPermissions:(NSNotification*)notification{
     allowTerrainDrawing = [(NSNumber*)[notification.userInfo objectForKey:@"allow terrain drawing"] boolValue];
+    //NSLog(@"allowTerrainDrawing: %i", allowTerrainDrawing);
+}
+
+-(void)changeStraightLinePermissions:(NSNotification*)notification{
+    allowStraightLines = [(NSNumber*)[notification.userInfo objectForKey:@"allow straight lines"] boolValue];
     //NSLog(@"allowTerrainDrawing: %i", allowTerrainDrawing);
 }
 
@@ -164,13 +173,15 @@ const int OBSTACLE_Z_POSITION = 100;
     CGPoint locInSelf = [theEvent locationInNode:self];
     CGPoint locInWorld = [theEvent locationInNode:world];
    // BOOL clearSelection;
-    
-    if (currentTerrain || allowTerrainDrawing) {
-        if (allowTerrainDrawing) {
-            draggedSprite = nil;
-            currentTerrain = [[TerrainSignifier alloc] initWithTexture:terrainTex inNode:world];
-            currentTerrain.zPosition = OBSTACLE_Z_POSITION;
-            [currentTerrain addVertex:locInWorld];
+    if (terrainTex) {
+        if (currentTerrain || allowTerrainDrawing) {
+            if (allowTerrainDrawing && (!currentTerrain || !currentTerrain.permitVertices)) {
+                draggedSprite = nil;
+                currentTerrain = [[TerrainSignifier alloc] initWithTexture:terrainTex inNode:world];
+                currentTerrain.zPosition = OBSTACLE_Z_POSITION;
+                [currentTerrain addVertex:locInWorld :allowStraightLines];
+            }
+            currentTerrain.anchorPointForStraightLines = locInWorld;
         }
     }
     selectedSpriteArray = [self generateSelectedSpritesAtPoint:locInWorld];
@@ -239,23 +250,22 @@ const int OBSTACLE_Z_POSITION = 100;
 
 -(void)mouseUp:(NSEvent *)theEvent{
     if (currentTerrain) {
+        [currentTerrain completeLine];
+        [currentTerrain checkForClosedShape];
         if (currentTerrain.isClosed) {
             [self addOutlineNode];
             [currentTerrain closeLoopAndFillTerrain];
+            [currentTerrain cleanUpAndRemoveLines];
         }
-        [currentTerrain cleanUpAndRemoveLines];
     }
 }
 
 -(void)changeCurrentlySelectedSprite{
     if (selectedSpriteArray.count > 0) {
-       // NSLog(@"selectedSpriteArray: %@", selectedSpriteArray);
         currentIndexInSelectedSprites ++;
         if (currentIndexInSelectedSprites >= selectedSpriteArray.count) {
             currentIndexInSelectedSprites = 0;
         }
-        //NSLog(@"selectedSpriteArrayCount: %lu", (unsigned long)selectedSpriteArray.count);
-     //   NSLog(@"currentIndexInSelectedSprites: %i", currentIndexInSelectedSprites);
         [self sendCurrentlySelectedSpriteNotification];
         [self addOutlineNode];
     }
@@ -342,7 +352,7 @@ const int OBSTACLE_Z_POSITION = 100;
     
     if (currentTerrain) {
         if (allowTerrainDrawing) {
-            [currentTerrain addVertex:locInWorld];
+            [currentTerrain addVertex:locInWorld :allowStraightLines];
         }
         else{
             [self dragSprite:locInWorld];
@@ -635,12 +645,20 @@ const int OBSTACLE_Z_POSITION = 100;
 }
 
 -(void)deleteNode{
-    [currentTerrain removeFromParent];
-    currentTerrain = nil;
-    [draggedSprite removeFromParent];
-    draggedSprite = nil;
-    [outlineNode removeFromParent];
-    outlineNode = nil;
+    if (currentTerrain) {
+        [currentTerrain cleanUpAndRemoveLines];
+        [currentTerrain removeFromParent];
+        currentTerrain = nil;
+    }
+    if (draggedSprite) {
+        [draggedSprite removeFromParent];
+        draggedSprite = nil;
+    }
+    if (outlineNode) {
+        [outlineNode removeFromParent];
+        outlineNode = nil;
+    }
+    
 }
 
 -(void)update:(CFTimeInterval)currentTime {
