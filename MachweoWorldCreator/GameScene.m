@@ -172,7 +172,7 @@ const int OBSTACLE_Z_POSITION = 100;
 -(void)mouseDown:(NSEvent *)theEvent{
     CGPoint locInSelf = [theEvent locationInNode:self];
     CGPoint locInWorld = [theEvent locationInNode:world];
-   // BOOL clearSelection;
+   // BOOL clearSelection;x`
     if (terrainTex) {
         if (currentTerrain || allowTerrainDrawing) {
             if (allowTerrainDrawing && (!currentTerrain || !currentTerrain.permitVertices)) {
@@ -184,44 +184,39 @@ const int OBSTACLE_Z_POSITION = 100;
             currentTerrain.anchorPointForStraightLines = locInWorld;
         }
     }
+    
     selectedSpriteArray = [self generateSelectedSpritesAtPoint:locInWorld];
-    if (selectedSpriteArray.count > 0) {
-        //if (![selectedSpriteArray containsObject:draggedSprite] && ![selectedSpriteArray containsObject:currentTerrain]) {
+    if (!allowTerrainDrawing) {
+        if (selectedSpriteArray.count > 0) {
+            //if (![selectedSpriteArray containsObject:draggedSprite] && ![selectedSpriteArray containsObject:currentTerrain]) {
+           // NSLog(@"sprite array count: %lu", (unsigned long)selectedSpriteArray.count);
+          //  NSLog(@"currentIndexInSelectedSprites: %d", currentIndexInSelectedSprites);
 
-            SKNode* selectedNode = [selectedSpriteArray objectAtIndex:currentIndexInSelectedSprites];
-             if ([selectedNode isKindOfClass:[SKSpriteNode class]]) {
-                if (draggedSprite != selectedNode) {
-                    currentTerrain = nil;
-                    draggedSprite = (SKSpriteNode*)selectedNode;
-                    [self sendCurrentlySelectedSpriteNotification];
-                    [self addOutlineNode];
-                }
-             }
-//             else {
-//                 draggedSprite = nil;
-//                 [outlineNode removeFromParent];
-//             }
-            if ([selectedNode isKindOfClass:[TerrainSignifier class]]) {
-                if (currentTerrain != selectedNode) {
-                    draggedSprite = nil;
-                    currentTerrain = (TerrainSignifier*)selectedNode;
-                    [self sendCurrentlySelectedSpriteNotification];
-                    [self addOutlineNode];
-                }
-            }
-//            else {
-//                currentTerrain = nil;
-//                [outlineNode removeFromParent];
-//            }
             
-            
-       // }
+                SKNode* selectedNode = [selectedSpriteArray objectAtIndex:currentIndexInSelectedSprites];
+                 if ([selectedNode isKindOfClass:[SKSpriteNode class]]) {
+                   // if (draggedSprite != selectedNode) {
+                        currentTerrain = nil;
+                        draggedSprite = (SKSpriteNode*)selectedNode;
+                        [self sendCurrentlySelectedSpriteNotification];
+                        [self addOutlineNode];
+                   // }
+                 }
+                if ([selectedNode isKindOfClass:[TerrainSignifier class]]) {
+                    //if (currentTerrain != selectedNode) {
+                        draggedSprite = nil;
+                        currentTerrain = (TerrainSignifier*)selectedNode;
+                        [self sendCurrentlySelectedSpriteNotification];
+                        [self addOutlineNode];
+                  //  }
+                }
+        }
     }
-    else if(!allowTerrainDrawing){
-        draggedSprite = nil;
-        currentTerrain = nil;
-        [outlineNode removeFromParent];
-    }
+//    else if(!allowTerrainDrawing){
+//        draggedSprite = nil;
+//        currentTerrain = nil;
+//        [outlineNode removeFromParent];
+//    }
     if (currentTerrain) {
         draggedSpriteOffset = CGVectorMake((currentTerrain.cropNode.frame.origin.x + (currentTerrain.cropNode.frame.size.width / 2)) - locInWorld.x, (currentTerrain.cropNode.frame.origin.y + (currentTerrain.cropNode.frame.size.height / 2) - locInWorld.y));
     }
@@ -245,6 +240,11 @@ const int OBSTACLE_Z_POSITION = 100;
     for (SKNode* node in nodesToRemove) {
         [selectedSpriteArray removeObject:node];
     }
+    
+    if (currentIndexInSelectedSprites >= selectedSpriteArray.count) {
+        currentIndexInSelectedSprites = 0;
+    }
+
     return selectedSpriteArray;
 }
 
@@ -265,6 +265,13 @@ const int OBSTACLE_Z_POSITION = 100;
         currentIndexInSelectedSprites ++;
         if (currentIndexInSelectedSprites >= selectedSpriteArray.count) {
             currentIndexInSelectedSprites = 0;
+        }
+        SKNode* selectedNode =[selectedSpriteArray objectAtIndex:currentIndexInSelectedSprites];
+        if ([selectedNode isKindOfClass:[DecorationSignifier class]] || [selectedNode isKindOfClass:[ObstacleSignifier class]]) {
+            draggedSprite = (SKSpriteNode*)selectedNode;
+        }
+        else if ([selectedNode isKindOfClass:[TerrainSignifier class]]){
+            currentTerrain = (TerrainSignifier*)selectedNode;
         }
         [self sendCurrentlySelectedSpriteNotification];
         [self addOutlineNode];
