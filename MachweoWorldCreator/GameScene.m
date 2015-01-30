@@ -188,28 +188,29 @@ const int OBSTACLE_Z_POSITION = 100;
     selectedSpriteArray = [self generateSelectedSpritesAtPoint:locInWorld];
     if (!allowTerrainDrawing) {
         if (selectedSpriteArray.count > 0) {
-            //if (![selectedSpriteArray containsObject:draggedSprite] && ![selectedSpriteArray containsObject:currentTerrain]) {
+            if (![selectedSpriteArray containsObject:draggedSprite] && ![selectedSpriteArray containsObject:currentTerrain]) {
            // NSLog(@"sprite array count: %lu", (unsigned long)selectedSpriteArray.count);
           //  NSLog(@"currentIndexInSelectedSprites: %d", currentIndexInSelectedSprites);
 
             
                 SKNode* selectedNode = [selectedSpriteArray objectAtIndex:currentIndexInSelectedSprites];
                  if ([selectedNode isKindOfClass:[SKSpriteNode class]]) {
-                   // if (draggedSprite != selectedNode) {
+                    if (draggedSprite != selectedNode) {
                         currentTerrain = nil;
                         draggedSprite = (SKSpriteNode*)selectedNode;
                         [self sendCurrentlySelectedSpriteNotification];
                         [self addOutlineNode];
-                   // }
+                    }
                  }
                 if ([selectedNode isKindOfClass:[TerrainSignifier class]]) {
-                    //if (currentTerrain != selectedNode) {
+                    if (currentTerrain != selectedNode) {
                         draggedSprite = nil;
                         currentTerrain = (TerrainSignifier*)selectedNode;
                         [self sendCurrentlySelectedSpriteNotification];
                         [self addOutlineNode];
-                  //  }
+                    }
                 }
+            }
         }
     }
 //    else if(!allowTerrainDrawing){
@@ -218,7 +219,7 @@ const int OBSTACLE_Z_POSITION = 100;
 //        [outlineNode removeFromParent];
 //    }
     if (currentTerrain) {
-        draggedSpriteOffset = CGVectorMake((currentTerrain.cropNode.frame.origin.x + (currentTerrain.cropNode.frame.size.width / 2)) - locInWorld.x, (currentTerrain.cropNode.frame.origin.y + (currentTerrain.cropNode.frame.size.height / 2) - locInWorld.y));
+        draggedSpriteOffset = CGVectorMake((currentTerrain.frame.origin.x + (currentTerrain.frame.size.width / 2)) - locInWorld.x, (currentTerrain.frame.origin.y + (currentTerrain.frame.size.height / 2) - locInWorld.y));
     }
     if (draggedSprite) {
         draggedSpriteOffset = CGVectorMake((draggedSprite.frame.origin.x + (draggedSprite.frame.size.width / 2)) - locInWorld.x, (draggedSprite.frame.origin.y + (draggedSprite.frame.size.height / 2) - locInWorld.y));
@@ -341,6 +342,9 @@ const int OBSTACLE_Z_POSITION = 100;
     if ((draggedSprite || currentTerrain) && path) {
         outlineNode = [SKShapeNode node];
         outlineNode.zPosition = node.zPosition + 1;
+       // NSLog(@"outlineNode.zPosition: %f", outlineNode.zPosition);
+        //NSLog(@"node: %f", node.zPosition);
+
         outlineNode.path = path;
         outlineNode.lineWidth = thickness;
         CGPathRelease(path);
@@ -371,28 +375,29 @@ const int OBSTACLE_Z_POSITION = 100;
 
 -(void)dragSprite:(CGPoint)loc{
     if (currentTerrain) {
-        CGPoint correctedPos = CGPointMake(loc.x + draggedSpriteOffset.dx, loc.y + draggedSpriteOffset.dy);
-        CGVector difference = CGVectorMake(correctedPos.x - currentTerrain.cropNode.position.x, correctedPos.y - currentTerrain.cropNode.position.y);
-        NSMutableArray* newVertices = [NSMutableArray array];
-        CGMutablePathRef path = CGPathCreateMutable();
-        NSPoint firstVertex = [(NSValue*)[currentTerrain.vertices firstObject] pointValue];
-        firstVertex = [self convertPoint:firstVertex fromNode:world];
-        firstVertex = CGPointMake(firstVertex.x + difference.dx, firstVertex.y + difference.dy);
-        [newVertices addObject:[NSValue valueWithPoint:firstVertex]];
-        
-        CGPathMoveToPoint(path, NULL, firstVertex.x, firstVertex.y);
-        for (NSValue* value in currentTerrain.vertices) {
-            NSPoint vertex = [value pointValue];
-            vertex = [self convertPoint:vertex fromNode:world];
-            vertex = CGPointMake(vertex.x + difference.dx, vertex.y + difference.dy);
-            [newVertices addObject:[NSValue valueWithPoint:vertex]];
-            CGPathAddLineToPoint(path, NULL, vertex.x, vertex.y);
-        }
-        outlineNode.path = path;
-        CGPathRelease(path);
-        
-        currentTerrain.vertices = newVertices;
-        currentTerrain.cropNode.position = correctedPos;
+        [currentTerrain moveTo:loc :outlineNode :draggedSpriteOffset];
+//        CGPoint correctedPos = CGPointMake(loc.x + draggedSpriteOffset.dx, loc.y + draggedSpriteOffset.dy);
+//        CGVector difference = CGVectorMake(correctedPos.x - currentTerrain.cropNode.position.x, correctedPos.y - currentTerrain.cropNode.position.y);
+//        NSMutableArray* newVertices = [NSMutableArray array];
+//        CGMutablePathRef path = CGPathCreateMutable();
+//        NSPoint firstVertex = [(NSValue*)[currentTerrain.vertices firstObject] pointValue];
+//        firstVertex = [self convertPoint:firstVertex fromNode:world];
+//        firstVertex = CGPointMake(firstVertex.x + difference.dx, firstVertex.y + difference.dy);
+//        [newVertices addObject:[NSValue valueWithPoint:firstVertex]];
+//        
+//        CGPathMoveToPoint(path, NULL, firstVertex.x, firstVertex.y);
+//        for (NSValue* value in currentTerrain.vertices) {
+//            NSPoint vertex = [value pointValue];
+//            vertex = [self convertPoint:vertex fromNode:world];
+//            vertex = CGPointMake(vertex.x + difference.dx, vertex.y + difference.dy);
+//            [newVertices addObject:[NSValue valueWithPoint:vertex]];
+//            CGPathAddLineToPoint(path, NULL, vertex.x, vertex.y);
+//        }
+//        outlineNode.path = path;
+//        CGPathRelease(path);
+//        
+//        currentTerrain.vertices = newVertices;
+//        currentTerrain.cropNode.position = correctedPos;
         return;
     }
     else if (draggedSprite){
@@ -519,16 +524,19 @@ const int OBSTACLE_Z_POSITION = 100;
     //world.position = CGPointMake(world.position.x - dragDiff.dx, world.position.y);
     SKSpriteNode* leftMostNode = nil;
 
-    for (SKSpriteNode* node in world.children) {
+    for (SKNode* node in world.children) {
+        if ([node isKindOfClass:[TerrainSignifier class]] || [node.parent isKindOfClass:[TerrainSignifier class]]) {
+            continue;
+        }
         if (leftMostNode == nil) {
-            leftMostNode = node;
+            leftMostNode = (SKSpriteNode*)node;
         }
 
         float leftEdgeOfLeftMost = leftMostNode.position.x - (leftMostNode.size.width / 2);
-        float leftEdgeOfNode = node.position.x - (node.size.width / 2);
+        float leftEdgeOfNode = node.position.x - (((SKSpriteNode*)node).size.width / 2);
 
         if (leftEdgeOfNode < leftEdgeOfLeftMost) {
-            leftMostNode = node;
+            leftMostNode = (SKSpriteNode*)node;
         }
         
     }
@@ -553,17 +561,31 @@ const int OBSTACLE_Z_POSITION = 100;
         
     }
     
-    for (SKSpriteNode* sprite in world.children) {
-        if ([sprite isKindOfClass:[ObstacleSignifier class]]) {
-            sprite.position = CGPointMake(sprite.position.x - dragDiff.dx, sprite.position.y);
+    for (SKNode* node in world.children) {
+        if ([node.parent isKindOfClass:[TerrainSignifier class]]) {
+            continue;
         }
-        if ([sprite isKindOfClass:[DecorationSignifier class]]) {
+        if ([node isKindOfClass:[ObstacleSignifier class]] || [node isKindOfClass:[TerrainSignifier class]]) {
+            [(TerrainSignifier*)node moveTo:CGPointMake(node.position.x - dragDiff.dx, node.position.y) :outlineNode :CGVectorMake(0, 0)];
+           // draggedSpriteOffset = CGVectorMake(0, 0);
+          //  [self dragSprite:CGPointMake(node.position.x - dragDiff.dx, node.position.y)];
+//            if (currentTerrain) {
+//                CGPathRef newPath = [currentTerrain vertexPath];
+//                outlineNode.path = newPath;
+//                CGPathRelease(newPath);
+//                
+//                //[self addOutlineNode];
+//            }
+            
+           // node.position = CGPointMake(node.position.x - dragDiff.dx, node.position.y);
+        }
+        if ([node isKindOfClass:[DecorationSignifier class]]) {
             //sprite.position = CGPointMake(sprite.position.x - dragDiff.dx, sprite.position.y - dragDiff.dy);
             //10 is the default obstacle z pos
-            float fractionalCoefficient = sprite.zPosition / 100;
+            float fractionalCoefficient = node.zPosition / 100;
             //.1f is the default y parallax coefficient
             CGVector parallaxAdjustedDifference = CGVectorMake(fractionalCoefficient * dragDiff.dx, fractionalCoefficient * dragDiff.dy * .1f);
-            sprite.position = CGPointMake(sprite.position.x - parallaxAdjustedDifference.dx, sprite.position.y);
+            node.position = CGPointMake(node.position.x - parallaxAdjustedDifference.dx, node.position.y);
             
         }
         

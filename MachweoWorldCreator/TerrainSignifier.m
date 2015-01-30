@@ -21,7 +21,6 @@
         [node addChild:self];
         _terrainTexture = terrainTexture;
         _permitVertices = true;
-        
 
     }
     return self;
@@ -138,7 +137,6 @@
     
     NSPoint firstVertex = [(NSValue*)[vertexArray firstObject] pointValue];
     vertexOffset = CGVectorMake(firstVertex.x, firstVertex.y);
-    //CGPathMoveToPoint(pathToDraw, NULL, firstVertex.x, firstVertex.y);
     CGPathMoveToPoint(pathToDraw, NULL, 0, 0);
     for (NSValue* value in vertexArray) {
         NSPoint vertex = [value pointValue];
@@ -159,6 +157,29 @@
     
 }
 
+-(void)moveTo:(CGPoint)point :(SKShapeNode*)outlineNode :(CGVector)offset{
+    CGPoint correctedPos = CGPointMake(point.x + offset.dx, point.y + offset.dy);
+    CGVector difference = CGVectorMake(correctedPos.x - self.position.x, correctedPos.y - self.position.y);
+    NSMutableArray* newVertices = [NSMutableArray array];
+    CGMutablePathRef path = CGPathCreateMutable();
+    NSPoint firstVertex = [(NSValue*)[_vertices firstObject] pointValue];
+//    //NSLog(@"firstVertex: %f, %f",firstVertex.x, firstVertex.y);
+    firstVertex = CGPointMake(firstVertex.x + difference.dx, firstVertex.y + difference.dy);
+    [newVertices addObject:[NSValue valueWithPoint:firstVertex]];
+    
+    CGPathMoveToPoint(path, NULL, firstVertex.x, firstVertex.y);
+    for (NSValue* value in _vertices) {
+        NSPoint vertex = [value pointValue];
+        vertex = CGPointMake(vertex.x + difference.dx, vertex.y + difference.dy);
+        [newVertices addObject:[NSValue valueWithPoint:vertex]];
+        CGPathAddLineToPoint(path, NULL, vertex.x, vertex.y);
+    }
+    outlineNode.path = path;
+    CGPathRelease(path);
+    _vertices = newVertices;
+    self.position = CGPointMake(self.position.x + difference.dx, self.position.y + difference.dy);
+    return;
 
+}
 
 @end

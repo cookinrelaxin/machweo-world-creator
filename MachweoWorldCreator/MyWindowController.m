@@ -45,7 +45,7 @@
 
 @implementation ZPositionHandler
 - (void)comboBoxSelectionDidChange:(NSNotification *)notification {
-    NSLog(@"zPosition handler called");
+  //  NSLog(@"zPosition handler called");
     [[NSNotificationCenter defaultCenter] postNotificationName:@"zPositionChanged" object:nil userInfo:[NSDictionary dictionaryWithObjectsAndKeys:_controller.imageName.stringValue, @"imageName", [_controller.zPositionComboBox objectValueOfSelectedItem], @"zPosition", nil]];
 
 }

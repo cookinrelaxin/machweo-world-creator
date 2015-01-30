@@ -32,4 +32,5 @@
 -(void)cleanUpAndRemoveLines;
 -(void)completeLine;
 -(void)checkForClosedShape;
+-(void)moveTo:(CGPoint)point :(SKShapeNode*)outlineNode :(CGVector)offset;
 @end
