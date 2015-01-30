@@ -221,7 +221,7 @@ const int OBSTACLE_Z_POSITION = 100;
     if (currentTerrain) {
         draggedSpriteOffset = CGVectorMake((currentTerrain.frame.origin.x + (currentTerrain.frame.size.width / 2)) - locInWorld.x, (currentTerrain.frame.origin.y + (currentTerrain.frame.size.height / 2) - locInWorld.y));
     }
-    if (draggedSprite) {
+    else if (draggedSprite) {
         draggedSpriteOffset = CGVectorMake((draggedSprite.frame.origin.x + (draggedSprite.frame.size.width / 2)) - locInWorld.x, (draggedSprite.frame.origin.y + (draggedSprite.frame.size.height / 2) - locInWorld.y));
     }
     
@@ -269,9 +269,11 @@ const int OBSTACLE_Z_POSITION = 100;
         }
         SKNode* selectedNode =[selectedSpriteArray objectAtIndex:currentIndexInSelectedSprites];
         if ([selectedNode isKindOfClass:[DecorationSignifier class]] || [selectedNode isKindOfClass:[ObstacleSignifier class]]) {
+            currentTerrain = nil;
             draggedSprite = (SKSpriteNode*)selectedNode;
         }
         else if ([selectedNode isKindOfClass:[TerrainSignifier class]]){
+            draggedSprite = nil;
             currentTerrain = (TerrainSignifier*)selectedNode;
         }
         [self sendCurrentlySelectedSpriteNotification];
@@ -376,28 +378,6 @@ const int OBSTACLE_Z_POSITION = 100;
 -(void)dragSprite:(CGPoint)loc{
     if (currentTerrain) {
         [currentTerrain moveTo:loc :outlineNode :draggedSpriteOffset];
-//        CGPoint correctedPos = CGPointMake(loc.x + draggedSpriteOffset.dx, loc.y + draggedSpriteOffset.dy);
-//        CGVector difference = CGVectorMake(correctedPos.x - currentTerrain.cropNode.position.x, correctedPos.y - currentTerrain.cropNode.position.y);
-//        NSMutableArray* newVertices = [NSMutableArray array];
-//        CGMutablePathRef path = CGPathCreateMutable();
-//        NSPoint firstVertex = [(NSValue*)[currentTerrain.vertices firstObject] pointValue];
-//        firstVertex = [self convertPoint:firstVertex fromNode:world];
-//        firstVertex = CGPointMake(firstVertex.x + difference.dx, firstVertex.y + difference.dy);
-//        [newVertices addObject:[NSValue valueWithPoint:firstVertex]];
-//        
-//        CGPathMoveToPoint(path, NULL, firstVertex.x, firstVertex.y);
-//        for (NSValue* value in currentTerrain.vertices) {
-//            NSPoint vertex = [value pointValue];
-//            vertex = [self convertPoint:vertex fromNode:world];
-//            vertex = CGPointMake(vertex.x + difference.dx, vertex.y + difference.dy);
-//            [newVertices addObject:[NSValue valueWithPoint:vertex]];
-//            CGPathAddLineToPoint(path, NULL, vertex.x, vertex.y);
-//        }
-//        outlineNode.path = path;
-//        CGPathRelease(path);
-//        
-//        currentTerrain.vertices = newVertices;
-//        currentTerrain.cropNode.position = correctedPos;
         return;
     }
     else if (draggedSprite){
@@ -567,17 +547,6 @@ const int OBSTACLE_Z_POSITION = 100;
         }
         if ([node isKindOfClass:[ObstacleSignifier class]] || [node isKindOfClass:[TerrainSignifier class]]) {
             [(TerrainSignifier*)node moveTo:CGPointMake(node.position.x - dragDiff.dx, node.position.y) :outlineNode :CGVectorMake(0, 0)];
-           // draggedSpriteOffset = CGVectorMake(0, 0);
-          //  [self dragSprite:CGPointMake(node.position.x - dragDiff.dx, node.position.y)];
-//            if (currentTerrain) {
-//                CGPathRef newPath = [currentTerrain vertexPath];
-//                outlineNode.path = newPath;
-//                CGPathRelease(newPath);
-//                
-//                //[self addOutlineNode];
-//            }
-            
-           // node.position = CGPointMake(node.position.x - dragDiff.dx, node.position.y);
         }
         if ([node isKindOfClass:[DecorationSignifier class]]) {
             //sprite.position = CGPointMake(sprite.position.x - dragDiff.dx, sprite.position.y - dragDiff.dy);
@@ -598,7 +567,7 @@ const int OBSTACLE_Z_POSITION = 100;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentlySelectedTerrainMayHaveChanged" object:nil userInfo:dict];
         return;
     }
-    if (draggedSprite) {
+    else if (draggedSprite) {
         NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:draggedSprite, @"sprite", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentlySelectedSpriteMayHaveChanged" object:nil userInfo:dict];
     }
