@@ -163,7 +163,7 @@
                                         </scrollView>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p9q-mX-nDj">
                                             <rect key="frame" x="19" y="570" width="220" height="22"/>
-                                            <buttonCell key="cell" type="check" title="drag to draw terrain" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="myy-UV-Hx5">
+                                            <buttonCell key="cell" type="check" title="drag to draw terrain" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="myy-UV-Hx5">
                                                 <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -173,7 +173,7 @@
                                         </button>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cGD-XF-oCf">
                                             <rect key="frame" x="19" y="541" width="220" height="22"/>
-                                            <buttonCell key="cell" type="check" title="straight lines" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="bdS-n0-Nlo">
+                                            <buttonCell key="cell" type="check" title="straight lines" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="bdS-n0-Nlo">
                                                 <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>

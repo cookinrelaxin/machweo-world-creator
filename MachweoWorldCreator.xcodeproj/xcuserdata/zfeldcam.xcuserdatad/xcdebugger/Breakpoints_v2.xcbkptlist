@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MachweoWorldCreator/GameScene.m"
-            timestampString = "444277784.455326"
+            timestampString = "444282683.891714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "-mouseDown:"
             landmarkType = "5">
          </BreakpointContent>

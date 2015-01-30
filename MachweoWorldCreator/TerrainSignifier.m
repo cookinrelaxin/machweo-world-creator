@@ -13,12 +13,12 @@
     CGRect pathBoundingBox;
 }
 
--(instancetype)initWithTexture:(SKTexture*)terrainTexture inNode:(SKNode*)node{
+-(instancetype)initWithTexture:(SKTexture*)terrainTexture{
     if (self = [super init]) {
         _vertices = [NSMutableArray array];
         _lineNode = [SKNode node];
-        [node addChild:_lineNode];
-        [node addChild:self];
+       // [node addChild:_lineNode];
+       // [node addChild:self];
         _terrainTexture = terrainTexture;
         _permitVertices = true;
 
@@ -101,9 +101,9 @@
     CGPathRelease(pathToDraw);
 }
 
--(void)closeLoopAndFillTerrain{
+-(void)closeLoopAndFillTerrainInView:(SKView*)view{
     SKShapeNode* textureShapeNode = [self shapeNodeWithVertices:_vertices];
-    SKTexture* texFromShapeNode = [((SKScene*)_lineNode.parent.parent).view textureFromNode:textureShapeNode];
+    SKTexture* texFromShapeNode = [view textureFromNode:textureShapeNode];
     SKSpriteNode* maskWrapper = [SKSpriteNode spriteNodeWithTexture:texFromShapeNode];
     _cropNode = [SKCropNode node];
     SKTexture* croppedTexture = [SKTexture textureWithRect:CGRectMake(0, 0, maskWrapper.size.width / _terrainTexture.size.width, maskWrapper.size.height / _terrainTexture.size.height) inTexture:_terrainTexture];

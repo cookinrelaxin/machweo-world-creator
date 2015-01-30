@@ -86,15 +86,10 @@ const int OBSTACLE_Z_POSITION = 100;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeCurrentTerrainTexture:) name:@"terrain texture selected" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeTerrainDrawingPermissions:) name:@"changeDrawPermission" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeStraightLinePermissions:) name:@"changeStraightLinePermission" object:nil];
-
-        
-        ObstacleSignifier* nodeForWorldScrolling = [ObstacleSignifier node];
-        [world addChild:nodeForWorldScrolling];
-        
         
         allowSnapping = true;
-        allowTerrainDrawing = true;
-        allowStraightLines = true;
+        //allowTerrainDrawing = true;
+       // allowStraightLines = true;
 
 
 
@@ -177,7 +172,10 @@ const int OBSTACLE_Z_POSITION = 100;
         if (currentTerrain || allowTerrainDrawing) {
             if (allowTerrainDrawing && (!currentTerrain || !currentTerrain.permitVertices)) {
                 draggedSprite = nil;
-                currentTerrain = [[TerrainSignifier alloc] initWithTexture:terrainTex inNode:world];
+                currentTerrain = [[TerrainSignifier alloc] initWithTexture:terrainTex];
+                [world addChild:currentTerrain];
+                [world addChild:currentTerrain.lineNode];
+                currentTerrain.name = textureName;
                 currentTerrain.zPosition = OBSTACLE_Z_POSITION;
                 [currentTerrain addVertex:locInWorld :allowStraightLines];
             }
@@ -255,7 +253,7 @@ const int OBSTACLE_Z_POSITION = 100;
         [currentTerrain checkForClosedShape];
         if (currentTerrain.isClosed) {
             [self addOutlineNode];
-            [currentTerrain closeLoopAndFillTerrain];
+            [currentTerrain closeLoopAndFillTerrainInView:self.view];
             [currentTerrain cleanUpAndRemoveLines];
         }
     }
@@ -499,9 +497,6 @@ const int OBSTACLE_Z_POSITION = 100;
 }
 
 -(void)scrollWorld:(CGVector)dragDiff{
-   // NSLog(@"world.position: %f, %f", world.position.x, world.position.y);
-   // CGPoint previousPosition = world.position;
-    //world.position = CGPointMake(world.position.x - dragDiff.dx, world.position.y);
     SKSpriteNode* leftMostNode = nil;
 
     for (SKNode* node in world.children) {
@@ -545,10 +540,13 @@ const int OBSTACLE_Z_POSITION = 100;
         if ([node.parent isKindOfClass:[TerrainSignifier class]]) {
             continue;
         }
-        if ([node isKindOfClass:[ObstacleSignifier class]] || [node isKindOfClass:[TerrainSignifier class]]) {
+        if ([node isKindOfClass:[ObstacleSignifier class]]) {
+            node.position = CGPointMake(node.position.x - dragDiff.dx, node.position.y);
+        }
+        else if ([node isKindOfClass:[TerrainSignifier class]]) {
             [(TerrainSignifier*)node moveTo:CGPointMake(node.position.x - dragDiff.dx, node.position.y) :outlineNode :CGVectorMake(0, 0)];
         }
-        if ([node isKindOfClass:[DecorationSignifier class]]) {
+        else if ([node isKindOfClass:[DecorationSignifier class]]) {
             //sprite.position = CGPointMake(sprite.position.x - dragDiff.dx, sprite.position.y - dragDiff.dy);
             //10 is the default obstacle z pos
             float fractionalCoefficient = node.zPosition / 100;
@@ -563,7 +561,7 @@ const int OBSTACLE_Z_POSITION = 100;
 
 -(void)sendCurrentlySelectedSpriteNotification{
     if (currentTerrain) {
-        NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:textureName, @"texture name", currentTerrain, @"terrain", nil];
+        NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:currentTerrain, @"terrain", nil];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"currentlySelectedTerrainMayHaveChanged" object:nil userInfo:dict];
         return;
     }

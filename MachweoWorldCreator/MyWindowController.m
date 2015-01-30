@@ -161,14 +161,14 @@
 }
 
 -(void)changeCurrentlySelectedTerrain:(NSNotification*)notification{
-   // TerrainSignifier* terrain = [[notification userInfo] objectForKey:@"terrain"];
-    NSString* textureName = [[notification userInfo] objectForKey:@"texture name"];
+    TerrainSignifier* terrain = [[notification userInfo] objectForKey:@"terrain"];
+    NSString* textureName = terrain.name;
     _currentlySelectedImage.image = [NSImage imageNamed:textureName];
     [_imageName setStringValue:textureName];
 
     [_zPositionComboBox setHidden:true];
     [self hideMotionComboBoxes];
-    [_zPositionInfoLabel setStringValue:@"the zPosition of all obstacles is always 16"];
+    [_zPositionInfoLabel setStringValue:@"the zPosition of all obstacles is always 100"];
     
     
    // NSLog(@"terrainTexture: %@", terrainTexture);

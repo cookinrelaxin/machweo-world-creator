@@ -9,10 +9,11 @@
 #import "ChunkLoader.h"
 #import "ObstacleSignifier.h"
 #import "DecorationSignifier.h"
+#import "TerrainSignifier.h"
 
 typedef enum ElementVarieties
 {
-    spriteNode,
+    node,
     type,
     name,
     xPosition,
@@ -20,22 +21,29 @@ typedef enum ElementVarieties
     zPosition,
     isRightMostNode,
     motionType,
-    speedType
+    speedType,
+    vertices,
+    vertex,
+    xPoint,
+    yPoint
+    
 } Element;
 
 typedef enum NodeTypes
 {
     obstacle,
-    decoration
+    decoration,
+    terrain
 } Node;
 
 @implementation ChunkLoader{
     // as simple as possible for now. assume all nodes are obstacles
     NSMutableArray* obstacleArray;
+    NSMutableArray* terrainArray;
     NSMutableArray* decorationArray;
-    NSMutableArray* backgroundArray;
 
-    SKSpriteNode *currentNode;
+    SKNode *currentNode;
+    NSPoint currentPoint;
     Element currentElement;
     Node currentNodeType;
     
@@ -47,7 +55,7 @@ typedef enum NodeTypes
 -(instancetype)initWithFile:(NSString*)fileName{
     obstacleArray = [NSMutableArray array];
     decorationArray = [NSMutableArray array];
-    backgroundArray = [NSMutableArray array];
+    terrainArray = [NSMutableArray array];
 
     NSXMLParser* chunkParser;
     
@@ -94,8 +102,8 @@ typedef enum NodeTypes
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     charactersFound = false;
-    if ([elementName isEqualToString:@"spriteNode"]) {
-        currentElement = spriteNode;
+    if ([elementName isEqualToString:@"node"]) {
+        currentElement = node;
         return;
     }
     if ([elementName isEqualToString:@"name"]) {
@@ -130,11 +138,27 @@ typedef enum NodeTypes
         currentElement = speedType;
         return;
     }
+    if ([elementName isEqualToString:@"vertices"]) {
+        currentElement = vertices;
+        return;
+    }
+    if ([elementName isEqualToString:@"vertex"]) {
+        currentElement = vertex;
+        return;
+    }
+    if ([elementName isEqualToString:@"xPoint"]) {
+        currentElement = xPoint;
+        return;
+    }
+    if ([elementName isEqualToString:@"yPoint"]) {
+        currentElement = yPoint;
+        return;
+    }
 }
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
     
-    if ([elementName isEqualToString:@"spriteNode"]) {
+    if ([elementName isEqualToString:@"node"]) {
         if (currentNode != nil) {
             switch (currentNodeType) {
                 case obstacle:
@@ -143,24 +167,38 @@ typedef enum NodeTypes
                 case decoration:
                     [decorationArray addObject:currentNode];
                     break;
+                case terrain:
+                    [terrainArray addObject:currentNode];
+                    break;
             }
+            currentNode = nil;
             return;
         }
+    }
+    if ([elementName isEqualToString:@"vertex"]) {
+        [((TerrainSignifier*)currentNode).vertices addObject:[NSValue valueWithPoint:currentPoint]];
+        return;
     }
 }
 
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
     if (!charactersFound) {
+       // NSLog(@"string:%@", string);
         charactersFound = true;
         if (currentElement == name) {
             NSImage *spriteTexture = [NSImage imageNamed:string];
             if (spriteTexture) {
-                if (currentNodeType == obstacle) {
-                    currentNode = [ObstacleSignifier spriteNodeWithTexture:[SKTexture textureWithImage:spriteTexture]];
-                }
-                else if (currentNodeType == decoration) {
-                    currentNode = [DecorationSignifier spriteNodeWithTexture:[SKTexture textureWithImage:spriteTexture]];
-                }
+                //if (currentNode) {
+                    if (currentNodeType == obstacle) {
+                        currentNode = [ObstacleSignifier spriteNodeWithTexture:[SKTexture textureWithImage:spriteTexture]];
+                    }
+                    else if (currentNodeType == decoration) {
+                        currentNode = [DecorationSignifier spriteNodeWithTexture:[SKTexture textureWithImage:spriteTexture]];
+                    }
+                    else if (currentNodeType == terrain) {
+                        currentNode = [[TerrainSignifier alloc] initWithTexture:[SKTexture textureWithImage:spriteTexture]];;
+                    }
+               // }
             }
             else{
                 currentNode = nil;
@@ -194,6 +232,10 @@ typedef enum NodeTypes
                 currentNodeType = decoration;
                 return;
             }
+            if ([string isEqualToString:@"TerrainSignifier"]) {
+                currentNodeType = terrain;
+                return;
+            }
         }
         if (currentElement == isRightMostNode) {
             return;
@@ -202,7 +244,7 @@ typedef enum NodeTypes
             if ([currentNode isKindOfClass:[ObstacleSignifier class]]) {
                 ObstacleSignifier* obs = (ObstacleSignifier*)currentNode;
                 obs.currentMotionType = [string intValue];
-                return;
+              return;
             }
         }
         if (currentElement == speedType) {
@@ -212,6 +254,14 @@ typedef enum NodeTypes
                 return;
             }
         }
+        if (currentElement == xPoint) {
+            currentPoint.x = [string floatValue];
+            return;
+        }
+        if (currentElement == yPoint) {
+            currentPoint.y = [string floatValue];
+            return;
+        }
     }
 }
 
@@ -219,14 +269,18 @@ typedef enum NodeTypes
     if (validFile) {
         NSLog(@"load world");
         for (SKSpriteNode *obstacle in obstacleArray) {
-            obstacle.zPosition = 16;
+            //obstacle.zPosition = 100;;
             [world addChild:obstacle];
         }
         for (SKSpriteNode *deco in decorationArray) {
             [world addChild:deco];
         }
-        for (SKSpriteNode *bg in backgroundArray) {
-            [world addChild:bg];
+        for (TerrainSignifier *terrain in terrainArray) {
+           // NSLog(@"add terrain");
+            //terrain.zPosition = 100;
+            [terrain checkForClosedShape];
+            [terrain closeLoopAndFillTerrainInView:((SKScene*)world.parent).view];
+            [world addChild:terrain];
         }
     }
     

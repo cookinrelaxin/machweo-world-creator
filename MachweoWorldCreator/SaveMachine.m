@@ -10,6 +10,7 @@
 
 #import "ObstacleSignifier.h"
 #import "DecorationSignifier.h"
+#import "TerrainSignifier.h"
 
 @implementation SaveMachine
 
@@ -55,18 +56,70 @@
     NSXMLDocument *xmlDoc = [[NSXMLDocument alloc] initWithRootElement:root];
     [xmlDoc setVersion:@"1.0"];
     [xmlDoc setCharacterEncoding:@"UTF-8"];
-    for (SKSpriteNode* sprite in world.children) {
-        
-        NSXMLElement *spriteNode = [NSXMLElement elementWithName:@"spriteNode"];
-        [root addChild:spriteNode];
-        
+    for (SKNode* sprite in world.children) {
+        if ([sprite isKindOfClass:[TerrainSignifier class]]) {
+           TerrainSignifier* terrainNode = (TerrainSignifier*)sprite;
+            NSXMLElement *terrainNodeElement = [NSXMLElement elementWithName:@"node"];
+            [root addChild:terrainNodeElement];
+            
+            NSXMLElement *type = [NSXMLElement elementWithName:@"type" stringValue:@"TerrainSignifier"];
+            [terrainNodeElement addChild:type];
+            
+            NSXMLElement *name = [NSXMLElement elementWithName:@"name" stringValue:terrainNode.name];
+            [terrainNodeElement addChild:name];
+            
+            
+            float fractionalCoefficient = terrainNode.zPosition / leftMostNode.zPosition;
+            float parallaxAdjustedDifference = fractionalCoefficient * xDifference;
+            //float xPos = terrainNode.position.x - parallaxAdjustedDifference;
+//            NSXMLElement *xPosition = [NSXMLElement elementWithName:@"xPosition" stringValue:[NSString stringWithFormat:@"%f", xPos]];
+//            [terrainNodeElement addChild:xPosition];
+//
+//            NSXMLElement *yPosition = [NSXMLElement elementWithName:@"yPosition" stringValue:[NSString stringWithFormat:@"%f", terrainNode.position.y]];
+//            [terrainNodeElement addChild:yPosition];
+
+            NSXMLElement *zPosition = [NSXMLElement elementWithName:@"zPosition" stringValue:[NSString stringWithFormat:@"%f", terrainNode.zPosition]];
+            [terrainNodeElement addChild:zPosition];
+            
+            NSXMLElement *vertices = [NSXMLElement elementWithName:@"vertices"];
+            [terrainNodeElement addChild:vertices];
+            
+            for (NSValue* value in terrainNode.vertices) {
+                NSPoint point = [value pointValue];
+                point = CGPointMake(point.x - parallaxAdjustedDifference, point.y);
+                NSXMLElement *vertex = [NSXMLElement elementWithName:@"vertex"];
+                NSXMLElement *xPoint = [NSXMLElement elementWithName:@"xPoint" stringValue:[NSString stringWithFormat:@"%f", point.x]];
+                [vertex addChild:xPoint];
+                NSXMLElement *yPoint = [NSXMLElement elementWithName:@"yPoint" stringValue:[NSString stringWithFormat:@"%f", point.y]];
+                [vertex addChild:yPoint];
+
+                [vertices addChild:vertex];
+
+            }
+
+            continue;
+        }
+
+        NSXMLElement *spriteNode = [NSXMLElement elementWithName:@"node"];
         NSString* typeString = @"placeholder";
+
         if ([sprite isKindOfClass:[ObstacleSignifier class]]) {
+            ObstacleSignifier* obs = (ObstacleSignifier*)sprite;
+            NSXMLElement *motionType = [NSXMLElement elementWithName:@"motionType" stringValue:[NSString stringWithFormat:@"%d", obs.currentMotionType]];
+            [spriteNode addChild:motionType];
+            NSXMLElement *speedType = [NSXMLElement elementWithName:@"speedType" stringValue:[NSString stringWithFormat:@"%d", obs.currentSpeedType]];
+            [spriteNode addChild:speedType];
+            
             typeString = @"ObstacleSignifier";
         }
         else if ([sprite isKindOfClass:[DecorationSignifier class]]) {
             typeString = @"DecorationSignifier";
         }
+        else{
+            continue;
+        }
+        
+        [root addChild:spriteNode];
         NSXMLElement *type = [NSXMLElement elementWithName:@"type" stringValue:typeString];
         [spriteNode addChild:type];
         
@@ -94,13 +147,6 @@
         NSXMLElement *zPosition = [NSXMLElement elementWithName:@"zPosition" stringValue:[NSString stringWithFormat:@"%f", sprite.zPosition]];
         [spriteNode addChild:zPosition];
         
-        if ([sprite isKindOfClass:[ObstacleSignifier class]]) {
-            ObstacleSignifier* obs = (ObstacleSignifier*)sprite;
-            NSXMLElement *motionType = [NSXMLElement elementWithName:@"motionType" stringValue:[NSString stringWithFormat:@"%d", obs.currentMotionType]];
-            [spriteNode addChild:motionType];
-            NSXMLElement *speedType = [NSXMLElement elementWithName:@"speedType" stringValue:[NSString stringWithFormat:@"%d", obs.currentSpeedType]];
-            [spriteNode addChild:speedType];
-        }
     }
     NSError *error = nil;
     BOOL isValid = [xmlDoc validateAndReturnError:&error];
