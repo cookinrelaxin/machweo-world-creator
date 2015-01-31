@@ -81,26 +81,41 @@
             NSXMLElement *zPosition = [NSXMLElement elementWithName:@"zPosition" stringValue:[NSString stringWithFormat:@"%f", terrainNode.zPosition]];
             [terrainNodeElement addChild:zPosition];
             
-            NSXMLElement *vertices = [NSXMLElement elementWithName:@"vertices"];
-            [terrainNodeElement addChild:vertices];
+            NSXMLElement *lineVertices = [NSXMLElement elementWithName:@"lineVertices"];
+            [terrainNodeElement addChild:lineVertices];
             
-//            NSArray *sortedArray;
-//            sortedArray = [terrainNode.vertices sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
-//                float x1 = [(NSValue*)a pointValue].x;
-//                float x2 = [(NSValue*)b pointValue].x;
-//                return x1 > x2;
-//            }];
+            NSArray *sortedArray;
+            sortedArray = [terrainNode.lineVertices sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+                float x1 = [(NSValue*)a pointValue].x;
+                float x2 = [(NSValue*)b pointValue].x;
+                return x1 > x2;
+            }];
             
-            for (NSValue* value in terrainNode.vertices) {
+            for (NSValue* value in sortedArray) {
                 NSPoint point = [value pointValue];
                 point = CGPointMake(point.x - parallaxAdjustedDifference, point.y);
-                NSXMLElement *vertex = [NSXMLElement elementWithName:@"vertex"];
-                NSXMLElement *xPoint = [NSXMLElement elementWithName:@"xPoint" stringValue:[NSString stringWithFormat:@"%f", point.x]];
-                [vertex addChild:xPoint];
-                NSXMLElement *yPoint = [NSXMLElement elementWithName:@"yPoint" stringValue:[NSString stringWithFormat:@"%f", point.y]];
-                [vertex addChild:yPoint];
+                NSXMLElement *lineVertex = [NSXMLElement elementWithName:@"lineVertex"];
+                NSXMLElement *lineVertexXPoint = [NSXMLElement elementWithName:@"lineVertexXPoint" stringValue:[NSString stringWithFormat:@"%f", point.x]];
+                [lineVertex addChild:lineVertexXPoint];
+                NSXMLElement *lineVertexYPoint = [NSXMLElement elementWithName:@"lineVertexYPoint" stringValue:[NSString stringWithFormat:@"%f", point.y]];
+                [lineVertex addChild:lineVertexYPoint];
+                
+                [lineVertices addChild:lineVertex];
+            }
 
-                [vertices addChild:vertex];
+            NSXMLElement *shapeVertices = [NSXMLElement elementWithName:@"shapeVertices"];
+            [terrainNodeElement addChild:shapeVertices];
+            
+            for (NSValue* value in terrainNode.shapeVertices) {
+                NSPoint point = [value pointValue];
+                point = CGPointMake(point.x - parallaxAdjustedDifference, point.y);
+                NSXMLElement *shapeVertex = [NSXMLElement elementWithName:@"shapeVertex"];
+                NSXMLElement *shapeVertexXPoint = [NSXMLElement elementWithName:@"shapeVertexXPoint" stringValue:[NSString stringWithFormat:@"%f", point.x]];
+                [shapeVertex addChild:shapeVertexXPoint];
+                NSXMLElement *shapeVertexYPoint = [NSXMLElement elementWithName:@"shapeVertexYPoint" stringValue:[NSString stringWithFormat:@"%f", point.y]];
+                [shapeVertex addChild:shapeVertexYPoint];
+
+                [shapeVertices addChild:shapeVertex];
 
             }
 

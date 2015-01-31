@@ -15,7 +15,9 @@
 
 -(instancetype)initWithTexture:(SKTexture*)terrainTexture{
     if (self = [super init]) {
-        _vertices = [NSMutableArray array];
+        _shapeVertices = [NSMutableArray array];
+        _lineVertices = [NSMutableArray array];
+
         _lineNode = [SKNode node];
        // [node addChild:_lineNode];
        // [node addChild:self];
@@ -28,22 +30,23 @@
 
 -(void)addVertex:(NSPoint)vertex :(BOOL)straightLine{
     if (_permitVertices) {
-        if (_vertices.count > 0) {
-            NSPoint firstVertex = [(NSValue*)[_vertices firstObject] pointValue];
+        if (_shapeVertices.count > 0) {
+            NSPoint firstVertex = [(NSValue*)[_shapeVertices firstObject] pointValue];
           //  NSLog(@"firstVertex: %f, %f", firstVertex.x, firstVertex.y);
 
             float distance = sqrtf(powf((vertex.x - firstVertex.x), 2) + powf((vertex.y - firstVertex.y), 2));
-            if ((distance < 20) && (straightLine || (_vertices.count > 20))) {
+            if ((distance < 20) && (straightLine || (_shapeVertices.count > 20))) {
                 vertex = firstVertex;
               //  NSLog(@"vertex = firstVertex");
-                _isClosed = true;
+                //_isClosed = true;
             }
             
-            NSPoint lastVertex = [(NSValue*)[_vertices lastObject] pointValue];
+            NSPoint lastVertex = [(NSValue*)[_shapeVertices lastObject] pointValue];
             if (straightLine) {
                 if (_lastLineNode == nil) {
                     float distanceToLast = sqrtf(powf((vertex.x - lastVertex.x), 2) + powf((vertex.y - lastVertex.y), 2));
                     if (distanceToLast < 40){
+                        
                         _anchorPointForStraightLines = lastVertex;
                        // NSLog(@"_anchorPointForStraightLines = lastVertex");
                     }
@@ -53,22 +56,28 @@
             }
             else{
                 [self addLineNodeBetweenVertices:lastVertex :vertex];
-                [_vertices addObject:[NSValue valueWithPoint:vertex]];
+                [_shapeVertices addObject:[NSValue valueWithPoint:vertex]];
+                if (!_firstLineDrawn) {
+                    [_lineVertices addObject:[NSValue valueWithPoint:vertex]];
+                }
             }
         }
         else{
-            [_vertices addObject:[NSValue valueWithPoint:vertex]];
+            [_shapeVertices addObject:[NSValue valueWithPoint:vertex]];
+            if (!_firstLineDrawn) {
+                [_lineVertices addObject:[NSValue valueWithPoint:vertex]];
+            }
            // NSLog(@"vertex: %f, %f", vertex.x, vertex.y);
         }
-        [self checkForClosedShape];
+        //[self checkForClosedShape];
     }
 }
 
 -(void)completeLine{
     if (_permitVertices) {
-       // CGPoint lastPoint = CGPathGetCurrentPoint(_lastLineNode.path);
+        CGPoint lastPoint = CGPathGetCurrentPoint(_lastLineNode.path);
     //    NSLog(@"lastPoint: %f, %f", lastPoint.x, lastPoint.y);
-        //[_vertices addObject:[NSValue valueWithPoint:lastPoint]];
+        [_shapeVertices addObject:[NSValue valueWithPoint:lastPoint]];
         _lastLineNode = nil;
     }
     
@@ -76,9 +85,9 @@
 
 -(void)checkForClosedShape{
     if (_permitVertices) {
-        NSPoint firstVertex = [(NSValue*)[_vertices firstObject] pointValue];
-        NSPoint lastVertex = [(NSValue*)[_vertices lastObject] pointValue];
-        if (CGPointEqualToPoint(firstVertex, lastVertex) && (_vertices.count > 1)) {
+        NSPoint firstVertex = [(NSValue*)[_shapeVertices firstObject] pointValue];
+        NSPoint lastVertex = [(NSValue*)[_shapeVertices lastObject] pointValue];
+        if (CGPointEqualToPoint(firstVertex, lastVertex) && (_shapeVertices.count > 1)) {
             _isClosed = true;
             _permitVertices = false;
             
@@ -104,7 +113,7 @@
 }
 
 -(void)closeLoopAndFillTerrainInView:(SKView*)view{
-    SKShapeNode* textureShapeNode = [self shapeNodeWithVertices:_vertices];
+    SKShapeNode* textureShapeNode = [self shapeNodeWithVertices:_shapeVertices];
     SKTexture* texFromShapeNode = [view textureFromNode:textureShapeNode];
     SKSpriteNode* maskWrapper = [SKSpriteNode spriteNodeWithTexture:texFromShapeNode];
     _cropNode = [SKCropNode node];
@@ -162,23 +171,32 @@
 -(void)moveTo:(CGPoint)point :(SKShapeNode*)outlineNode :(CGVector)offset{
     CGPoint correctedPos = CGPointMake(point.x + offset.dx, point.y + offset.dy);
     CGVector difference = CGVectorMake(correctedPos.x - self.position.x, correctedPos.y - self.position.y);
-    NSMutableArray* newVertices = [NSMutableArray array];
+    NSMutableArray* newShapeVertices = [NSMutableArray array];
+    NSMutableArray* newLineVertices = [NSMutableArray array];
+
     CGMutablePathRef path = CGPathCreateMutable();
-    NSPoint firstVertex = [(NSValue*)[_vertices firstObject] pointValue];
+    NSPoint firstVertex = [(NSValue*)[_shapeVertices firstObject] pointValue];
 //    //NSLog(@"firstVertex: %f, %f",firstVertex.x, firstVertex.y);
     firstVertex = CGPointMake(firstVertex.x + difference.dx, firstVertex.y + difference.dy);
    // [newVertices addObject:[NSValue valueWithPoint:firstVertex]];
     
     CGPathMoveToPoint(path, NULL, firstVertex.x, firstVertex.y);
-    for (NSValue* value in _vertices) {
+    for (NSValue* value in _shapeVertices) {
         NSPoint vertex = [value pointValue];
         vertex = CGPointMake(vertex.x + difference.dx, vertex.y + difference.dy);
-        [newVertices addObject:[NSValue valueWithPoint:vertex]];
+        [newShapeVertices addObject:[NSValue valueWithPoint:vertex]];
+        CGPathAddLineToPoint(path, NULL, vertex.x, vertex.y);
+    }
+    for (NSValue* value in _lineVertices) {
+        NSPoint vertex = [value pointValue];
+        vertex = CGPointMake(vertex.x + difference.dx, vertex.y + difference.dy);
+        [newLineVertices addObject:[NSValue valueWithPoint:vertex]];
         CGPathAddLineToPoint(path, NULL, vertex.x, vertex.y);
     }
     outlineNode.path = path;
     CGPathRelease(path);
-    _vertices = newVertices;
+    _shapeVertices = newShapeVertices;
+    _lineVertices = newLineVertices;
     self.position = CGPointMake(self.position.x + difference.dx, self.position.y + difference.dy);
     return;
 

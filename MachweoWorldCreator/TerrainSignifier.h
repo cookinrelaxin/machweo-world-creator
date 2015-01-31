@@ -10,12 +10,13 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface TerrainSignifier : SKNode
-@property(nonatomic, strong) NSMutableArray* vertices;
+@property(nonatomic, strong) NSMutableArray* shapeVertices;
+@property(nonatomic, strong) NSMutableArray* lineVertices;
+@property(nonatomic) BOOL firstLineDrawn;
+
 @property(nonatomic, strong) SKNode* lineNode;
 @property(nonatomic, strong) SKTexture* terrainTexture;
-//@property(nonatomic, strong) NSString* textureName;
 @property(nonatomic, strong) SKCropNode* cropNode;
-//@property(nonatomic) float zPosition;
 @property(nonatomic) BOOL isClosed;
 @property(nonatomic) BOOL permitVertices;
 @property(nonatomic) CGPoint anchorPointForStraightLines;

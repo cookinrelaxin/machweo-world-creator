@@ -22,10 +22,14 @@ typedef enum ElementVarieties
     isRightMostNode,
     motionType,
     speedType,
-    vertices,
-    vertex,
-    xPoint,
-    yPoint
+    shapeVertices,
+    lineVertices,
+    shapeVertex,
+    lineVertex,
+    shapeVertexXPoint,
+    shapeVertexYPoint,
+    lineVertexXPoint,
+    lineVertexYPoint
     
 } Element;
 
@@ -138,20 +142,36 @@ typedef enum NodeTypes
         currentElement = speedType;
         return;
     }
-    if ([elementName isEqualToString:@"vertices"]) {
-        currentElement = vertices;
+    if ([elementName isEqualToString:@"shapeVertices"]) {
+        currentElement = shapeVertices;
         return;
     }
-    if ([elementName isEqualToString:@"vertex"]) {
-        currentElement = vertex;
+    if ([elementName isEqualToString:@"lineVertices"]) {
+        currentElement = lineVertices;
         return;
     }
-    if ([elementName isEqualToString:@"xPoint"]) {
-        currentElement = xPoint;
+    if ([elementName isEqualToString:@"shapeVertex"]) {
+        currentElement = shapeVertex;
         return;
     }
-    if ([elementName isEqualToString:@"yPoint"]) {
-        currentElement = yPoint;
+    if ([elementName isEqualToString:@"shapeVertexXPoint"]) {
+        currentElement = shapeVertexXPoint;
+        return;
+    }
+    if ([elementName isEqualToString:@"shapeVertexYPoint"]) {
+        currentElement = shapeVertexYPoint;
+        return;
+    }
+    if ([elementName isEqualToString:@"lineVertex"]) {
+        currentElement = lineVertex;
+        return;
+    }
+    if ([elementName isEqualToString:@"lineVertexXPoint"]) {
+        currentElement = lineVertexXPoint;
+        return;
+    }
+    if ([elementName isEqualToString:@"lineVertexYPoint"]) {
+        currentElement = lineVertexYPoint;
         return;
     }
 }
@@ -175,8 +195,12 @@ typedef enum NodeTypes
             return;
         }
     }
-    if ([elementName isEqualToString:@"vertex"]) {
-        [((TerrainSignifier*)currentNode).vertices addObject:[NSValue valueWithPoint:currentPoint]];
+    if ([elementName isEqualToString:@"shapeVertex"]) {
+        [((TerrainSignifier*)currentNode).shapeVertices addObject:[NSValue valueWithPoint:currentPoint]];
+        return;
+    }
+    if ([elementName isEqualToString:@"lineVertex"]) {
+        [((TerrainSignifier*)currentNode).lineVertices addObject:[NSValue valueWithPoint:currentPoint]];
         return;
     }
 }
@@ -254,11 +278,19 @@ typedef enum NodeTypes
                 return;
             }
         }
-        if (currentElement == xPoint) {
+        if (currentElement == shapeVertexXPoint) {
             currentPoint.x = [string floatValue];
             return;
         }
-        if (currentElement == yPoint) {
+        if (currentElement == shapeVertexYPoint) {
+            currentPoint.y = [string floatValue];
+            return;
+        }
+        if (currentElement == lineVertexXPoint) {
+            currentPoint.x = [string floatValue];
+            return;
+        }
+        if (currentElement == lineVertexYPoint) {
             currentPoint.y = [string floatValue];
             return;
         }

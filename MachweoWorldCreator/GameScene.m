@@ -256,6 +256,7 @@ const int OBSTACLE_Z_POSITION = 100;
             [currentTerrain closeLoopAndFillTerrainInView:self.view];
             [currentTerrain cleanUpAndRemoveLines];
         }
+        currentTerrain.firstLineDrawn = true;
     }
 }
 
@@ -322,10 +323,10 @@ const int OBSTACLE_Z_POSITION = 100;
     if (currentTerrain) {
         node = currentTerrain.cropNode;
         path = CGPathCreateMutable();
-        NSPoint firstVertex = [(NSValue*)[currentTerrain.vertices firstObject] pointValue];
+        NSPoint firstVertex = [(NSValue*)[currentTerrain.shapeVertices firstObject] pointValue];
         firstVertex = [self convertPoint:firstVertex fromNode:world];
         CGPathMoveToPoint(path, NULL, firstVertex.x, firstVertex.y);
-        for (NSValue* value in currentTerrain.vertices) {
+        for (NSValue* value in currentTerrain.shapeVertices) {
             NSPoint vertex = [value pointValue];
             vertex = [self convertPoint:vertex fromNode:world];
             CGPathAddLineToPoint(path, NULL, vertex.x, vertex.y);
