@@ -35,7 +35,8 @@
             float distance = sqrtf(powf((vertex.x - firstVertex.x), 2) + powf((vertex.y - firstVertex.y), 2));
             if ((distance < 20) && (straightLine || (_vertices.count > 20))) {
                 vertex = firstVertex;
-                //_isClosed = true;
+              //  NSLog(@"vertex = firstVertex");
+                _isClosed = true;
             }
             
             NSPoint lastVertex = [(NSValue*)[_vertices lastObject] pointValue];
@@ -44,6 +45,7 @@
                     float distanceToLast = sqrtf(powf((vertex.x - lastVertex.x), 2) + powf((vertex.y - lastVertex.y), 2));
                     if (distanceToLast < 40){
                         _anchorPointForStraightLines = lastVertex;
+                       // NSLog(@"_anchorPointForStraightLines = lastVertex");
                     }
                 }
                 [_lastLineNode removeFromParent];
@@ -64,9 +66,9 @@
 
 -(void)completeLine{
     if (_permitVertices) {
-        CGPoint lastPoint = CGPathGetCurrentPoint(_lastLineNode.path);
+       // CGPoint lastPoint = CGPathGetCurrentPoint(_lastLineNode.path);
     //    NSLog(@"lastPoint: %f, %f", lastPoint.x, lastPoint.y);
-        [_vertices addObject:[NSValue valueWithPoint:lastPoint]];
+        //[_vertices addObject:[NSValue valueWithPoint:lastPoint]];
         _lastLineNode = nil;
     }
     
@@ -165,7 +167,7 @@
     NSPoint firstVertex = [(NSValue*)[_vertices firstObject] pointValue];
 //    //NSLog(@"firstVertex: %f, %f",firstVertex.x, firstVertex.y);
     firstVertex = CGPointMake(firstVertex.x + difference.dx, firstVertex.y + difference.dy);
-    [newVertices addObject:[NSValue valueWithPoint:firstVertex]];
+   // [newVertices addObject:[NSValue valueWithPoint:firstVertex]];
     
     CGPathMoveToPoint(path, NULL, firstVertex.x, firstVertex.y);
     for (NSValue* value in _vertices) {

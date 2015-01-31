@@ -84,6 +84,13 @@
             NSXMLElement *vertices = [NSXMLElement elementWithName:@"vertices"];
             [terrainNodeElement addChild:vertices];
             
+//            NSArray *sortedArray;
+//            sortedArray = [terrainNode.vertices sortedArrayUsingComparator:^NSComparisonResult(id a, id b) {
+//                float x1 = [(NSValue*)a pointValue].x;
+//                float x2 = [(NSValue*)b pointValue].x;
+//                return x1 > x2;
+//            }];
+            
             for (NSValue* value in terrainNode.vertices) {
                 NSPoint point = [value pointValue];
                 point = CGPointMake(point.x - parallaxAdjustedDifference, point.y);

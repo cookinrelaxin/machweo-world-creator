@@ -151,7 +151,6 @@
 		782AE5A31A74A8B800FF4225 /* tree4_decoration.png in Resources */ = {isa = PBXBuildFile; fileRef = 782AE5191A74A8B800FF4225 /* tree4_decoration.png */; };
 		782AE5A41A74A8B800FF4225 /* tree_decoration.png in Resources */ = {isa = PBXBuildFile; fileRef = 782AE51A1A74A8B800FF4225 /* tree_decoration.png */; };
 		788FF3691A7B2FA10066A4C0 /* testTerrainSave.xml in Resources */ = {isa = PBXBuildFile; fileRef = 788FF3681A7B2FA10066A4C0 /* testTerrainSave.xml */; };
-		788FF36D1A7B3DC80066A4C0 /* testTerrainSave1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 788FF36C1A7B3DC80066A4C0 /* testTerrainSave1.xml */; };
 		78991D6C1A36661B004BDEC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78991D6B1A36661B004BDEC2 /* AppDelegate.m */; };
 		78991D6E1A36661B004BDEC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78991D6D1A36661B004BDEC2 /* main.m */; };
 		78991D711A36661B004BDEC2 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 78991D701A36661B004BDEC2 /* GameScene.m */; };
@@ -330,7 +329,6 @@
 		782AE5191A74A8B800FF4225 /* tree4_decoration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree4_decoration.png; sourceTree = "<group>"; };
 		782AE51A1A74A8B800FF4225 /* tree_decoration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree_decoration.png; sourceTree = "<group>"; };
 		788FF3681A7B2FA10066A4C0 /* testTerrainSave.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = testTerrainSave.xml; sourceTree = "<group>"; };
-		788FF36C1A7B3DC80066A4C0 /* testTerrainSave1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = testTerrainSave1.xml; sourceTree = "<group>"; };
 		78991D651A36661B004BDEC2 /* MachweoWorldCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MachweoWorldCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78991D691A36661B004BDEC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78991D6A1A36661B004BDEC2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -409,7 +407,6 @@
 				782AE48E1A74A8B800FF4225 /* paradigmSeven.xml */,
 				782AE48F1A74A8B800FF4225 /* testParallaxLevel1.xml */,
 				782AE4901A74A8B800FF4225 /* testParallaxLevel2.xml */,
-				788FF36C1A7B3DC80066A4C0 /* testTerrainSave1.xml */,
 				782AE4911A74A8B800FF4225 /* totemFrenzy.xml */,
 				788FF3681A7B2FA10066A4C0 /* testTerrainSave.xml */,
 			);
@@ -861,7 +858,6 @@
 				782AE5971A74A8B800FF4225 /* redtree2_decoration.png in Resources */,
 				782AE5631A74A8B800FF4225 /* obstacle1_obstacle.png in Resources */,
 				782AE5291A74A8B800FF4225 /* button.png in Resources */,
-				788FF36D1A7B3DC80066A4C0 /* testTerrainSave1.xml in Resources */,
 				782AE5251A74A8B800FF4225 /* totemFrenzy.xml in Resources */,
 				782AE5801A74A8B800FF4225 /* dayog.ai in Resources */,
 				782AE55D1A74A8B800FF4225 /* mountain_decoration.png in Resources */,
