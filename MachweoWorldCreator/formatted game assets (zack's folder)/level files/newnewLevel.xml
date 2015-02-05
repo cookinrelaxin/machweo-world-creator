@@ -4,7 +4,7 @@
         <type>ObstacleSignifier</type>
         <name></name>
         <isRightMostNode>no</isRightMostNode>
-        <xPosition>-2972.072754</xPosition>
+        <xPosition>-7109.101562</xPosition>
         <yPosition>0.000000</yPosition>
         <zPosition>0.000000</zPosition>
         <motionType>0</motionType>
@@ -12,59 +12,59 @@
     </node>
     <node>
         <type>DecorationSignifier</type>
-        <name>day3_decoration</name>
+        <name>day6_decoration</name>
         <isRightMostNode>no</isRightMostNode>
         <xPosition>320.000000</xPosition>
-        <yPosition>393.346832</yPosition>
+        <yPosition>387.514648</yPosition>
         <zPosition>1.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
-        <name>day3_decoration</name>
+        <name>day6_decoration</name>
         <isRightMostNode>no</isRightMostNode>
-        <xPosition>960.002075</xPosition>
-        <yPosition>393.346802</yPosition>
+        <xPosition>960.000183</xPosition>
+        <yPosition>387.514648</yPosition>
         <zPosition>1.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
-        <name>day3_decoration</name>
+        <name>day6_decoration</name>
         <isRightMostNode>yes</isRightMostNode>
-        <xPosition>1113.584717</xPosition>
-        <yPosition>393.346802</yPosition>
+        <xPosition>1118.804565</xPosition>
+        <yPosition>387.514648</yPosition>
         <zPosition>1.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
         <name>mountain_decoration</name>
         <isRightMostNode>no</isRightMostNode>
-        <xPosition>507.191162</xPosition>
-        <yPosition>339.532104</yPosition>
+        <xPosition>940.768433</xPosition>
+        <yPosition>346.842834</yPosition>
         <zPosition>3.000000</zPosition>
-    </node>
-    <node>
-        <type>DecorationSignifier</type>
-        <name>mountain2_decoration</name>
-        <isRightMostNode>no</isRightMostNode>
-        <xPosition>1249.346558</xPosition>
-        <yPosition>231.905914</yPosition>
-        <zPosition>7.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
         <name>mountain3_decoration</name>
         <isRightMostNode>no</isRightMostNode>
-        <xPosition>836.200012</xPosition>
-        <yPosition>253.901337</yPosition>
+        <xPosition>662.621948</xPosition>
+        <yPosition>271.356995</yPosition>
         <zPosition>5.000000</zPosition>
     </node>
     <node>
+        <type>DecorationSignifier</type>
+        <name>mountain2_decoration</name>
+        <isRightMostNode>no</isRightMostNode>
+        <xPosition>1259.195068</xPosition>
+        <yPosition>245.986954</yPosition>
+        <zPosition>7.000000</zPosition>
+    </node>
+    <node>
         <type>ObstacleSignifier</type>
         <name>obstacle1_obstacle</name>
         <isRightMostNode>no</isRightMostNode>
-        <xPosition>-1177.128540</xPosition>
-        <yPosition>554.482239</yPosition>
-        <zPosition>16.000000</zPosition>
+        <xPosition>1305.428223</xPosition>
+        <yPosition>606.973633</yPosition>
+        <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>
     </node>
@@ -72,9 +72,9 @@
         <type>ObstacleSignifier</type>
         <name>obstacle1_obstacle</name>
         <isRightMostNode>no</isRightMostNode>
-        <xPosition>536.232910</xPosition>
-        <yPosition>189.276657</yPosition>
-        <zPosition>16.000000</zPosition>
+        <xPosition>2492.993652</xPosition>
+        <yPosition>173.366043</yPosition>
+        <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>
     </node>
@@ -82,9 +82,9 @@
         <type>ObstacleSignifier</type>
         <name>obstacle1_obstacle</name>
         <isRightMostNode>no</isRightMostNode>
-        <xPosition>1873.123169</xPosition>
-        <yPosition>358.865326</yPosition>
-        <zPosition>16.000000</zPosition>
+        <xPosition>4224.298340</xPosition>
+        <yPosition>552.483643</yPosition>
+        <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>
     </node>
@@ -92,9 +92,9 @@
         <type>ObstacleSignifier</type>
         <name>obstacle1_obstacle</name>
         <isRightMostNode>no</isRightMostNode>
-        <xPosition>3175.854004</xPosition>
-        <yPosition>575.863525</yPosition>
-        <zPosition>16.000000</zPosition>
+        <xPosition>6222.338867</xPosition>
+        <yPosition>154.871872</yPosition>
+        <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>
     </node>
@@ -102,20 +102,11 @@
         <type>ObstacleSignifier</type>
         <name>obstacle1_obstacle</name>
         <isRightMostNode>no</isRightMostNode>
-        <xPosition>4535.680176</xPosition>
-        <yPosition>497.901367</yPosition>
-        <zPosition>16.000000</zPosition>
+        <xPosition>8378.037109</xPosition>
+        <yPosition>544.456726</yPosition>
+        <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>
     </node>
-    <node>
-        <type>ObstacleSignifier</type>
-        <name>obstacle1_obstacle</name>
-        <isRightMostNode>no</isRightMostNode>
-        <xPosition>5246.805664</xPosition>
-        <yPosition>127.557800</yPosition>
-        <zPosition>16.000000</zPosition>
-        <motionType>0</motionType>
-        <speedType>0</speedType>
-    </node>
+    <terrainPool></terrainPool>
 </worldnodes>

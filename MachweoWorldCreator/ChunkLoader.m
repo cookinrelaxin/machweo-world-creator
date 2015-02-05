@@ -33,7 +33,6 @@ typedef enum NodeTypes
     // as simple as possible for now. assume all nodes are obstacles
     NSMutableArray* obstacleArray;
     NSMutableArray* decorationArray;
-    NSMutableArray* backgroundArray;
 
     SKSpriteNode *currentNode;
     Element currentElement;
@@ -47,7 +46,6 @@ typedef enum NodeTypes
 -(instancetype)initWithFile:(NSString*)fileName{
     obstacleArray = [NSMutableArray array];
     decorationArray = [NSMutableArray array];
-    backgroundArray = [NSMutableArray array];
 
     NSXMLParser* chunkParser;
     
@@ -219,14 +217,11 @@ typedef enum NodeTypes
     if (validFile) {
         NSLog(@"load world");
         for (SKSpriteNode *obstacle in obstacleArray) {
-            obstacle.zPosition = 16;
+            obstacle.zPosition = 100;
             [world addChild:obstacle];
         }
         for (SKSpriteNode *deco in decorationArray) {
             [world addChild:deco];
-        }
-        for (SKSpriteNode *bg in backgroundArray) {
-            [world addChild:bg];
         }
     }
     

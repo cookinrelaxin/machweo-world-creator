@@ -13,6 +13,8 @@
 #import "ChunkLoader.h"
 
 const int SNAP_THRESHOLD = 5;
+const int OBSTACLE_Z_POSITION = 100;
+
 
 @implementation SKView (Right_Mouse)
 -(void)rightMouseDown:(NSEvent *)theEvent {
@@ -111,7 +113,7 @@ const int SNAP_THRESHOLD = 5;
 -(void)addObstacleSignifierForImage:(NSImage*)image fromPointInView:(CGPoint)point withName: (NSString*)name{
     ObstacleSignifier* sprite = [ObstacleSignifier spriteNodeWithTexture:[SKTexture textureWithImage:image]];
     sprite.position = [world convertPoint:[self convertPointFromView:point] fromNode:self];
-    sprite.zPosition = 16;
+    sprite.zPosition = OBSTACLE_Z_POSITION;
     sprite.name = name;
     [world addChild:sprite];
     draggedSprite = sprite;

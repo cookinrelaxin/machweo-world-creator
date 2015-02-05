@@ -128,7 +128,7 @@
             //[_zPositionComboBox setEnabled:false];
             //[_zPositionComboBox selectItemWithObjectValue:[NSString stringWithFormat:@"%d", 10]];
             [_zPositionComboBox setHidden:true];
-            [_zPositionInfoLabel setStringValue:@"the zPosition of all obstacles is always 16"];
+            [_zPositionInfoLabel setStringValue:@"the zPosition of all obstacles is always 100"];
             
             ObstacleSignifier* obs = (ObstacleSignifier*)sprite;
             NSString* motionString = [obs stringValueOfCurrentMotionType];

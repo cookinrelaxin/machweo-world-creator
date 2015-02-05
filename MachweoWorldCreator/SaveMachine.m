@@ -16,6 +16,8 @@
 -(void)saveWorld:(SKNode *)world{
     NSLog(@"saveScene");
     
+    NSMutableArray* terrainPool = [NSMutableArray array];
+    
     SKSpriteNode* rightMostNode = nil;
     SKSpriteNode* leftMostNode = nil;
     
@@ -101,7 +103,24 @@
             NSXMLElement *speedType = [NSXMLElement elementWithName:@"speedType" stringValue:[NSString stringWithFormat:@"%d", obs.currentSpeedType]];
             [spriteNode addChild:speedType];
         }
+        if ([sprite isKindOfClass:[DecorationSignifier class]]) {
+            DecorationSignifier* deco = (DecorationSignifier*)sprite;
+            if (deco.terrainPoolMember) {
+                if (![terrainPool containsObject:sprite.name]) {
+                    [terrainPool addObject:sprite.name];
+                }
+            }
+
+        }
     }
+    
+    NSXMLElement *terrainPoolNode = [NSXMLElement elementWithName:@"terrainPool"];
+    [root addChild:terrainPoolNode];
+    for (NSString* name in terrainPool) {
+        NSXMLElement *terrainPoolMember = [NSXMLElement elementWithName:@"terrainPoolMember" stringValue:name];
+        [terrainPoolNode addChild:terrainPoolMember];
+    }
+
     NSError *error = nil;
     BOOL isValid = [xmlDoc validateAndReturnError:&error];
     

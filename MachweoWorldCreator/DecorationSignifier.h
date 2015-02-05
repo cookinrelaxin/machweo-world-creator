@@ -9,5 +9,7 @@
 #import <SpriteKit/SpriteKit.h>
 
 @interface DecorationSignifier : SKSpriteNode
+@property (nonatomic) BOOL terrainPoolMember;
+
 
 @end
