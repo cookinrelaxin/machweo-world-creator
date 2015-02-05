@@ -9,20 +9,8 @@
 /* Begin PBXBuildFile section */
 		65160D221A57EEAF00D481D0 /* HelpWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65160D211A57EEAF00D481D0 /* HelpWindow.xib */; };
 		65CAB25C1A4E6A2F00D6CE26 /* ChunkLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 65CAB25A1A4E6A2F00D6CE26 /* ChunkLoader.m */; };
-		7808AB341A75FECD00544C78 /* improvedParallaxOne.xml in Resources */ = {isa = PBXBuildFile; fileRef = 7808AB331A75FECD00544C78 /* improvedParallaxOne.xml */; };
 		78223F121A3B976600E73137 /* DragView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78223F111A3B976600E73137 /* DragView.m */; };
 		78223F141A3BA99B00E73137 /* ObstacleIconPrototype.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78223F131A3BA99B00E73137 /* ObstacleIconPrototype.xib */; };
-		782AE51B1A74A8B800FF4225 /* paradigmEight.xml in Resources */ = {isa = PBXBuildFile; fileRef = 782AE4871A74A8B800FF4225 /* paradigmEight.xml */; };
-		782AE51C1A74A8B800FF4225 /* paradigmEightPointFive.xml in Resources */ = {isa = PBXBuildFile; fileRef = 782AE4881A74A8B800FF4225 /* paradigmEightPointFive.xml */; };
-		782AE51D1A74A8B800FF4225 /* paradigmEightPointFour.xml in Resources */ = {isa = PBXBuildFile; fileRef = 782AE4891A74A8B800FF4225 /* paradigmEightPointFour.xml */; };
-		782AE51E1A74A8B800FF4225 /* paradigmEightPointSix.xml in Resources */ = {isa = PBXBuildFile; fileRef = 782AE48A1A74A8B800FF4225 /* paradigmEightPointSix.xml */; };
-		782AE51F1A74A8B800FF4225 /* paradigmEightPointThree.xml in Resources */ = {isa = PBXBuildFile; fileRef = 782AE48B1A74A8B800FF4225 /* paradigmEightPointThree.xml */; };
-		782AE5201A74A8B800FF4225 /* paradigmEightPointTwo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 782AE48C1A74A8B800FF4225 /* paradigmEightPointTwo.xml */; };
-		782AE5211A74A8B800FF4225 /* paradigmNine.xml in Resources */ = {isa = PBXBuildFile; fileRef = 782AE48D1A74A8B800FF4225 /* paradigmNine.xml */; };
-		782AE5221A74A8B800FF4225 /* paradigmSeven.xml in Resources */ = {isa = PBXBuildFile; fileRef = 782AE48E1A74A8B800FF4225 /* paradigmSeven.xml */; };
-		782AE5231A74A8B800FF4225 /* testParallaxLevel1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 782AE48F1A74A8B800FF4225 /* testParallaxLevel1.xml */; };
-		782AE5241A74A8B800FF4225 /* testParallaxLevel2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 782AE4901A74A8B800FF4225 /* testParallaxLevel2.xml */; };
-		782AE5251A74A8B800FF4225 /* totemFrenzy.xml in Resources */ = {isa = PBXBuildFile; fileRef = 782AE4911A74A8B800FF4225 /* totemFrenzy.xml */; };
 		782AE5261A74A8B800FF4225 /* chapterCells.xml in Resources */ = {isa = PBXBuildFile; fileRef = 782AE4931A74A8B800FF4225 /* chapterCells.xml */; };
 		782AE5271A74A8B800FF4225 /* levelCells.xml in Resources */ = {isa = PBXBuildFile; fileRef = 782AE4941A74A8B800FF4225 /* levelCells.xml */; };
 		782AE5281A74A8B800FF4225 /* button.ai in Resources */ = {isa = PBXBuildFile; fileRef = 782AE4971A74A8B800FF4225 /* button.ai */; };
@@ -164,6 +152,7 @@
 		78A733A41A44B1C9000265FA /* ObstacleSignifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A733A31A44B1C9000265FA /* ObstacleSignifier.m */; };
 		78A733AA1A44B1FA000265FA /* DecorationSignifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A733A91A44B1FA000265FA /* DecorationSignifier.m */; };
 		78A733B01A44BBB5000265FA /* SaveMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A733AF1A44BBB5000265FA /* SaveMachine.m */; };
+		78BC58C11A83051200308D34 /* newnewLevel.xml in Resources */ = {isa = PBXBuildFile; fileRef = 78BC58C01A83051200308D34 /* newnewLevel.xml */; };
 		78E66D3D1A43D99900D2978E /* SpriteDragSourceImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78E66D3C1A43D99900D2978E /* SpriteDragSourceImageView.m */; };
 /* End PBXBuildFile section */
 
@@ -181,21 +170,9 @@
 		65160D211A57EEAF00D481D0 /* HelpWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpWindow.xib; sourceTree = "<group>"; };
 		65CAB25A1A4E6A2F00D6CE26 /* ChunkLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChunkLoader.m; sourceTree = "<group>"; };
 		65CAB25B1A4E6A2F00D6CE26 /* ChunkLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChunkLoader.h; sourceTree = "<group>"; };
-		7808AB331A75FECD00544C78 /* improvedParallaxOne.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = improvedParallaxOne.xml; sourceTree = "<group>"; };
 		78223F101A3B976600E73137 /* DragView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DragView.h; sourceTree = "<group>"; };
 		78223F111A3B976600E73137 /* DragView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DragView.m; sourceTree = "<group>"; };
 		78223F131A3BA99B00E73137 /* ObstacleIconPrototype.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ObstacleIconPrototype.xib; sourceTree = "<group>"; };
-		782AE4871A74A8B800FF4225 /* paradigmEight.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = paradigmEight.xml; sourceTree = "<group>"; };
-		782AE4881A74A8B800FF4225 /* paradigmEightPointFive.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = paradigmEightPointFive.xml; sourceTree = "<group>"; };
-		782AE4891A74A8B800FF4225 /* paradigmEightPointFour.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = paradigmEightPointFour.xml; sourceTree = "<group>"; };
-		782AE48A1A74A8B800FF4225 /* paradigmEightPointSix.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = paradigmEightPointSix.xml; sourceTree = "<group>"; };
-		782AE48B1A74A8B800FF4225 /* paradigmEightPointThree.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = paradigmEightPointThree.xml; sourceTree = "<group>"; };
-		782AE48C1A74A8B800FF4225 /* paradigmEightPointTwo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = paradigmEightPointTwo.xml; sourceTree = "<group>"; };
-		782AE48D1A74A8B800FF4225 /* paradigmNine.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = paradigmNine.xml; sourceTree = "<group>"; };
-		782AE48E1A74A8B800FF4225 /* paradigmSeven.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = paradigmSeven.xml; sourceTree = "<group>"; };
-		782AE48F1A74A8B800FF4225 /* testParallaxLevel1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = testParallaxLevel1.xml; sourceTree = "<group>"; };
-		782AE4901A74A8B800FF4225 /* testParallaxLevel2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = testParallaxLevel2.xml; sourceTree = "<group>"; };
-		782AE4911A74A8B800FF4225 /* totemFrenzy.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = totemFrenzy.xml; sourceTree = "<group>"; };
 		782AE4931A74A8B800FF4225 /* chapterCells.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = chapterCells.xml; sourceTree = "<group>"; };
 		782AE4941A74A8B800FF4225 /* levelCells.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = levelCells.xml; sourceTree = "<group>"; };
 		782AE4971A74A8B800FF4225 /* button.ai */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = button.ai; sourceTree = "<group>"; };
@@ -349,6 +326,7 @@
 		78A733A91A44B1FA000265FA /* DecorationSignifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecorationSignifier.m; sourceTree = "<group>"; };
 		78A733AE1A44BBB5000265FA /* SaveMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveMachine.h; sourceTree = "<group>"; };
 		78A733AF1A44BBB5000265FA /* SaveMachine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveMachine.m; sourceTree = "<group>"; };
+		78BC58C01A83051200308D34 /* newnewLevel.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = newnewLevel.xml; sourceTree = "<group>"; };
 		78E66D3B1A43D99900D2978E /* SpriteDragSourceImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteDragSourceImageView.h; sourceTree = "<group>"; };
 		78E66D3C1A43D99900D2978E /* SpriteDragSourceImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpriteDragSourceImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -384,18 +362,7 @@
 		782AE4861A74A8B800FF4225 /* level files */ = {
 			isa = PBXGroup;
 			children = (
-				782AE4871A74A8B800FF4225 /* paradigmEight.xml */,
-				782AE4881A74A8B800FF4225 /* paradigmEightPointFive.xml */,
-				782AE4891A74A8B800FF4225 /* paradigmEightPointFour.xml */,
-				782AE48A1A74A8B800FF4225 /* paradigmEightPointSix.xml */,
-				782AE48B1A74A8B800FF4225 /* paradigmEightPointThree.xml */,
-				782AE48C1A74A8B800FF4225 /* paradigmEightPointTwo.xml */,
-				7808AB331A75FECD00544C78 /* improvedParallaxOne.xml */,
-				782AE48D1A74A8B800FF4225 /* paradigmNine.xml */,
-				782AE48E1A74A8B800FF4225 /* paradigmSeven.xml */,
-				782AE48F1A74A8B800FF4225 /* testParallaxLevel1.xml */,
-				782AE4901A74A8B800FF4225 /* testParallaxLevel2.xml */,
-				782AE4911A74A8B800FF4225 /* totemFrenzy.xml */,
+				78BC58C01A83051200308D34 /* newnewLevel.xml */,
 			);
 			path = "level files";
 			sourceTree = "<group>";
@@ -770,11 +737,9 @@
 				782AE5791A74A8B800FF4225 /* day2_decoration.png in Resources */,
 				782AE58D1A74A8B800FF4225 /* nightstars_decoration.png in Resources */,
 				782AE5421A74A8B800FF4225 /* cloudopaque3_decoration.png in Resources */,
-				782AE51F1A74A8B800FF4225 /* paradigmEightPointThree.xml in Resources */,
 				782AE5641A74A8B800FF4225 /* obstacle2.ai in Resources */,
 				782AE5A31A74A8B800FF4225 /* tree4_decoration.png in Resources */,
 				782AE5931A74A8B800FF4225 /* chapterCellTestBackgroundImage.png in Resources */,
-				782AE51B1A74A8B800FF4225 /* paradigmEight.xml in Resources */,
 				782AE5451A74A8B800FF4225 /* cloudopaque_decoration.png in Resources */,
 				782AE5591A74A8B800FF4225 /* mountain2.png in Resources */,
 				782AE5431A74A8B800FF4225 /* cloudopaque4.png in Resources */,
@@ -798,7 +763,6 @@
 				782AE59A1A74A8B800FF4225 /* redtree4.ai in Resources */,
 				782AE55F1A74A8B800FF4225 /* circlemask_obstacle.png in Resources */,
 				782AE5471A74A8B800FF4225 /* cloudred1_decoration.png in Resources */,
-				782AE5241A74A8B800FF4225 /* testParallaxLevel2.xml in Resources */,
 				782AE54A1A74A8B800FF4225 /* cloudred3.png in Resources */,
 				782AE5441A74A8B800FF4225 /* cloudopaque4_decoration.png in Resources */,
 				782AE52D1A74A8B800FF4225 /* cloud1.0_decoration.png in Resources */,
@@ -820,26 +784,22 @@
 				782AE5481A74A8B800FF4225 /* cloudred2.png in Resources */,
 				782AE56A1A74A8B800FF4225 /* rotate.ai in Resources */,
 				782AE54C1A74A8B800FF4225 /* cloudred4.png in Resources */,
-				7808AB341A75FECD00544C78 /* improvedParallaxOne.xml in Resources */,
 				782AE5351A74A8B800FF4225 /* cloud3.0.png in Resources */,
-				782AE51D1A74A8B800FF4225 /* paradigmEightPointFour.xml in Resources */,
 				782AE5901A74A8B800FF4225 /* spikesunyell.ai in Resources */,
-				782AE51C1A74A8B800FF4225 /* paradigmEightPointFive.xml in Resources */,
 				782AE5881A74A8B800FF4225 /* night.ai in Resources */,
 				782AE54E1A74A8B800FF4225 /* blackgrass.ai in Resources */,
 				782AE5971A74A8B800FF4225 /* redtree2_decoration.png in Resources */,
 				782AE5631A74A8B800FF4225 /* obstacle1_obstacle.png in Resources */,
 				782AE5291A74A8B800FF4225 /* button.png in Resources */,
-				782AE5251A74A8B800FF4225 /* totemFrenzy.xml in Resources */,
 				782AE5801A74A8B800FF4225 /* dayog.ai in Resources */,
 				782AE55D1A74A8B800FF4225 /* mountain_decoration.png in Resources */,
 				782AE52A1A74A8B800FF4225 /* cloud.ai in Resources */,
-				782AE5201A74A8B800FF4225 /* paradigmEightPointTwo.xml in Resources */,
 				782AE5491A74A8B800FF4225 /* cloudred2_decoration.png in Resources */,
 				782AE5911A74A8B800FF4225 /* spikesunyell_decoration.png in Resources */,
 				782AE53C1A74A8B800FF4225 /* cloud4.ai in Resources */,
 				782AE59E1A74A8B800FF4225 /* tree2.ai in Resources */,
 				782AE5661A74A8B800FF4225 /* obstacle3.ai in Resources */,
+				78BC58C11A83051200308D34 /* newnewLevel.xml in Resources */,
 				782AE5891A74A8B800FF4225 /* night_decoration.png in Resources */,
 				782AE5781A74A8B800FF4225 /* day2.ai in Resources */,
 				782AE57C1A74A8B800FF4225 /* day5.ai in Resources */,
@@ -850,7 +810,6 @@
 				782AE5671A74A8B800FF4225 /* obstacle3_obstacle.png in Resources */,
 				782AE5991A74A8B800FF4225 /* redtree3_decoration.png in Resources */,
 				782AE5761A74A8B800FF4225 /* dawn4.ai in Resources */,
-				782AE5231A74A8B800FF4225 /* testParallaxLevel1.xml in Resources */,
 				782AE5271A74A8B800FF4225 /* levelCells.xml in Resources */,
 				782AE55A1A74A8B800FF4225 /* mountain2_decoration.png in Resources */,
 				782AE5551A74A8B800FF4225 /* redgrass.ai in Resources */,
@@ -862,7 +821,6 @@
 				782AE5741A74A8B800FF4225 /* dawn2.ai in Resources */,
 				782AE56B1A74A8B800FF4225 /* rotate_obstacle.png in Resources */,
 				782AE54F1A74A8B800FF4225 /* blackgrass.gif in Resources */,
-				782AE5221A74A8B800FF4225 /* paradigmSeven.xml in Resources */,
 				782AE54B1A74A8B800FF4225 /* cloudred3_decoration.png in Resources */,
 				782AE56D1A74A8B800FF4225 /* square_obstacle.png in Resources */,
 				782AE5511A74A8B800FF4225 /* grass.ai in Resources */,
@@ -873,8 +831,6 @@
 				782AE53D1A74A8B800FF4225 /* cloud4.png in Resources */,
 				782AE5941A74A8B800FF4225 /* levelCellTestBackgroundImage.png in Resources */,
 				782AE5561A74A8B800FF4225 /* redgrass_decoration.png in Resources */,
-				782AE51E1A74A8B800FF4225 /* paradigmEightPointSix.xml in Resources */,
-				782AE5211A74A8B800FF4225 /* paradigmNine.xml in Resources */,
 				782AE5601A74A8B800FF4225 /* hexagon.ai in Resources */,
 				782AE5961A74A8B800FF4225 /* redtree2.ai in Resources */,
 				782AE5461A74A8B800FF4225 /* cloudred1.png in Resources */,

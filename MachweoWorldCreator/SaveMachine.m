@@ -57,7 +57,7 @@
     [xmlDoc setCharacterEncoding:@"UTF-8"];
     for (SKSpriteNode* sprite in world.children) {
         
-        NSXMLElement *spriteNode = [NSXMLElement elementWithName:@"spriteNode"];
+        NSXMLElement *spriteNode = [NSXMLElement elementWithName:@"node"];
         [root addChild:spriteNode];
         
         NSString* typeString = @"placeholder";

@@ -12,7 +12,7 @@
 
 typedef enum ElementVarieties
 {
-    spriteNode,
+    node,
     type,
     name,
     xPosition,
@@ -94,8 +94,8 @@ typedef enum NodeTypes
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict {
     charactersFound = false;
-    if ([elementName isEqualToString:@"spriteNode"]) {
-        currentElement = spriteNode;
+    if ([elementName isEqualToString:@"node"]) {
+        currentElement = node;
         return;
     }
     if ([elementName isEqualToString:@"name"]) {
@@ -134,7 +134,7 @@ typedef enum NodeTypes
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
     
-    if ([elementName isEqualToString:@"spriteNode"]) {
+    if ([elementName isEqualToString:@"node"]) {
         if (currentNode != nil) {
             switch (currentNodeType) {
                 case obstacle:
