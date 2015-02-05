@@ -43,6 +43,7 @@ const int OBSTACLE_Z_POSITION = 100;
     SKSpriteNode* rightBorder;
     SaveMachine *saveMachine;
     SKShapeNode* outlineNode;
+    NSMutableArray* terrainPool;
     
     BOOL allowSnapping;
     
@@ -78,12 +79,15 @@ const int OBSTACLE_Z_POSITION = 100;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeMotionSpeeds:) name:@"motionSpeedChanged" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteNode) name:@"delete node" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSnappingPermissions:) name:@"changeSnapPermission" object:nil];
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeTerrainPoolPermissions:) name:@"changeTerrainPoolPermission" object:nil];
+
         ObstacleSignifier* nodeForWorldScrolling = [ObstacleSignifier node];
         [world addChild:nodeForWorldScrolling];
         
         
         allowSnapping = true;
+        
+        terrainPool = [NSMutableArray array];
 
 
 
@@ -96,8 +100,23 @@ const int OBSTACLE_Z_POSITION = 100;
     allowSnapping = [(NSNumber*)[notification.userInfo objectForKey:@"allow snapping"] boolValue];
 }
 
+-(void)changeTerrainPoolPermissions:(NSNotification*)notification{
+    if (draggedSprite) {
+        if ([draggedSprite isKindOfClass:[DecorationSignifier class]]) {
+            NSLog(@"changeTerrainPoolPermissions");
+            DecorationSignifier* deco = (DecorationSignifier*)draggedSprite;
+            deco.terrainPoolMember = !deco.terrainPoolMember;
+            if (deco.terrainPoolMember) {
+                if (![terrainPool containsObject:deco.name]) {
+                    [terrainPool addObject:deco.name.copy];
+                }
+            }
+        }
+    }
+}
+
 -(void)haveSaveMachineDoItsThing{
-    [saveMachine saveWorld:world];
+    [saveMachine saveWorld:world withTerrainPool:terrainPool];
 }
 
 -(void)loadLevel:(NSNotification*)notification{
@@ -106,7 +125,7 @@ const int OBSTACLE_Z_POSITION = 100;
     for (SKNode* node in world.children) {
         [node removeFromParent];
     }
-    [cl loadWorld:world];
+    [cl loadWorld:world andTerrainPool:terrainPool];
     
 }
 

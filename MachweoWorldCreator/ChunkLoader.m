@@ -20,7 +20,10 @@ typedef enum ElementVarieties
     zPosition,
     isRightMostNode,
     motionType,
-    speedType
+    speedType,
+    terrainPool,
+    terrainPoolMember
+    
 } Element;
 
 typedef enum NodeTypes
@@ -33,6 +36,8 @@ typedef enum NodeTypes
     // as simple as possible for now. assume all nodes are obstacles
     NSMutableArray* obstacleArray;
     NSMutableArray* decorationArray;
+    
+    NSMutableArray* terrainPoolArray;
 
     SKSpriteNode *currentNode;
     Element currentElement;
@@ -46,6 +51,7 @@ typedef enum NodeTypes
 -(instancetype)initWithFile:(NSString*)fileName{
     obstacleArray = [NSMutableArray array];
     decorationArray = [NSMutableArray array];
+    terrainPoolArray = [NSMutableArray array];
 
     NSXMLParser* chunkParser;
     
@@ -126,6 +132,14 @@ typedef enum NodeTypes
     }
     if ([elementName isEqualToString:@"speedType"]) {
         currentElement = speedType;
+        return;
+    }
+    if ([elementName isEqualToString:@"terrainPool"]) {
+        currentElement = terrainPool;
+        return;
+    }
+    if ([elementName isEqualToString:@"terrainPoolMember"]) {
+        currentElement = terrainPoolMember;
         return;
     }
 }
@@ -210,11 +224,18 @@ typedef enum NodeTypes
                 return;
             }
         }
+        if (currentElement == terrainPoolMember) {
+            NSLog(@"add terrainPoolMember");
+            [terrainPoolArray addObject:string];
+        }
     }
 }
 
--(void)loadWorld:(SKNode*)world{
+-(void)loadWorld:(SKNode*)world andTerrainPool:(NSMutableArray*)terrainPool{
     if (validFile) {
+        for (NSString* decoName in terrainPoolArray) {
+            [terrainPool addObject:decoName];
+        }
         NSLog(@"load world");
         for (SKSpriteNode *obstacle in obstacleArray) {
             obstacle.zPosition = 100;

@@ -11,6 +11,6 @@
 
 @interface ChunkLoader : NSObject <NSXMLParserDelegate>
 
--(void)loadWorld:(SKNode*)world;
+-(void)loadWorld:(SKNode*)world andTerrainPool:(NSMutableArray*)terrainPool;
 -(instancetype)initWithFile:(NSString*)fileName;
 @end

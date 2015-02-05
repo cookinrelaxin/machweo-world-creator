@@ -13,10 +13,8 @@
 
 @implementation SaveMachine
 
--(void)saveWorld:(SKNode *)world{
+-(void)saveWorld:(SKNode *)world withTerrainPool:(NSMutableArray*)terrainPool{
     NSLog(@"saveScene");
-    
-    NSMutableArray* terrainPool = [NSMutableArray array];
     
     SKSpriteNode* rightMostNode = nil;
     SKSpriteNode* leftMostNode = nil;
@@ -102,15 +100,6 @@
             [spriteNode addChild:motionType];
             NSXMLElement *speedType = [NSXMLElement elementWithName:@"speedType" stringValue:[NSString stringWithFormat:@"%d", obs.currentSpeedType]];
             [spriteNode addChild:speedType];
-        }
-        if ([sprite isKindOfClass:[DecorationSignifier class]]) {
-            DecorationSignifier* deco = (DecorationSignifier*)sprite;
-            if (deco.terrainPoolMember) {
-                if (![terrainPool containsObject:sprite.name]) {
-                    [terrainPool addObject:sprite.name];
-                }
-            }
-
         }
     }
     

@@ -10,6 +10,8 @@
 #import "DragView.h"
 #import "GameScene.h"
 #import "ObstacleSignifier.h"
+#import "DecorationSignifier.h"
+
 
 @interface MotionTypeHandler : NSObject <NSComboBoxDelegate>
 @property (nonatomic, strong) MyWindowController* controller;
@@ -127,6 +129,7 @@
         if ([image.name isEqualToString:imageName]) {
             //[_zPositionComboBox setEnabled:false];
             //[_zPositionComboBox selectItemWithObjectValue:[NSString stringWithFormat:@"%d", 10]];
+            [_terrainPoolMember setHidden:true];
             [_zPositionComboBox setHidden:true];
             [_zPositionInfoLabel setStringValue:@"the zPosition of all obstacles is always 100"];
             
@@ -141,6 +144,11 @@
         }
     }
     [self hideMotionComboBoxes];
+    [_terrainPoolMember setHidden:false];
+    if ([sprite isKindOfClass:[DecorationSignifier class]]) {
+        DecorationSignifier* deco = (DecorationSignifier*)sprite;
+        [_terrainPoolMember setState:(deco.terrainPoolMember == false) ? 0 : 1];
+    }
     [_zPositionComboBox setHidden:false];
     //[_zPositionComboBox selectItemWithObjectValue:[NSString stringWithFormat:@"%d", [(NSNumber*)[notification.userInfo objectForKey:@"zPosition"] intValue]]];
     [_zPositionComboBox selectItemWithObjectValue:[NSString stringWithFormat:@"%d", (int)sprite.zPosition]];
@@ -204,5 +212,11 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"changeSnapPermission" object:nil userInfo:[NSDictionary dictionaryWithObject:allowSnappingObject forKey:@"allow snapping"]];
 }
 
+- (IBAction)changeTerrainPoolMemberValue:(id)sender {
+    NSButton* buttonSender = (NSButton*)sender;
+    BOOL terrainPoolBool = (buttonSender.state == 1) ? true :false;
+    NSNumber *TerrainPoolObject = [NSNumber numberWithBool:terrainPoolBool];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeTerrainPoolPermission" object:nil userInfo:[NSDictionary dictionaryWithObject:TerrainPoolObject forKey:@"terrain pool member"]];
+}
 
 @end
