@@ -165,7 +165,7 @@
     zHandler.controller = self;
     
     NSMutableArray* temp = [NSMutableArray array];
-    for(int i = 1; i < 101; i ++){
+    for(int i = 1; i < 116; i ++){
         [temp addObject:[NSString stringWithFormat:@"%d", i]];
     }
    // [_zPositionComboBox addItemsWithObjectValues:@[@"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9", @"10", @"11", @"12", @"13", @"14", @"15", @"19"]];
