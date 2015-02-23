@@ -55,7 +55,17 @@
     NSXMLDocument *xmlDoc = [[NSXMLDocument alloc] initWithRootElement:root];
     [xmlDoc setVersion:@"1.0"];
     [xmlDoc setCharacterEncoding:@"UTF-8"];
-    for (SKSpriteNode* sprite in world.children) {
+    
+    NSArray* sortedSprites = [world.children sortedArrayUsingComparator: ^NSComparisonResult(SKSpriteNode *sprite1, SKSpriteNode *sprite2) {
+        return (sprite1.position.x > sprite2.position.x);
+    }];
+    //NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
+    //NSArray* sortedSprites = [world.children sortedArrayUsingDescriptors:@[sortDescriptor]];
+
+
+    
+    
+    for (SKSpriteNode* sprite in sortedSprites) {
         
         NSXMLElement *spriteNode = [NSXMLElement elementWithName:@"node"];
         [root addChild:spriteNode];

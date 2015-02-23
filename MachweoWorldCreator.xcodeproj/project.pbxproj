@@ -145,6 +145,8 @@
 		784491561A9AAB5F005AAAC4 /* A Hero Is Born v2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 784491531A9AAB5F005AAAC4 /* A Hero Is Born v2.xml */; };
 		784491571A9AAB5F005AAAC4 /* Far From Home v2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 784491541A9AAB5F005AAAC4 /* Far From Home v2.xml */; };
 		784491581A9AAB5F005AAAC4 /* The Journey Begins v2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 784491551A9AAB5F005AAAC4 /* The Journey Begins v2.xml */; };
+		784491621A9AD7E6005AAAC4 /* The Journey Begins v3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 784491611A9AD7E6005AAAC4 /* The Journey Begins v3.xml */; };
+		784491641A9AD98F005AAAC4 /* The Journey Begins v4.xml in Resources */ = {isa = PBXBuildFile; fileRef = 784491631A9AD98F005AAAC4 /* The Journey Begins v4.xml */; };
 		785A53D81A958FBF00ED2E37 /* level02.xml in Resources */ = {isa = PBXBuildFile; fileRef = 785A53D71A958FBF00ED2E37 /* level02.xml */; };
 		785A53EF1A95983E00ED2E37 /* rock1.ai in Resources */ = {isa = PBXBuildFile; fileRef = 785A53E91A95983E00ED2E37 /* rock1.ai */; };
 		785A53F11A95983E00ED2E37 /* rock2.ai in Resources */ = {isa = PBXBuildFile; fileRef = 785A53EB1A95983E00ED2E37 /* rock2.ai */; };
@@ -321,6 +323,8 @@
 		784491531A9AAB5F005AAAC4 /* A Hero Is Born v2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "A Hero Is Born v2.xml"; sourceTree = "<group>"; };
 		784491541A9AAB5F005AAAC4 /* Far From Home v2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Far From Home v2.xml"; sourceTree = "<group>"; };
 		784491551A9AAB5F005AAAC4 /* The Journey Begins v2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "The Journey Begins v2.xml"; sourceTree = "<group>"; };
+		784491611A9AD7E6005AAAC4 /* The Journey Begins v3.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "The Journey Begins v3.xml"; sourceTree = "<group>"; };
+		784491631A9AD98F005AAAC4 /* The Journey Begins v4.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "The Journey Begins v4.xml"; sourceTree = "<group>"; };
 		785A53D71A958FBF00ED2E37 /* level02.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = level02.xml; sourceTree = "<group>"; };
 		785A53E91A95983E00ED2E37 /* rock1.ai */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rock1.ai; sourceTree = "<group>"; };
 		785A53EB1A95983E00ED2E37 /* rock2.ai */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rock2.ai; sourceTree = "<group>"; };
@@ -392,9 +396,11 @@
 			children = (
 				78BC58C01A83051200308D34 /* newnewLevel.xml */,
 				785A53D71A958FBF00ED2E37 /* level02.xml */,
+				784491611A9AD7E6005AAAC4 /* The Journey Begins v3.xml */,
 				784491531A9AAB5F005AAAC4 /* A Hero Is Born v2.xml */,
 				784491541A9AAB5F005AAAC4 /* Far From Home v2.xml */,
 				784491551A9AAB5F005AAAC4 /* The Journey Begins v2.xml */,
+				784491631A9AD98F005AAAC4 /* The Journey Begins v4.xml */,
 				78344E4E1A97E55600F9A5DF /* level03.xml */,
 			);
 			path = "level files";
@@ -821,6 +827,7 @@
 				782AE5441A74A8B800FF4225 /* cloudopaque4_decoration.png in Resources */,
 				782AE52D1A74A8B800FF4225 /* cloud1.0_decoration.png in Resources */,
 				782AE56E1A74A8B800FF4225 /* totem.ai in Resources */,
+				784491621A9AD7E6005AAAC4 /* The Journey Begins v3.xml in Resources */,
 				782AE5831A74A8B800FF4225 /* dusk1_decoration.png in Resources */,
 				782AE5841A74A8B800FF4225 /* dusk3.ai in Resources */,
 				782AE53F1A74A8B800FF4225 /* cloud_decoration.png in Resources */,
@@ -891,6 +898,7 @@
 				782AE5821A74A8B800FF4225 /* dusk1.ai in Resources */,
 				782AE53D1A74A8B800FF4225 /* cloud4.png in Resources */,
 				782AE5941A74A8B800FF4225 /* levelCellTestBackgroundImage.png in Resources */,
+				784491641A9AD98F005AAAC4 /* The Journey Begins v4.xml in Resources */,
 				782AE5561A74A8B800FF4225 /* redgrass_decoration.png in Resources */,
 				782AE5601A74A8B800FF4225 /* hexagon.ai in Resources */,
 				782AE5961A74A8B800FF4225 /* redtree2.ai in Resources */,
