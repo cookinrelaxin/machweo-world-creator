@@ -75,7 +75,7 @@
 
 -(void)loadEditorViewController{
    // NSLog(@"_windowView.bounds:%f %f %f %f", _windowView.bounds.origin.x, _windowView.bounds.origin.y, _windowView.bounds.size.width, _windowView.bounds.size.height);
-    scene = [GameScene sceneWithSize:CGSizeMake(1366, 768)];
+    scene = [GameScene sceneWithSize:CGSizeMake(1366, 1024)];
     scene.scaleMode = SKSceneScaleModeAspectFit;
     dragView = [[DragView alloc] initWithFrame:_windowView.bounds forScene:scene];
     dragView.autoresizingMask = NSViewWidthSizable | NSViewHeightSizable;
