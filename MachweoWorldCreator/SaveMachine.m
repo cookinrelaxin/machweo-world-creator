@@ -20,7 +20,7 @@
     SKSpriteNode* leftMostNode = nil;
     
     for (SKSpriteNode* node in world.children) {
-        if ((int)node.zPosition == 1) {
+        //if ((int)node.zPosition == 1) {
             
             if (leftMostNode == nil) {
                 leftMostNode = node;
@@ -45,7 +45,7 @@
 //                }
 //            }
             
-        }
+        //}
     }
     NSLog(@"[leftMostNode class]: %@", [leftMostNode class]);
     float xDifference = leftMostNode.position.x - (leftMostNode.size.width / 2);
