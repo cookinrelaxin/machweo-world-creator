@@ -148,6 +148,7 @@
 		784491621A9AD7E6005AAAC4 /* The Journey Begins v3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 784491611A9AD7E6005AAAC4 /* The Journey Begins v3.xml */; };
 		784491641A9AD98F005AAAC4 /* The Journey Begins v4.xml in Resources */ = {isa = PBXBuildFile; fileRef = 784491631A9AD98F005AAAC4 /* The Journey Begins v4.xml */; };
 		784491681A9AE206005AAAC4 /* A Hero Is Born v3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 784491671A9AE206005AAAC4 /* A Hero Is Born v3.xml */; };
+		78567ECF1A9D4E500061882F /* demo_1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 78567ECE1A9D4E500061882F /* demo_1.xml */; };
 		785A53D81A958FBF00ED2E37 /* level02.xml in Resources */ = {isa = PBXBuildFile; fileRef = 785A53D71A958FBF00ED2E37 /* level02.xml */; };
 		785A53EF1A95983E00ED2E37 /* rock1.ai in Resources */ = {isa = PBXBuildFile; fileRef = 785A53E91A95983E00ED2E37 /* rock1.ai */; };
 		785A53F11A95983E00ED2E37 /* rock2.ai in Resources */ = {isa = PBXBuildFile; fileRef = 785A53EB1A95983E00ED2E37 /* rock2.ai */; };
@@ -330,6 +331,7 @@
 		784491611A9AD7E6005AAAC4 /* The Journey Begins v3.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "The Journey Begins v3.xml"; sourceTree = "<group>"; };
 		784491631A9AD98F005AAAC4 /* The Journey Begins v4.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "The Journey Begins v4.xml"; sourceTree = "<group>"; };
 		784491671A9AE206005AAAC4 /* A Hero Is Born v3.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "A Hero Is Born v3.xml"; sourceTree = "<group>"; };
+		78567ECE1A9D4E500061882F /* demo_1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = demo_1.xml; sourceTree = "<group>"; };
 		785A53D71A958FBF00ED2E37 /* level02.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = level02.xml; sourceTree = "<group>"; };
 		785A53E91A95983E00ED2E37 /* rock1.ai */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rock1.ai; sourceTree = "<group>"; };
 		785A53EB1A95983E00ED2E37 /* rock2.ai */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rock2.ai; sourceTree = "<group>"; };
@@ -410,6 +412,7 @@
 				784491531A9AAB5F005AAAC4 /* A Hero Is Born v2.xml */,
 				784491541A9AAB5F005AAAC4 /* Far From Home v2.xml */,
 				787DA3361A9C22790093EC23 /* A Hero Is Born v4.xml */,
+				78567ECE1A9D4E500061882F /* demo_1.xml */,
 				787DA32F1A9C21C40093EC23 /* The Journey Begins v5.xml */,
 				784491551A9AAB5F005AAAC4 /* The Journey Begins v2.xml */,
 				784491631A9AD98F005AAAC4 /* The Journey Begins v4.xml */,
@@ -839,6 +842,7 @@
 				782AE54A1A74A8B800FF4225 /* cloudred3.png in Resources */,
 				782AE5441A74A8B800FF4225 /* cloudopaque4_decoration.png in Resources */,
 				782AE52D1A74A8B800FF4225 /* cloud1.0_decoration.png in Resources */,
+				78567ECF1A9D4E500061882F /* demo_1.xml in Resources */,
 				782AE56E1A74A8B800FF4225 /* totem.ai in Resources */,
 				784491621A9AD7E6005AAAC4 /* The Journey Begins v3.xml in Resources */,
 				787DA3371A9C22790093EC23 /* A Hero Is Born v4.xml in Resources */,
