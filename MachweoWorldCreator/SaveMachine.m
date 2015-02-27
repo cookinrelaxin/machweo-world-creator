@@ -20,10 +20,10 @@
     SKSpriteNode* leftMostNode = nil;
     
     for (SKSpriteNode* node in world.children) {
-        if ([node.name isEqualToString:@"nodeForWorldScrolling"]) {
-            NSLog(@"[sprite.name isEqualToString:nodeForWorldScrolling]");
-            continue;
-        }
+//        if ([node.name isEqualToString:@"nodeForWorldScrolling"]) {
+//            NSLog(@"[sprite.name isEqualToString:nodeForWorldScrolling]");
+//            continue;
+//        }
         //if ((int)node.zPosition == 1) {
             
             if (leftMostNode == nil) {
@@ -70,10 +70,10 @@
     
     
     for (SKSpriteNode* sprite in sortedSprites) {
-        if ([sprite.name isEqualToString:@"nodeForWorldScrolling"]) {
-            NSLog(@"[sprite.name isEqualToString:nodeForWorldScrolling]");
-            continue;
-        }
+//        if ([sprite.name isEqualToString:@"nodeForWorldScrolling"]) {
+//            NSLog(@"[sprite.name isEqualToString:nodeForWorldScrolling]");
+//            continue;
+//        }
         NSLog(@"sprite.zPosition: %f", sprite.zPosition);
         
         NSXMLElement *spriteNode = [NSXMLElement elementWithName:@"node"];

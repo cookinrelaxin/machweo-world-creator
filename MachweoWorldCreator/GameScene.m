@@ -83,7 +83,7 @@ const int OBSTACLE_Z_POSITION = 100;
 
         ObstacleSignifier* nodeForWorldScrolling = [ObstacleSignifier node];
         nodeForWorldScrolling.name = @"nodeForWorldScrolling";
-        //nodeForWorldScrolling.zPosition = OBSTACLE_Z_POSITION;
+        nodeForWorldScrolling.zPosition = OBSTACLE_Z_POSITION;
         [world addChild:nodeForWorldScrolling];
         
         
