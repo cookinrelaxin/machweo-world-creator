@@ -42,7 +42,7 @@
         <yPosition>265.242371</yPosition>
         <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
-        <speedType>0</speedType>
+        <speedTkilimanjaro_decorationype>0</speedType>
     </node>
     <node>
         <type>DecorationSignifier</type>
