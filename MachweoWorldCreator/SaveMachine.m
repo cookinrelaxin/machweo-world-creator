@@ -20,6 +20,10 @@
     SKSpriteNode* leftMostNode = nil;
     
     for (SKSpriteNode* node in world.children) {
+        if ([node.name isEqualToString:@"nodeForWorldScrolling"]) {
+            NSLog(@"[sprite.name isEqualToString:nodeForWorldScrolling]");
+            continue;
+        }
         //if ((int)node.zPosition == 1) {
             
             if (leftMostNode == nil) {
@@ -66,6 +70,11 @@
     
     
     for (SKSpriteNode* sprite in sortedSprites) {
+        if ([sprite.name isEqualToString:@"nodeForWorldScrolling"]) {
+            NSLog(@"[sprite.name isEqualToString:nodeForWorldScrolling]");
+            continue;
+        }
+        NSLog(@"sprite.zPosition: %f", sprite.zPosition);
         
         NSXMLElement *spriteNode = [NSXMLElement elementWithName:@"node"];
         [root addChild:spriteNode];
@@ -93,7 +102,10 @@
 //        }
 
         float fractionalCoefficient = sprite.zPosition / leftMostNode.zPosition;
+        NSLog(@"fractionalCoefficient: %f", fractionalCoefficient);
         float parallaxAdjustedDifference = fractionalCoefficient * xDifference;
+        NSLog(@"parallaxAdjustedDifference: %f", parallaxAdjustedDifference);
+
         float xPos = sprite.position.x - parallaxAdjustedDifference;
         NSXMLElement *xPosition = [NSXMLElement elementWithName:@"xPosition" stringValue:[NSString stringWithFormat:@"%f", xPos]];
         [spriteNode addChild:xPosition];

@@ -82,6 +82,8 @@ const int OBSTACLE_Z_POSITION = 100;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeTerrainPoolPermissions:) name:@"changeTerrainPoolPermission" object:nil];
 
         ObstacleSignifier* nodeForWorldScrolling = [ObstacleSignifier node];
+        nodeForWorldScrolling.name = @"nodeForWorldScrolling";
+        //nodeForWorldScrolling.zPosition = OBSTACLE_Z_POSITION;
         [world addChild:nodeForWorldScrolling];
         
         
