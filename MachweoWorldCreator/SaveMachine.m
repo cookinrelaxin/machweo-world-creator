@@ -19,19 +19,19 @@
     //SKSpriteNode* rightMostNode = nil;
     SKSpriteNode* leftMostNode = nil;
     
-    float minZposition = FLT_MAX;
-    for (SKSpriteNode* node in world.children) {
-        if (node.zPosition < minZposition) {
-            minZposition = node.zPosition;
-        }
-    }
+//    float minZposition = FLT_MAX;
+//    for (SKSpriteNode* node in world.children) {
+//        if (node.zPosition < minZposition) {
+//            minZposition = node.zPosition;
+//        }
+//    }
 
     
     for (SKSpriteNode* node in world.children) {
-//        if ([node.name isEqualToString:@"nodeForWorldScrolling"]) {
-//            NSLog(@"[sprite.name isEqualToString:nodeForWorldScrolling]");
-//            continue;
-//        }
+        if ([node.name isEqualToString:@"nodeForWorldScrolling"]) {
+            NSLog(@"[sprite.name isEqualToString:nodeForWorldScrolling]");
+            continue;
+        }
         //if ((int)node.zPosition == 1) {
             
             if (leftMostNode == nil) {
@@ -45,9 +45,9 @@
                 float leftEdgeOfNode = node.position.x - (node.size.width / 2);
                 
                 if (leftEdgeOfNode < leftEdgeOfLeftMost) {
-                    if (node.zPosition == minZposition) {
+                    //if (node.zPosition == minZposition) {
                     leftMostNode = node;
-                    }
+                    //}
                 }
             }
 //            {
@@ -80,10 +80,10 @@
     
     
     for (SKSpriteNode* sprite in sortedSprites) {
-//        if ([sprite.name isEqualToString:@"nodeForWorldScrolling"]) {
-//            NSLog(@"[sprite.name isEqualToString:nodeForWorldScrolling]");
-//            continue;
-//        }
+        if ([sprite.name isEqualToString:@"nodeForWorldScrolling"]) {
+            NSLog(@"[sprite.name isEqualToString:nodeForWorldScrolling]");
+            continue;
+        }
        // NSLog(@"sprite.zPosition: %f", sprite.zPosition);
         
         NSXMLElement *spriteNode = [NSXMLElement elementWithName:@"node"];

@@ -163,6 +163,11 @@
 		78952A591AA2A8B500A065C2 /* decorationSet_savanna_day_a.xml in Resources */ = {isa = PBXBuildFile; fileRef = 78952A561AA2A8B500A065C2 /* decorationSet_savanna_day_a.xml */; };
 		78952A5A1AA2A8B500A065C2 /* decorationSet_savanna_day_b.xml in Resources */ = {isa = PBXBuildFile; fileRef = 78952A571AA2A8B500A065C2 /* decorationSet_savanna_day_b.xml */; };
 		78952A5B1AA2A8B500A065C2 /* decorationSet_savanna_day_c.xml in Resources */ = {isa = PBXBuildFile; fileRef = 78952A581AA2A8B500A065C2 /* decorationSet_savanna_day_c.xml */; };
+		78952A601AA2C79100A065C2 /* decorationSet_savanna_day_d.xml in Resources */ = {isa = PBXBuildFile; fileRef = 78952A5F1AA2C79100A065C2 /* decorationSet_savanna_day_d.xml */; };
+		78952A621AA2C92200A065C2 /* decorationSet_savanna_day_e.xml in Resources */ = {isa = PBXBuildFile; fileRef = 78952A611AA2C92200A065C2 /* decorationSet_savanna_day_e.xml */; };
+		78952A641AA2C98B00A065C2 /* decorationSet_savanna_day_f.xml in Resources */ = {isa = PBXBuildFile; fileRef = 78952A631AA2C98B00A065C2 /* decorationSet_savanna_day_f.xml */; };
+		78952A661AA2CA8000A065C2 /* decorationSet_savanna_day_h.xml in Resources */ = {isa = PBXBuildFile; fileRef = 78952A651AA2CA8000A065C2 /* decorationSet_savanna_day_h.xml */; };
+		78952A781AA2CC8400A065C2 /* decorationSet_savanna_day_g.xml in Resources */ = {isa = PBXBuildFile; fileRef = 78952A771AA2CC8400A065C2 /* decorationSet_savanna_day_g.xml */; };
 		78991D6C1A36661B004BDEC2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 78991D6B1A36661B004BDEC2 /* AppDelegate.m */; };
 		78991D6E1A36661B004BDEC2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 78991D6D1A36661B004BDEC2 /* main.m */; };
 		78991D711A36661B004BDEC2 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = 78991D701A36661B004BDEC2 /* GameScene.m */; };
@@ -350,6 +355,11 @@
 		78952A561AA2A8B500A065C2 /* decorationSet_savanna_day_a.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = decorationSet_savanna_day_a.xml; sourceTree = "<group>"; };
 		78952A571AA2A8B500A065C2 /* decorationSet_savanna_day_b.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = decorationSet_savanna_day_b.xml; sourceTree = "<group>"; };
 		78952A581AA2A8B500A065C2 /* decorationSet_savanna_day_c.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = decorationSet_savanna_day_c.xml; sourceTree = "<group>"; };
+		78952A5F1AA2C79100A065C2 /* decorationSet_savanna_day_d.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = decorationSet_savanna_day_d.xml; sourceTree = "<group>"; };
+		78952A611AA2C92200A065C2 /* decorationSet_savanna_day_e.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = decorationSet_savanna_day_e.xml; sourceTree = "<group>"; };
+		78952A631AA2C98B00A065C2 /* decorationSet_savanna_day_f.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = decorationSet_savanna_day_f.xml; sourceTree = "<group>"; };
+		78952A651AA2CA8000A065C2 /* decorationSet_savanna_day_h.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = decorationSet_savanna_day_h.xml; sourceTree = "<group>"; };
+		78952A771AA2CC8400A065C2 /* decorationSet_savanna_day_g.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = decorationSet_savanna_day_g.xml; sourceTree = "<group>"; };
 		78991D651A36661B004BDEC2 /* MachweoWorldCreator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MachweoWorldCreator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78991D691A36661B004BDEC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78991D6A1A36661B004BDEC2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -659,6 +669,11 @@
 				78952A561AA2A8B500A065C2 /* decorationSet_savanna_day_a.xml */,
 				78952A571AA2A8B500A065C2 /* decorationSet_savanna_day_b.xml */,
 				78952A581AA2A8B500A065C2 /* decorationSet_savanna_day_c.xml */,
+				78952A611AA2C92200A065C2 /* decorationSet_savanna_day_e.xml */,
+				78952A5F1AA2C79100A065C2 /* decorationSet_savanna_day_d.xml */,
+				78952A631AA2C98B00A065C2 /* decorationSet_savanna_day_f.xml */,
+				78952A771AA2CC8400A065C2 /* decorationSet_savanna_day_g.xml */,
+				78952A651AA2CA8000A065C2 /* decorationSet_savanna_day_h.xml */,
 			);
 			path = decorationSets;
 			sourceTree = "<group>";
@@ -832,6 +847,7 @@
 				782AE5A31A74A8B800FF4225 /* tree4_decoration.png in Resources */,
 				782AE5931A74A8B800FF4225 /* chapterCellTestBackgroundImage.png in Resources */,
 				782AE5451A74A8B800FF4225 /* cloudopaque_decoration.png in Resources */,
+				78952A661AA2CA8000A065C2 /* decorationSet_savanna_day_h.xml in Resources */,
 				782AE5591A74A8B800FF4225 /* mountain2.png in Resources */,
 				782AE5431A74A8B800FF4225 /* cloudopaque4.png in Resources */,
 				782AE5321A74A8B800FF4225 /* cloud2_decoration.png in Resources */,
@@ -859,6 +875,7 @@
 				785A53F31A95983E00ED2E37 /* rock3.ai in Resources */,
 				782AE55F1A74A8B800FF4225 /* circlemask_obstacle.png in Resources */,
 				782AE5471A74A8B800FF4225 /* cloudred1_decoration.png in Resources */,
+				78952A641AA2C98B00A065C2 /* decorationSet_savanna_day_f.xml in Resources */,
 				782AE54A1A74A8B800FF4225 /* cloudred3.png in Resources */,
 				782AE5441A74A8B800FF4225 /* cloudopaque4_decoration.png in Resources */,
 				782AE52D1A74A8B800FF4225 /* cloud1.0_decoration.png in Resources */,
@@ -895,6 +912,7 @@
 				785A53F11A95983E00ED2E37 /* rock2.ai in Resources */,
 				787DA33B1A9C2CF20093EC23 /* Far From Home v3.xml in Resources */,
 				782AE5971A74A8B800FF4225 /* redtree2_decoration.png in Resources */,
+				78952A621AA2C92200A065C2 /* decorationSet_savanna_day_e.xml in Resources */,
 				782AE5631A74A8B800FF4225 /* obstacle1_obstacle.png in Resources */,
 				78952A5B1AA2A8B500A065C2 /* decorationSet_savanna_day_c.xml in Resources */,
 				782AE5291A74A8B800FF4225 /* button.png in Resources */,
@@ -941,10 +959,12 @@
 				782AE5821A74A8B800FF4225 /* dusk1.ai in Resources */,
 				782AE53D1A74A8B800FF4225 /* cloud4.png in Resources */,
 				782AE5941A74A8B800FF4225 /* levelCellTestBackgroundImage.png in Resources */,
+				78952A781AA2CC8400A065C2 /* decorationSet_savanna_day_g.xml in Resources */,
 				784491641A9AD98F005AAAC4 /* The Journey Begins v4.xml in Resources */,
 				782AE5561A74A8B800FF4225 /* redgrass_decoration.png in Resources */,
 				782AE5601A74A8B800FF4225 /* hexagon.ai in Resources */,
 				782AE5961A74A8B800FF4225 /* redtree2.ai in Resources */,
+				78952A601AA2C79100A065C2 /* decorationSet_savanna_day_d.xml in Resources */,
 				782AE5461A74A8B800FF4225 /* cloudred1.png in Resources */,
 				782AE58C1A74A8B800FF4225 /* nightstars2_decoration.png in Resources */,
 				782AE5751A74A8B800FF4225 /* dawn2_decoration.png in Resources */,
