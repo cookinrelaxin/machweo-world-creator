@@ -18,11 +18,11 @@ typedef enum ElementVarieties
     xPosition,
     yPosition,
     zPosition,
-//    isRightMostNode,
     motionType,
     speedType,
     terrainPool,
-    terrainPoolMember
+    terrainPoolMember,
+    uniqueID
     
 } Element;
 
@@ -142,6 +142,11 @@ typedef enum NodeTypes
         currentElement = terrainPoolMember;
         return;
     }
+    if ([elementName isEqualToString:@"uniqueID"]) {
+        currentElement = uniqueID;
+        return;
+    }
+    
 }
 
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
@@ -227,6 +232,16 @@ typedef enum NodeTypes
         if (currentElement == terrainPoolMember) {
             NSLog(@"add terrainPoolMember");
             [terrainPoolArray addObject:string];
+        }
+        if (currentElement == uniqueID) {
+            if ([currentNode isKindOfClass:[DecorationSignifier class]]) {
+                DecorationSignifier* deco = (DecorationSignifier*)currentNode;
+                deco.uniqueID = string;
+            }
+            if ([currentNode isKindOfClass:[ObstacleSignifier class]]) {
+                ObstacleSignifier* obs = (ObstacleSignifier*)currentNode;
+                obs.uniqueID = string;
+            }
         }
     }
 }

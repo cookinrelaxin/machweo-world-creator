@@ -3,6 +3,7 @@
     <node>
         <type>DecorationSignifier</type>
         <name>blackgrass_decoration</name>
+        <uniqueID>586592</uniqueID>
         <xPosition>594.500000</xPosition>
         <yPosition>100.000000</yPosition>
         <zPosition>113.000000</zPosition>
@@ -10,128 +11,114 @@
     <node>
         <type>DecorationSignifier</type>
         <name>redgrass_decoration</name>
-        <xPosition>597.149414</xPosition>
+        <uniqueID>758602</uniqueID>
+        <xPosition>597.148682</xPosition>
         <yPosition>92.824493</yPosition>
         <zPosition>104.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
         <name>blackgrass_decoration</name>
-        <xPosition>1707.173584</xPosition>
+        <uniqueID>404307</uniqueID>
+        <xPosition>1707.174194</xPosition>
         <yPosition>100.000000</yPosition>
         <zPosition>113.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
         <name>redgrass_decoration</name>
-        <xPosition>1746.078125</xPosition>
+        <uniqueID>850718</uniqueID>
+        <xPosition>1746.079468</xPosition>
         <yPosition>100.000000</yPosition>
         <zPosition>104.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
         <name>blackgrass_decoration</name>
-        <xPosition>2810.565918</xPosition>
+        <uniqueID>206839</uniqueID>
+        <xPosition>2810.566650</xPosition>
         <yPosition>100.000000</yPosition>
         <zPosition>113.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
         <name>redgrass_decoration</name>
-        <xPosition>2873.614746</xPosition>
+        <uniqueID>489169</uniqueID>
+        <xPosition>2873.612549</xPosition>
         <yPosition>100.000000</yPosition>
         <zPosition>104.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
-        <name>blackgrass_decoration</name>
-        <xPosition>3923.078613</xPosition>
-        <yPosition>100.000000</yPosition>
-        <zPosition>113.000000</zPosition>
+        <name>cloudopaque4_decoration</name>
+        <uniqueID>968212</uniqueID>
+        <xPosition>485.293274</xPosition>
+        <yPosition>759.750183</yPosition>
+        <zPosition>9.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
         <name>cloudopaque3_decoration</name>
-        <xPosition>375.289551</xPosition>
-        <yPosition>281.004578</yPosition>
-        <zPosition>30.000000</zPosition>
-    </node>
-    <node>
-        <type>DecorationSignifier</type>
-        <name>redgrass_decoration</name>
-        <xPosition>4011.908936</xPosition>
-        <yPosition>100.000000</yPosition>
-        <zPosition>104.000000</zPosition>
-    </node>
-    <node>
-        <type>DecorationSignifier</type>
-        <name>blackgrass_decoration</name>
-        <xPosition>5003.276367</xPosition>
-        <yPosition>100.000000</yPosition>
-        <zPosition>113.000000</zPosition>
-    </node>
-    <node>
-        <type>DecorationSignifier</type>
-        <name>cloudopaque3_decoration</name>
+        <uniqueID>695417</uniqueID>
         <xPosition>1172.899414</xPosition>
         <yPosition>969.683228</yPosition>
         <zPosition>30.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
-        <name>redgrass_decoration</name>
-        <xPosition>4815.462402</xPosition>
-        <yPosition>100.000000</yPosition>
-        <zPosition>104.000000</zPosition>
-    </node>
-    <node>
-        <type>DecorationSignifier</type>
-        <name>cloudopaque4_decoration</name>
-        <xPosition>485.293213</xPosition>
-        <yPosition>759.750183</yPosition>
-        <zPosition>9.000000</zPosition>
-    </node>
-    <node>
-        <type>DecorationSignifier</type>
         <name>cloudopaque_decoration</name>
-        <xPosition>1151.359131</xPosition>
-        <yPosition>467.772614</yPosition>
-        <zPosition>20.000000</zPosition>
-    </node>
-    <node>
-        <type>DecorationSignifier</type>
-        <name>cloudopaque3_decoration</name>
-        <xPosition>2143.104248</xPosition>
-        <yPosition>812.720764</yPosition>
-        <zPosition>30.000000</zPosition>
+        <uniqueID>445873</uniqueID>
+        <xPosition>1724.194336</xPosition>
+        <yPosition>406.099792</yPosition>
+        <zPosition>45.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
         <name>blackgrass_decoration</name>
-        <xPosition>6107.443359</xPosition>
+        <uniqueID>83036</uniqueID>
+        <xPosition>3923.078613</xPosition>
         <yPosition>100.000000</yPosition>
         <zPosition>113.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
-        <name>cloudopaque4_decoration</name>
-        <xPosition>1258.012451</xPosition>
-        <yPosition>400.748505</yPosition>
-        <zPosition>9.000000</zPosition>
-    </node>
-    <node>
-        <type>DecorationSignifier</type>
         <name>redgrass_decoration</name>
-        <xPosition>5785.046387</xPosition>
+        <uniqueID>611057</uniqueID>
+        <xPosition>4011.910156</xPosition>
         <yPosition>100.000000</yPosition>
         <zPosition>104.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
-        <name>cloudopaque4_decoration</name>
-        <xPosition>1423.461914</xPosition>
-        <yPosition>876.920837</yPosition>
-        <zPosition>9.000000</zPosition>
+        <name>blackgrass_decoration</name>
+        <uniqueID>658326</uniqueID>
+        <xPosition>5003.276855</xPosition>
+        <yPosition>100.000000</yPosition>
+        <zPosition>113.000000</zPosition>
+    </node>
+    <node>
+        <type>DecorationSignifier</type>
+        <name>redgrass_decoration</name>
+        <uniqueID>436203</uniqueID>
+        <xPosition>4815.463867</xPosition>
+        <yPosition>100.000000</yPosition>
+        <zPosition>104.000000</zPosition>
+    </node>
+    <node>
+        <type>DecorationSignifier</type>
+        <name>redgrass_decoration</name>
+        <uniqueID>213613</uniqueID>
+        <xPosition>5785.043945</xPosition>
+        <yPosition>100.000000</yPosition>
+        <zPosition>104.000000</zPosition>
+    </node>
+    <node>
+        <type>DecorationSignifier</type>
+        <name>blackgrass_decoration</name>
+        <uniqueID>437116</uniqueID>
+        <xPosition>6107.443359</xPosition>
+        <yPosition>100.000000</yPosition>
+        <zPosition>113.000000</zPosition>
     </node>
     <terrainPool></terrainPool>
 </worldnodes>

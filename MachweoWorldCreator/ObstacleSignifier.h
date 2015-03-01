@@ -30,6 +30,8 @@ typedef enum SpeedType
 @interface ObstacleSignifier : SKSpriteNode
 @property (nonatomic) Motion currentMotionType;
 @property (nonatomic) Speed currentSpeedType;
+@property (nonatomic, strong) NSString* uniqueID;
+
 
 -(NSString*)stringValueOfCurrentMotionType;
 -(NSString*)stringValueOfCurrentSpeedType;

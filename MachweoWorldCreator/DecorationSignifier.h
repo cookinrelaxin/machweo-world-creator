@@ -10,6 +10,8 @@
 
 @interface DecorationSignifier : SKSpriteNode
 @property (nonatomic) BOOL terrainPoolMember;
+@property (nonatomic, strong) NSString* uniqueID;
+
 
 
 @end

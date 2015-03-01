@@ -19,6 +19,14 @@
     //SKSpriteNode* rightMostNode = nil;
     SKSpriteNode* leftMostNode = nil;
     
+    float minZposition = FLT_MAX;
+    for (SKSpriteNode* node in world.children) {
+        if (node.zPosition < minZposition) {
+            minZposition = node.zPosition;
+        }
+    }
+
+    
     for (SKSpriteNode* node in world.children) {
 //        if ([node.name isEqualToString:@"nodeForWorldScrolling"]) {
 //            NSLog(@"[sprite.name isEqualToString:nodeForWorldScrolling]");
@@ -37,7 +45,9 @@
                 float leftEdgeOfNode = node.position.x - (node.size.width / 2);
                 
                 if (leftEdgeOfNode < leftEdgeOfLeftMost) {
+                    if (node.zPosition == minZposition) {
                     leftMostNode = node;
+                    }
                 }
             }
 //            {
@@ -74,23 +84,26 @@
 //            NSLog(@"[sprite.name isEqualToString:nodeForWorldScrolling]");
 //            continue;
 //        }
-        NSLog(@"sprite.zPosition: %f", sprite.zPosition);
+       // NSLog(@"sprite.zPosition: %f", sprite.zPosition);
         
         NSXMLElement *spriteNode = [NSXMLElement elementWithName:@"node"];
         [root addChild:spriteNode];
-        
         NSString* typeString = @"placeholder";
         if ([sprite isKindOfClass:[ObstacleSignifier class]]) {
             typeString = @"ObstacleSignifier";
         }
         else if ([sprite isKindOfClass:[DecorationSignifier class]]) {
             typeString = @"DecorationSignifier";
+            //NSLog(@"(DecorationSignifier*)sprite.uniqueID: %@",((DecorationSignifier*)sprite).uniqueID);
         }
         NSXMLElement *type = [NSXMLElement elementWithName:@"type" stringValue:typeString];
         [spriteNode addChild:type];
         
         NSXMLElement *name = [NSXMLElement elementWithName:@"name" stringValue:sprite.name];
         [spriteNode addChild:name];
+        
+        NSXMLElement *uniqueID = [NSXMLElement elementWithName:@"uniqueID" stringValue:[NSString stringWithFormat:@"%u", arc4random_uniform(1000000)]];
+        [spriteNode addChild:uniqueID];
         
 //        if (sprite == rightMostNode) {
 //            NSXMLElement *isRightMostNode = [NSXMLElement elementWithName:@"isRightMostNode" stringValue:@"yes"];
@@ -102,9 +115,9 @@
 //        }
 
         float fractionalCoefficient = sprite.zPosition / leftMostNode.zPosition;
-        NSLog(@"fractionalCoefficient: %f", fractionalCoefficient);
+        //NSLog(@"fractionalCoefficient: %f", fractionalCoefficient);
         float parallaxAdjustedDifference = fractionalCoefficient * xDifference;
-        NSLog(@"parallaxAdjustedDifference: %f", parallaxAdjustedDifference);
+        //NSLog(@"parallaxAdjustedDifference: %f", parallaxAdjustedDifference);
 
         float xPos = sprite.position.x - parallaxAdjustedDifference;
         NSXMLElement *xPosition = [NSXMLElement elementWithName:@"xPosition" stringValue:[NSString stringWithFormat:@"%f", xPos]];
