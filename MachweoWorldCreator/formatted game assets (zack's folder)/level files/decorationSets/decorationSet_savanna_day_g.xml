@@ -34,14 +34,6 @@
     </node>
     <node>
         <type>DecorationSignifier</type>
-        <name>mountain_decoration</name>
-        <uniqueID>403519</uniqueID>
-        <xPosition>400.848236</xPosition>
-        <yPosition>364.031311</yPosition>
-        <zPosition>4.000000</zPosition>
-    </node>
-    <node>
-        <type>DecorationSignifier</type>
         <name>cloudopaque4_decoration</name>
         <uniqueID>670187</uniqueID>
         <xPosition>1002.120728</xPosition>

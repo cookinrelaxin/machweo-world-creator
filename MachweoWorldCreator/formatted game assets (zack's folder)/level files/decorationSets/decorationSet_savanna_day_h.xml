@@ -66,14 +66,6 @@
     </node>
     <node>
         <type>DecorationSignifier</type>
-        <name>mountain2_decoration</name>
-        <uniqueID>172129</uniqueID>
-        <xPosition>733.795288</xPosition>
-        <yPosition>248.605225</yPosition>
-        <zPosition>15.000000</zPosition>
-    </node>
-    <node>
-        <type>DecorationSignifier</type>
         <name>blackgrass_decoration</name>
         <uniqueID>297595</uniqueID>
         <xPosition>2874.407227</xPosition>

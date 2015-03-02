@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<worldnodes>
+    <node>
+        <type>DecorationSignifier</type>
+        <name>shrub8_decoration</name>
+        <uniqueID>555918</uniqueID>
+        <xPosition>169.193100</xPosition>
+        <yPosition>326.070923</yPosition>
+        <zPosition>31.000000</zPosition>
+    </node>
+    <node>
+        <type>DecorationSignifier</type>
+        <name>shrub1_decoration</name>
+        <uniqueID>405286</uniqueID>
+        <xPosition>537.682800</xPosition>
+        <yPosition>223.695663</yPosition>
+        <zPosition>30.000000</zPosition>
+    </node>
+    <node>
+        <type>DecorationSignifier</type>
+        <name>dune4_decoration</name>
+        <uniqueID>439544</uniqueID>
+        <xPosition>733.000000</xPosition>
+        <yPosition>83.508415</yPosition>
+        <zPosition>31.000000</zPosition>
+    </node>
+    <node>
+        <type>DecorationSignifier</type>
+        <name>shrub3_decoration</name>
+        <uniqueID>184294</uniqueID>
+        <xPosition>1003.421875</xPosition>
+        <yPosition>331.345490</yPosition>
+        <zPosition>31.000000</zPosition>
+    </node>
+    <node>
+        <type>DecorationSignifier</type>
+        <name>shrub2_decoration</name>
+        <uniqueID>239614</uniqueID>
+        <xPosition>1275.818359</xPosition>
+        <yPosition>341.664398</yPosition>
+        <zPosition>30.000000</zPosition>
+    </node>
+    <terrainPool></terrainPool>
+</worldnodes>
