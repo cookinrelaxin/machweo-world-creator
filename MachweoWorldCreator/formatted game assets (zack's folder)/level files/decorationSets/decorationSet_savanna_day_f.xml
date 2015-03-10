@@ -46,7 +46,7 @@
         <uniqueID>726493</uniqueID>
         <xPosition>934.364441</xPosition>
         <yPosition>274.271942</yPosition>
-        <zPosition>10.000000</zPosition>
+        <zPosition>2.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
