@@ -6,7 +6,7 @@
         <uniqueID>82149</uniqueID>
         <xPosition>304.140717</xPosition>
         <yPosition>182.276901</yPosition>
-        <zPosition>23.000000</zPosition>
+        <zPosition>24.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
@@ -22,7 +22,7 @@
         <uniqueID>872220</uniqueID>
         <xPosition>548.281799</xPosition>
         <yPosition>277.858246</yPosition>
-        <zPosition>16.000000</zPosition>
+        <zPosition>17.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
@@ -30,7 +30,7 @@
         <uniqueID>595708</uniqueID>
         <xPosition>599.597290</xPosition>
         <yPosition>242.338242</yPosition>
-        <zPosition>13.000000</zPosition>
+        <zPosition>17.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
@@ -38,7 +38,7 @@
         <uniqueID>745904</uniqueID>
         <xPosition>689.730652</xPosition>
         <yPosition>303.059418</yPosition>
-        <zPosition>16.000000</zPosition>
+        <zPosition>17.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>

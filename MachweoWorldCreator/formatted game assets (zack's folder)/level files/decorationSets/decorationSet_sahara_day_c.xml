@@ -14,7 +14,7 @@
         <uniqueID>405286</uniqueID>
         <xPosition>537.682800</xPosition>
         <yPosition>223.695663</yPosition>
-        <zPosition>30.000000</zPosition>
+        <zPosition>31.000000</zPosition>
     </node>
     <node>
         <type>DecorationSignifier</type>
@@ -38,7 +38,7 @@
         <uniqueID>239614</uniqueID>
         <xPosition>1275.818359</xPosition>
         <yPosition>341.664398</yPosition>
-        <zPosition>30.000000</zPosition>
+        <zPosition>31.000000</zPosition>
     </node>
     <terrainPool></terrainPool>
 </worldnodes>

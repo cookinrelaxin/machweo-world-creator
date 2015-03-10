@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<worldnodes>
+    <node>
+        <type>DecorationSignifier</type>
+        <name>rock2_decoration</name>
+        <uniqueID>411230</uniqueID>
+        <xPosition>93.319336</xPosition>
+        <yPosition>51.937820</yPosition>
+        <zPosition>115.000000</zPosition>
+    </node>
+    <node>
+        <type>DecorationSignifier</type>
+        <name>dune4_decoration</name>
+        <uniqueID>324017</uniqueID>
+        <xPosition>733.000000</xPosition>
+        <yPosition>-78.252914</yPosition>
+        <zPosition>115.000000</zPosition>
+    </node>
+    <node>
+        <type>DecorationSignifier</type>
+        <name>rock1_decoration</name>
+        <uniqueID>61709</uniqueID>
+        <xPosition>898.769836</xPosition>
+        <yPosition>66.589905</yPosition>
+        <zPosition>111.000000</zPosition>
+    </node>
+    <node>
+        <type>DecorationSignifier</type>
+        <name>dune3_decoration</name>
+        <uniqueID>99979</uniqueID>
+        <xPosition>1013.672791</xPosition>
+        <yPosition>-4.879913</yPosition>
+        <zPosition>102.000000</zPosition>
+    </node>
+    <terrainPool></terrainPool>
+</worldnodes>
