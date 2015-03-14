@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<worldnodes>
+    <node>
+        <type>ObstacleSignifier</type>
+        <name>rotate_obstacle</name>
+        <uniqueID>581907</uniqueID>
+        <xPosition>214.000000</xPosition>
+        <yPosition>959.476990</yPosition>
+        <zPosition>100.000000</zPosition>
+        <motionType>4</motionType>
+        <speedType>1</speedType>
+    </node>
+    <node>
+        <type>ObstacleSignifier</type>
+        <name>rotate_obstacle</name>
+        <uniqueID>252303</uniqueID>
+        <xPosition>1166.861328</xPosition>
+        <yPosition>33.003677</yPosition>
+        <zPosition>100.000000</zPosition>
+        <motionType>4</motionType>
+        <speedType>3</speedType>
+    </node>
+    <terrainPool></terrainPool>
+</worldnodes>
