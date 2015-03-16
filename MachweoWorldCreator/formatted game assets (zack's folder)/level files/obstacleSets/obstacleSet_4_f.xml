@@ -3,9 +3,9 @@
     <node>
         <type>ObstacleSignifier</type>
         <name>obstacle2_obstacle</name>
-        <uniqueID>785970</uniqueID>
+        <uniqueID>470826</uniqueID>
         <xPosition>42.500000</xPosition>
-        <yPosition>160.412949</yPosition>
+        <yPosition>486.456085</yPosition>
         <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>
@@ -13,9 +13,9 @@
     <node>
         <type>ObstacleSignifier</type>
         <name>obstacle2_obstacle</name>
-        <uniqueID>543222</uniqueID>
-        <xPosition>43.830139</xPosition>
-        <yPosition>509.943420</yPosition>
+        <uniqueID>568128</uniqueID>
+        <xPosition>686.678345</xPosition>
+        <yPosition>52.940544</yPosition>
         <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>
@@ -23,9 +23,9 @@
     <node>
         <type>ObstacleSignifier</type>
         <name>obstacle2_obstacle</name>
-        <uniqueID>365002</uniqueID>
-        <xPosition>396.953552</xPosition>
-        <yPosition>325.455383</yPosition>
+        <uniqueID>373752</uniqueID>
+        <xPosition>691.722656</xPosition>
+        <yPosition>488.640533</yPosition>
         <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>
@@ -33,9 +33,19 @@
     <node>
         <type>ObstacleSignifier</type>
         <name>obstacle2_obstacle</name>
-        <uniqueID>351533</uniqueID>
-        <xPosition>411.273132</xPosition>
-        <yPosition>782.864136</yPosition>
+        <uniqueID>829599</uniqueID>
+        <xPosition>694.045410</xPosition>
+        <yPosition>977.884155</yPosition>
+        <zPosition>100.000000</zPosition>
+        <motionType>0</motionType>
+        <speedType>0</speedType>
+    </node>
+    <node>
+        <type>ObstacleSignifier</type>
+        <name>obstacle2_obstacle</name>
+        <uniqueID>745356</uniqueID>
+        <xPosition>1286.620850</xPosition>
+        <yPosition>476.582275</yPosition>
         <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>

@@ -2,40 +2,40 @@
 <worldnodes>
     <node>
         <type>ObstacleSignifier</type>
-        <name>obstacle2_obstacle</name>
-        <uniqueID>785970</uniqueID>
-        <xPosition>42.500000</xPosition>
-        <yPosition>160.412949</yPosition>
+        <name>totem_obstacle</name>
+        <uniqueID>452471</uniqueID>
+        <xPosition>90.500000</xPosition>
+        <yPosition>1001.545410</yPosition>
         <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>
     </node>
     <node>
         <type>ObstacleSignifier</type>
-        <name>obstacle2_obstacle</name>
-        <uniqueID>543222</uniqueID>
-        <xPosition>43.830139</xPosition>
-        <yPosition>509.943420</yPosition>
+        <name>totem2_obstacle</name>
+        <uniqueID>724325</uniqueID>
+        <xPosition>90.500000</xPosition>
+        <yPosition>93.597008</yPosition>
         <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>
     </node>
     <node>
         <type>ObstacleSignifier</type>
-        <name>obstacle2_obstacle</name>
-        <uniqueID>365002</uniqueID>
-        <xPosition>396.953552</xPosition>
-        <yPosition>325.455383</yPosition>
+        <name>obstacle1_obstacle</name>
+        <uniqueID>659292</uniqueID>
+        <xPosition>801.035889</xPosition>
+        <yPosition>317.123169</yPosition>
         <zPosition>100.000000</zPosition>
-        <motionType>0</motionType>
-        <speedType>0</speedType>
+        <motionType>2</motionType>
+        <speedType>2</speedType>
     </node>
     <node>
         <type>ObstacleSignifier</type>
-        <name>obstacle2_obstacle</name>
-        <uniqueID>351533</uniqueID>
-        <xPosition>411.273132</xPosition>
-        <yPosition>782.864136</yPosition>
+        <name>totem2_obstacle</name>
+        <uniqueID>650096</uniqueID>
+        <xPosition>1004.474609</xPosition>
+        <yPosition>537.508118</yPosition>
         <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>

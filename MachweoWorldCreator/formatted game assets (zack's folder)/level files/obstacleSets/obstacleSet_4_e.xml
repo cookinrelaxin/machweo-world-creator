@@ -3,9 +3,9 @@
     <node>
         <type>ObstacleSignifier</type>
         <name>obstacle2_obstacle</name>
-        <uniqueID>785970</uniqueID>
+        <uniqueID>383103</uniqueID>
         <xPosition>42.500000</xPosition>
-        <yPosition>160.412949</yPosition>
+        <yPosition>757.795898</yPosition>
         <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>
@@ -13,9 +13,9 @@
     <node>
         <type>ObstacleSignifier</type>
         <name>obstacle2_obstacle</name>
-        <uniqueID>543222</uniqueID>
-        <xPosition>43.830139</xPosition>
-        <yPosition>509.943420</yPosition>
+        <uniqueID>958026</uniqueID>
+        <xPosition>43.052490</xPosition>
+        <yPosition>367.106018</yPosition>
         <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>
@@ -23,9 +23,9 @@
     <node>
         <type>ObstacleSignifier</type>
         <name>obstacle2_obstacle</name>
-        <uniqueID>365002</uniqueID>
-        <xPosition>396.953552</xPosition>
-        <yPosition>325.455383</yPosition>
+        <uniqueID>208394</uniqueID>
+        <xPosition>219.772827</xPosition>
+        <yPosition>1017.880615</yPosition>
         <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>
@@ -33,9 +33,9 @@
     <node>
         <type>ObstacleSignifier</type>
         <name>obstacle2_obstacle</name>
-        <uniqueID>351533</uniqueID>
-        <xPosition>411.273132</xPosition>
-        <yPosition>782.864136</yPosition>
+        <uniqueID>452129</uniqueID>
+        <xPosition>226.024475</xPosition>
+        <yPosition>54.506027</yPosition>
         <zPosition>100.000000</zPosition>
         <motionType>0</motionType>
         <speedType>0</speedType>

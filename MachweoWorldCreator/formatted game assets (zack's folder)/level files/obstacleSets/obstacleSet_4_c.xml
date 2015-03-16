@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<worldnodes>
+    <node>
+        <type>ObstacleSignifier</type>
+        <name>totem2_obstacle</name>
+        <uniqueID>587203</uniqueID>
+        <xPosition>90.500000</xPosition>
+        <yPosition>1160.500000</yPosition>
+        <zPosition>100.000000</zPosition>
+        <motionType>0</motionType>
+        <speedType>0</speedType>
+    </node>
+    <node>
+        <type>ObstacleSignifier</type>
+        <name>totem_obstacle</name>
+        <uniqueID>814388</uniqueID>
+        <xPosition>90.500000</xPosition>
+        <yPosition>427.044495</yPosition>
+        <zPosition>100.000000</zPosition>
+        <motionType>0</motionType>
+        <speedType>0</speedType>
+    </node>
+    <terrainPool></terrainPool>
+</worldnodes>
