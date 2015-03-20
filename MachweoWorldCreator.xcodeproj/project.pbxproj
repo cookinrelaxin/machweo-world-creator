@@ -246,6 +246,8 @@
 		785A53F81A9598BE00ED2E37 /* rock1_decoration.png in Resources */ = {isa = PBXBuildFile; fileRef = 785A53F51A9598BE00ED2E37 /* rock1_decoration.png */; };
 		785A53F91A9598BE00ED2E37 /* rock2_decoration.png in Resources */ = {isa = PBXBuildFile; fileRef = 785A53F61A9598BE00ED2E37 /* rock2_decoration.png */; };
 		785A53FA1A9598BE00ED2E37 /* rock3_decoration.png in Resources */ = {isa = PBXBuildFile; fileRef = 785A53F71A9598BE00ED2E37 /* rock3_decoration.png */; };
+		787698051ABC90A000A2FF81 /* obstacleSet_7_a.xml in Resources */ = {isa = PBXBuildFile; fileRef = 787698041ABC90A000A2FF81 /* obstacleSet_7_a.xml */; };
+		787698091ABC977F00A2FF81 /* rotate_huge_obstacle.png in Resources */ = {isa = PBXBuildFile; fileRef = 787698081ABC977F00A2FF81 /* rotate_huge_obstacle.png */; };
 		787AED151ABB507E000429DE /* obstacleSet_1_a.xml in Resources */ = {isa = PBXBuildFile; fileRef = 787AECFB1ABB507E000429DE /* obstacleSet_1_a.xml */; };
 		787AED161ABB507E000429DE /* obstacleSet_1_b.xml in Resources */ = {isa = PBXBuildFile; fileRef = 787AECFC1ABB507E000429DE /* obstacleSet_1_b.xml */; };
 		787AED171ABB507E000429DE /* obstacleSet_1_c.xml in Resources */ = {isa = PBXBuildFile; fileRef = 787AECFD1ABB507E000429DE /* obstacleSet_1_c.xml */; };
@@ -284,7 +286,6 @@
 		787AED891ABB57CF000429DE /* obstacleSet_6_c.xml in Resources */ = {isa = PBXBuildFile; fileRef = 787AED791ABB57CF000429DE /* obstacleSet_6_c.xml */; };
 		787AED8A1ABB57CF000429DE /* obstacleSet_6_d.xml in Resources */ = {isa = PBXBuildFile; fileRef = 787AED7A1ABB57CF000429DE /* obstacleSet_6_d.xml */; };
 		787AED8B1ABB57CF000429DE /* obstacleSet_6_e.xml in Resources */ = {isa = PBXBuildFile; fileRef = 787AED7B1ABB57CF000429DE /* obstacleSet_6_e.xml */; };
-		787AED8C1ABB57CF000429DE /* obstacleSet_6_f.xml in Resources */ = {isa = PBXBuildFile; fileRef = 787AED7C1ABB57CF000429DE /* obstacleSet_6_f.xml */; };
 		787AED8D1ABB57CF000429DE /* obstacleSet_6_g.xml in Resources */ = {isa = PBXBuildFile; fileRef = 787AED7D1ABB57CF000429DE /* obstacleSet_6_g.xml */; };
 		787AED8E1ABB57CF000429DE /* obstacleSet_6_h.xml in Resources */ = {isa = PBXBuildFile; fileRef = 787AED7E1ABB57CF000429DE /* obstacleSet_6_h.xml */; };
 		78952A591AA2A8B500A065C2 /* decorationSet_savanna_day_a.xml in Resources */ = {isa = PBXBuildFile; fileRef = 78952A561AA2A8B500A065C2 /* decorationSet_savanna_day_a.xml */; };
@@ -571,6 +572,8 @@
 		785A53F51A9598BE00ED2E37 /* rock1_decoration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rock1_decoration.png; sourceTree = "<group>"; };
 		785A53F61A9598BE00ED2E37 /* rock2_decoration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rock2_decoration.png; sourceTree = "<group>"; };
 		785A53F71A9598BE00ED2E37 /* rock3_decoration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rock3_decoration.png; sourceTree = "<group>"; };
+		787698041ABC90A000A2FF81 /* obstacleSet_7_a.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = obstacleSet_7_a.xml; sourceTree = "<group>"; };
+		787698081ABC977F00A2FF81 /* rotate_huge_obstacle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rotate_huge_obstacle.png; sourceTree = "<group>"; };
 		787AECFB1ABB507E000429DE /* obstacleSet_1_a.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = obstacleSet_1_a.xml; sourceTree = "<group>"; };
 		787AECFC1ABB507E000429DE /* obstacleSet_1_b.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = obstacleSet_1_b.xml; sourceTree = "<group>"; };
 		787AECFD1ABB507E000429DE /* obstacleSet_1_c.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = obstacleSet_1_c.xml; sourceTree = "<group>"; };
@@ -609,7 +612,6 @@
 		787AED791ABB57CF000429DE /* obstacleSet_6_c.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = obstacleSet_6_c.xml; sourceTree = "<group>"; };
 		787AED7A1ABB57CF000429DE /* obstacleSet_6_d.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = obstacleSet_6_d.xml; sourceTree = "<group>"; };
 		787AED7B1ABB57CF000429DE /* obstacleSet_6_e.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = obstacleSet_6_e.xml; sourceTree = "<group>"; };
-		787AED7C1ABB57CF000429DE /* obstacleSet_6_f.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = obstacleSet_6_f.xml; sourceTree = "<group>"; };
 		787AED7D1ABB57CF000429DE /* obstacleSet_6_g.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = obstacleSet_6_g.xml; sourceTree = "<group>"; };
 		787AED7E1ABB57CF000429DE /* obstacleSet_6_h.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = obstacleSet_6_h.xml; sourceTree = "<group>"; };
 		78952A561AA2A8B500A065C2 /* decorationSet_savanna_day_a.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = decorationSet_savanna_day_a.xml; sourceTree = "<group>"; };
@@ -820,6 +822,7 @@
 				782AE4DC1A74A8B800FF4225 /* obstacle4_obstacle.png */,
 				782AE4DD1A74A8B800FF4225 /* rotate.ai */,
 				782AE4DE1A74A8B800FF4225 /* rotate_obstacle.png */,
+				787698081ABC977F00A2FF81 /* rotate_huge_obstacle.png */,
 				782AE4DF1A74A8B800FF4225 /* square.ai */,
 				782AE4E01A74A8B800FF4225 /* square_obstacle.png */,
 				782AE4E11A74A8B800FF4225 /* totem.ai */,
@@ -1191,9 +1194,9 @@
 				787AED791ABB57CF000429DE /* obstacleSet_6_c.xml */,
 				787AED7A1ABB57CF000429DE /* obstacleSet_6_d.xml */,
 				787AED7B1ABB57CF000429DE /* obstacleSet_6_e.xml */,
-				787AED7C1ABB57CF000429DE /* obstacleSet_6_f.xml */,
 				787AED7D1ABB57CF000429DE /* obstacleSet_6_g.xml */,
 				787AED7E1ABB57CF000429DE /* obstacleSet_6_h.xml */,
+				787698041ABC90A000A2FF81 /* obstacleSet_7_a.xml */,
 			);
 			path = obstacleSets;
 			sourceTree = "<group>";
@@ -1472,6 +1475,7 @@
 				783379AC1AA3F1E7008756CB /* dune19.ai in Resources */,
 				782AE5951A74A8B800FF4225 /* redtree.ai in Resources */,
 				782AE5701A74A8B800FF4225 /* totem2_obstacle.png in Resources */,
+				787698091ABC977F00A2FF81 /* rotate_huge_obstacle.png in Resources */,
 				783379BD1AA3F1E7008756CB /* dune7.ai in Resources */,
 				783379B61AA3F1E7008756CB /* dune3_decoration.png in Resources */,
 				782AE5741A74A8B800FF4225 /* dawn2.ai in Resources */,
@@ -1481,7 +1485,6 @@
 				782AE56D1A74A8B800FF4225 /* square_obstacle.png in Resources */,
 				787AED8E1ABB57CF000429DE /* obstacleSet_6_h.xml in Resources */,
 				783379B51AA3F1E7008756CB /* dune3.ai in Resources */,
-				787AED8C1ABB57CF000429DE /* obstacleSet_6_f.xml in Resources */,
 				787AED851ABB57CF000429DE /* obstacleSet_5_g.xml in Resources */,
 				783379B21AA3F1E7008756CB /* dune21.ai in Resources */,
 				782AE5511A74A8B800FF4225 /* grass.ai in Resources */,
@@ -1525,6 +1528,7 @@
 				782AE5611A74A8B800FF4225 /* hexagon_obstacle.png in Resources */,
 				787AED881ABB57CF000429DE /* obstacleSet_6_b.xml in Resources */,
 				783379A11AA3F1E7008756CB /* dune13_decoration.png in Resources */,
+				787698051ABC90A000A2FF81 /* obstacleSet_7_a.xml in Resources */,
 				782AE53A1A74A8B800FF4225 /* cloud4.0.png in Resources */,
 				783379B41AA3F1E7008756CB /* dune2_decoration.png in Resources */,
 				782AE5771A74A8B800FF4225 /* dawn4_decoration.png in Resources */,
