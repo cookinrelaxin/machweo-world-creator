@@ -43,10 +43,7 @@ const int OBSTACLE_Z_POSITION = 100;
     SKSpriteNode* rightBorder;
     SaveMachine *saveMachine;
     SKShapeNode* outlineNode;
-    NSMutableArray* terrainPool;
-    
     BOOL allowSnapping;
-    
 }
 
 -(void)didMoveToView:(SKView *)view {
@@ -79,8 +76,6 @@ const int OBSTACLE_Z_POSITION = 100;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeMotionSpeeds:) name:@"motionSpeedChanged" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteNode) name:@"delete node" object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSnappingPermissions:) name:@"changeSnapPermission" object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeTerrainPoolPermissions:) name:@"changeTerrainPoolPermission" object:nil];
-
         ObstacleSignifier* nodeForWorldScrolling = [ObstacleSignifier node];
         nodeForWorldScrolling.name = @"nodeForWorldScrolling";
         //nodeForWorldScrolling.zPosition = OBSTACLE_Z_POSITION;
@@ -88,11 +83,6 @@ const int OBSTACLE_Z_POSITION = 100;
         
         
         allowSnapping = true;
-        
-        terrainPool = [NSMutableArray array];
-
-
-
     }
     return self;
 
@@ -102,23 +92,8 @@ const int OBSTACLE_Z_POSITION = 100;
     allowSnapping = [(NSNumber*)[notification.userInfo objectForKey:@"allow snapping"] boolValue];
 }
 
--(void)changeTerrainPoolPermissions:(NSNotification*)notification{
-    if (draggedSprite) {
-        if ([draggedSprite isKindOfClass:[DecorationSignifier class]]) {
-            NSLog(@"changeTerrainPoolPermissions");
-            DecorationSignifier* deco = (DecorationSignifier*)draggedSprite;
-            deco.terrainPoolMember = !deco.terrainPoolMember;
-            if (deco.terrainPoolMember) {
-                if (![terrainPool containsObject:deco.name]) {
-                    [terrainPool addObject:deco.name.copy];
-                }
-            }
-        }
-    }
-}
-
 -(void)haveSaveMachineDoItsThing{
-    [saveMachine saveWorld:world withTerrainPool:terrainPool];
+    [saveMachine saveWorld:world];
 }
 
 -(void)loadLevel:(NSNotification*)notification{
@@ -127,7 +102,7 @@ const int OBSTACLE_Z_POSITION = 100;
     for (SKNode* node in world.children) {
         [node removeFromParent];
     }
-    [cl loadWorld:world andTerrainPool:terrainPool];
+    [cl loadWorld:world];
     
 }
 

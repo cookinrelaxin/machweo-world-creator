@@ -20,8 +20,6 @@ typedef enum ElementVarieties
     zPosition,
     motionType,
     speedType,
-    terrainPool,
-    terrainPoolMember,
     uniqueID
     
 } Element;
@@ -36,23 +34,16 @@ typedef enum NodeTypes
     // as simple as possible for now. assume all nodes are obstacles
     NSMutableArray* obstacleArray;
     NSMutableArray* decorationArray;
-    
-    NSMutableArray* terrainPoolArray;
-
     SKSpriteNode *currentNode;
     Element currentElement;
     Node currentNodeType;
-    
     BOOL charactersFound;
     BOOL validFile;
-    
 }
 
 -(instancetype)initWithFile:(NSString*)fileName{
     obstacleArray = [NSMutableArray array];
     decorationArray = [NSMutableArray array];
-    terrainPoolArray = [NSMutableArray array];
-
     NSXMLParser* chunkParser;
     
     BOOL success;
@@ -132,14 +123,6 @@ typedef enum NodeTypes
     }
     if ([elementName isEqualToString:@"speedType"]) {
         currentElement = speedType;
-        return;
-    }
-    if ([elementName isEqualToString:@"terrainPool"]) {
-        currentElement = terrainPool;
-        return;
-    }
-    if ([elementName isEqualToString:@"terrainPoolMember"]) {
-        currentElement = terrainPoolMember;
         return;
     }
     if ([elementName isEqualToString:@"uniqueID"]) {
@@ -229,10 +212,6 @@ typedef enum NodeTypes
                 return;
             }
         }
-        if (currentElement == terrainPoolMember) {
-            NSLog(@"add terrainPoolMember");
-            [terrainPoolArray addObject:string];
-        }
         if (currentElement == uniqueID) {
             if ([currentNode isKindOfClass:[DecorationSignifier class]]) {
                 DecorationSignifier* deco = (DecorationSignifier*)currentNode;
@@ -246,11 +225,8 @@ typedef enum NodeTypes
     }
 }
 
--(void)loadWorld:(SKNode*)world andTerrainPool:(NSMutableArray*)terrainPool{
+-(void)loadWorld:(SKNode*)world{
     if (validFile) {
-        for (NSString* decoName in terrainPoolArray) {
-            [terrainPool addObject:decoName];
-        }
         NSLog(@"load world");
         for (SKSpriteNode *obstacle in obstacleArray) {
             obstacle.zPosition = 100;

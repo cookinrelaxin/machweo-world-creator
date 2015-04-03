@@ -13,7 +13,7 @@
 
 @implementation SaveMachine
 
--(void)saveWorld:(SKNode *)world withTerrainPool:(NSMutableArray*)terrainPool{
+-(void)saveWorld:(SKNode *)world{
     NSLog(@"saveScene");
     
     //SKSpriteNode* rightMostNode = nil;
@@ -136,13 +136,6 @@
             NSXMLElement *speedType = [NSXMLElement elementWithName:@"speedType" stringValue:[NSString stringWithFormat:@"%d", obs.currentSpeedType]];
             [spriteNode addChild:speedType];
         }
-    }
-    
-    NSXMLElement *terrainPoolNode = [NSXMLElement elementWithName:@"terrainPool"];
-    [root addChild:terrainPoolNode];
-    for (NSString* name in terrainPool) {
-        NSXMLElement *terrainPoolMember = [NSXMLElement elementWithName:@"terrainPoolMember" stringValue:name];
-        [terrainPoolNode addChild:terrainPoolMember];
     }
 
     NSError *error = nil;

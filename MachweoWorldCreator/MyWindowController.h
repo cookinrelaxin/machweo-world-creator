@@ -22,7 +22,6 @@
 @property (weak) IBOutlet NSComboBox *motionSpeedComboBox;
 @property (weak) IBOutlet NSTextField *obstacleMotionSelectionLabel;
 @property (weak) IBOutlet NSTextField *motionSpeedLabel;
-@property (weak) IBOutlet NSButton *terrainPoolMember;
 
 -(void)reappearMotionComboBoxes;
 

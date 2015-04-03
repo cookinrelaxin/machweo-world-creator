@@ -50,7 +50,7 @@
     </node>
     <node>
         <type>DecorationSignifier</type>
-        <name>jungeltree6_decoration</name>
+        <name>jungletree6_decoration</name>
         <uniqueID>322617</uniqueID>
         <xPosition>548.023682</xPosition>
         <yPosition>185.387421</yPosition>
@@ -120,5 +120,4 @@
         <yPosition>134.340454</yPosition>
         <zPosition>114.000000</zPosition>
     </node>
-    <terrainPool></terrainPool>
 </worldnodes>

@@ -11,6 +11,6 @@
 
 @interface SaveMachine : NSObject
 
--(void)saveWorld:(SKNode*)world withTerrainPool:(NSMutableArray*)terrainPool;
+-(void)saveWorld:(SKNode*)world;
 
 @end

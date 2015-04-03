@@ -12,16 +12,6 @@
     </node>
     <node>
         <type>ObstacleSignifier</type>
-        <name>circlemask_obstacle</name>
-        <uniqueID>924713</uniqueID>
-        <xPosition>582.411926</xPosition>
-        <yPosition>820.870422</yPosition>
-        <zPosition>100.000000</zPosition>
-        <motionType>4</motionType>
-        <speedType>0</speedType>
-    </node>
-    <node>
-        <type>ObstacleSignifier</type>
         <name>obstacle2_obstacle</name>
         <uniqueID>80557</uniqueID>
         <xPosition>1152.093750</xPosition>
@@ -30,5 +20,4 @@
         <motionType>0</motionType>
         <speedType>0</speedType>
     </node>
-    <terrainPool></terrainPool>
 </worldnodes>

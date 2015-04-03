@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="13F1066" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
@@ -13,7 +13,6 @@
                 <outlet property="motionSpeedLabel" destination="GpD-fZ-nXx" id="hQ0-BF-PBU"/>
                 <outlet property="obstacleMotionSelectionComboBox" destination="ZMS-4Y-Xfn" id="TGN-FC-TlB"/>
                 <outlet property="obstacleMotionSelectionLabel" destination="iuY-PZ-rqh" id="q5n-6d-1FK"/>
-                <outlet property="terrainPoolMember" destination="g2F-un-DOw" id="OYq-re-qIr"/>
                 <outlet property="windowView" destination="V6Q-OT-Hpx" id="JJc-TT-dE5"/>
                 <outlet property="zPositionComboBox" destination="G0d-XS-sZo" id="TCj-3R-mJj"/>
                 <outlet property="zPositionInfoLabel" destination="vco-Sc-FOI" id="uGd-lH-R5z"/>
@@ -202,16 +201,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </comboBoxCell>
                             </comboBox>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g2F-un-DOw">
-                                <rect key="frame" x="38" y="251" width="153" height="18"/>
-                                <buttonCell key="cell" type="check" title="terrain pool member" bezelStyle="regularSquare" imagePosition="left" inset="2" id="tFc-68-9v6">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="changeTerrainPoolMemberValue:" target="-2" id="fxe-WI-w54"/>
-                                </connections>
-                            </button>
                         </subviews>
                     </customView>
                 </subviews>
